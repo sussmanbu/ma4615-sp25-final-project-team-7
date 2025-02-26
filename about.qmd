@@ -8,16 +8,28 @@ about:
 
 This comes from the file `about.qmd`.
 
-This is a website for the final project for MA[46]15 Data Science with R by Team TEAMNAME.
+This is a website for the final project for MA[46]15 Data Science with R by Team 7.
 The members of this team are below.
 
-## Jiaming Hu
+## Jessica Cannon
 
-Jiaming is a Ph.D. student in Stats and is the Teaching Fellow for the course.
+Jessica is a current undergraduate student studying data science with a minor in CS. [Github](https://github.com/jrcann11)
 
-## Dan Sussman
+## Jiahui Liang
 
-Dan is a professor in the Math/Stat department and is the instructor for the course. [Github](https://github.com/dpmcsuss)
+--Description--
+
+## Jamie Lin
+
+--Description--
+
+## Zihao Xu
+
+--Description--
+
+## Liang Zhong
+
+--Description--
 
 <!-- Please leave in the information below -->
 
