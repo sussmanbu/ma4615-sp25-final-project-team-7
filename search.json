@@ -1,108 +1,31 @@
 [
   {
-    "objectID": "posts/2024-10-04-general-tips/general-tips.html",
-    "href": "posts/2024-10-04-general-tips/general-tips.html",
-    "title": "General Tips",
+    "objectID": "posts/2025-03-03-Blog-post-1/blog-post-1.html",
+    "href": "posts/2025-03-03-Blog-post-1/blog-post-1.html",
+    "title": "Blog Post 1",
     "section": "",
-    "text": "Use the tidyverse!\nYou don’t have to tell me what kind of chart something is. For example, the below is not a useful start to a sentence.\n\n\nThe graph presents a horizontal bar chart …\n\n\nEach page should be largely standalone.\nSometimes small tables or even inline numbers are better than a figure.\nRedundant colors (e.g. bar charts where each bar is a different color that doesn’t signify anything) often don’t help.\nProvide some details on how much data was removed in your cleaning process.\nUse the tidyverse!\nImagine I’m an impatient boss. Show me only what is important and relevant.\nCleaning must be entirely in R\nDon’t say things like, well if only everyone did like so and so than everything would be better. There are many things hiding behind the data that would go to explain things. This is an example of a bad conclusion.\n\n\nThe world could benefit form modeling its education systems after Europe’s.\n\nIt is fine to talk about how the European system is better according to certain metrics, but don’t assume that can easily translate to other regions.\n\nDon’t talk about your “journey”. The blog posts tell the story of your journey. The main pages should focus on the data and your findings.\n\n\nUse the tidyverse!\nNo but seriously, when asking ChatGPT to do your project for you, make sure to tell it to use the tidyverse, not base R."
+    "text": "Dataset 1: U.S. Chronic Disease Indicators (CDI)\nThe CDI dataset was published by the Centers for Disease Control and Prevention (CDC) and developed through a consensus process involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors. The data is collected to support public health surveillance, policy development, and program planning at state and national levels. This comprehensive dataset consists of 309,215 rows and 34 columns, and includes 115 indicators spanning various health topics such as cancer, diabetes, cardiovascular disease, respiratory conditions, and social determinants of health.\nAfter downloading the csv file for the data, we can load it into R using read.csv(). Potential cleaning steps include managing multiple stratification variables (the dataset includes StratificationCategory1, StratificationCategory2, etc.), addressing missing values, converting location identifiers to meaningful geographic variables, and creating derived variables for time-based analysis (the data includes YearStart and YearEnd, which have years spanning 2015-2022). Some of the main questions we hope to address are how racial disparities in disease prevalence and management vary across different states/regions, how racial disparities in chronic disease indicators have changed over time, and whether or not racial disparities in preventive health measures (like cancer screenings, vaccinations) correlate with disparities in disease outcomes. A few anticipated challenges include handling the volume of data, addressing any high-variance estimates (i.e. some racial/ethnic groups may have limited data in certain geographic areas), and effectively visualizing disparities across multiple dimensions (race, geography, time).\n\n\nDataset 2: Mental Health Client-Level Data (MH-CLD)\nPublished by the Substance Abuse and Mental Health Services Administration (SAMHSA), the MH-CLD is designed to compile demographic and mental health characteristics for clients who have received mental health services in facilities that report to state administrative data systems. Each state’s Mental Health Agency collects data on individuals who receive mental health services during a defined 12-month reporting period; this dataset contains information from the year 2022, consisting of 6,957,919 rows and 40 columns. The data was originally collected to support national mental health reporting and to inform policy decisions by providing insights into service usage across various demographics.\nWe can first load the data into RStudio by downloading the delimited data file and using read.csv(). We can then clean the dataset by handling missing values (e.g., dealing with the 14.3% missing responses for race), filtering records for relevance to our study, and rewriting categorical variables for clearer analysis. Some of the main questions we hope to address are what the most common disorders among different race groups are, how mental health outcomes differ based on race/ethnicity following service utilization, and what the racial disparities in mental health service are across different demographic groups. A few challenges we may face during our project include scaling down the data, and making sure to consider that different states may have varied definitions or categorizations of diagnoses and service types, affecting comparability.\n\n\nDataset 3: National Statistics by Parent Income Percentile, Gender, and Race\nThis data derives from a larger study aimed at understanding the impact of parent income on children’s outcomes. The dataset was constructed using information from the U.S. Census Bureau and the American Community Survey (ACS). Confidentiality was prioritized, with data being cleared through the Census Bureau’s Disclosure Review Board to protect individual identities. The data consists of 100 rows and 69 columns, and it covers children born between 1978 and 1983, focusing on various socio-economic indicators related to race and gender.\nWe can load the data into RStudio using read.csv(), and cleaning the data will involve handling missing values, ensuring numerical data are in the correct format for analysis, and removing any bins with suppressed data (as they won’t provide meaningful insights). Some of the main questions we hope to address are how racial disparities manifest in various child outcomes (education, employment, incarceration) based on parent income percentiles, how the mean child income rank differs based on parental homeownership/family structure, and what differences exist between children of different races and genders in terms of college attendance and marriage rates. Looking at the dataset, a few challenges we may face during our project include cleaning/better organizing the data, establishing statistically significant results in racial subgroups with smaller sample sizes, and interpreting correlation vs. causation between variables."
   },
   {
-    "objectID": "posts/2023-10-15-getting-started/getting-started.html",
-    "href": "posts/2023-10-15-getting-started/getting-started.html",
-    "title": "Getting started",
+    "objectID": "posts/2023-12-20-examples/examples.html",
+    "href": "posts/2023-12-20-examples/examples.html",
+    "title": "Examples",
     "section": "",
-    "text": "Below, the items marked with [[OP]] should only be done by one person on the team.\n\nTo get started\n\n[[OP]] One person from the team should click the Github Classroom link on Teams.\n[[OP]] That person types in the group name for their group.\nThe rest of the team now clicks the Github Classroom link and selects their team from the dropdown list.\nFinally, each of you can clone the repository to your laptop like a normal assignment.\n\n\n\nSetting up the site\n\n[[OP]] Open the terminal and run quarto publish gh-pages.\n[[OP]] Select Yes to the prompt:  ? Publish site to https://sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME/ using gh-pages? (Y/n)\n[[OP]] Wait for the process to finish.\nOnce it is done, you can go to the URL it asked you about to see your site.\n\nNote: This is the process you will use every time you want to update your published site. Make sure to always follow the steps below for rendering, previewing, and committing your changes before doing these publish steps. Anyone can publish in the future.\n\n\nCustomize your site\n\n[[OP]] Open the _quarto.yml file and update the title to include your team name.\n[[OP]] Go to the about.qmd and remove the TF’s and professor’s names.\nadd your own along with a short introduction and a link to your Github user page.\n[[OP]] Render the site.\n[[OP]] Check and make sure you didn’t get any errors.\n[[OP]] Commit your changes and push.\n[[OP]] Repeat the steps under Setting up your site.\n\nOnce one person is done with this, each teammate in the group can, in turn, repeat steps 3-7. Before doing so, make sure to pull the changes from teammates before starting to make new changes. (We’ll talk soon about ways to organize your work and resolve conflicts.)\n\n\nStart your first post\n\nTo start your first post first, run remotes::install_github(\"sussmanbu/quartopost\") in your Console.\n[[OP]] Run quartopost::quartopost() (or click Addins-&gt;Create Quarto Post, or use C-Shift-P, type “Create Quarto” and press enter to run the command).\n\nNow you can start working on your post. You’ll want to render your post to see what it will look like on the site.\n\nEvery time you want to make a new post, you can repeat step 2 above.\nWhen you want to publish your progress, follow steps 4-7 from Customize your site.\n\nFinally, make sure to read through everything on this site which has the directions and rubric for the final project."
+    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MA [46]15 Final Project",
+    "objectID": "posts/2023-12-20-examples/examples.html#figure-sizing",
+    "href": "posts/2023-12-20-examples/examples.html#figure-sizing",
+    "title": "Examples",
     "section": "",
-    "text": "Final Project due May 5, 2024 at 11:59pm.\nThis comes from the index.qmd file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeneral Tips\n\n\n\n\n\nSome small but important tips to follow. \n\n\n\n\n\nOct 4, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
+    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
   },
   {
-    "objectID": "big_picture.html",
-    "href": "big_picture.html",
-    "title": "Big Picture",
+    "objectID": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
+    "href": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
+    "title": "First Team Meeting",
     "section": "",
-    "text": "This comes from the file big_picture.qmd.\nThink of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations."
-  },
-  {
-    "objectID": "big_picture.html#rubric-on-this-page",
-    "href": "big_picture.html#rubric-on-this-page",
-    "title": "Big Picture",
-    "section": "Rubric: On this page",
-    "text": "Rubric: On this page\n\nTitle\n\nYour big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.\n\nClarity of Explanation\n\nYou should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.\nEach figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.\n\nCreativity\n\nDo your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.\n\nInteractive component\n\nQuality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?\n\nThis page should be self-contained.\n\nNote: This page should have no code visible, i.e. use #| echo: FALSE."
-  },
-  {
-    "objectID": "big_picture.html#rubric-other-components",
-    "href": "big_picture.html#rubric-other-components",
-    "title": "Big Picture",
-    "section": "Rubric: Other components",
-    "text": "Rubric: Other components\n\nVideo Recording\nMake a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.\n\n\nRest of the Site\nFinally, here are important things to keep in mind for the rest of the site.\nThe main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team 7. The members of this team are below."
-  },
-  {
-    "objectID": "about.html#jessica-cannon",
-    "href": "about.html#jessica-cannon",
-    "title": "About",
-    "section": "Jessica Cannon",
-    "text": "Jessica Cannon\nJessica is a current undergraduate student studying data science with a minor in CS. Github"
-  },
-  {
-    "objectID": "about.html#jiahui-liang",
-    "href": "about.html#jiahui-liang",
-    "title": "About",
-    "section": "Jiahui Liang",
-    "text": "Jiahui Liang\n–Description–"
-  },
-  {
-    "objectID": "about.html#jamie-lin",
-    "href": "about.html#jamie-lin",
-    "title": "About",
-    "section": "Jamie Lin",
-    "text": "Jamie Lin\n–Description–"
-  },
-  {
-    "objectID": "about.html#zihao-xu",
-    "href": "about.html#zihao-xu",
-    "title": "About",
-    "section": "Zihao Xu",
-    "text": "Zihao Xu\n–Description–"
-  },
-  {
-    "objectID": "about.html#liang-zhong",
-    "href": "about.html#liang-zhong",
-    "title": "About",
-    "section": "Liang Zhong",
-    "text": "Liang Zhong\n–Description–\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
-  },
-  {
-    "objectID": "analysis.html",
-    "href": "analysis.html",
-    "title": "Analysis",
-    "section": "",
-    "text": "This comes from the file analysis.qmd.\nWe describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.\nThe audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.\nWhile the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.\nThe style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process."
-  },
-  {
-    "objectID": "analysis.html#note-on-attribution",
-    "href": "analysis.html#note-on-attribution",
-    "title": "Analysis",
-    "section": "Note on Attribution",
-    "text": "Note on Attribution\nIn general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.\nIf you are directly quoting from a source, please make that clear. You can show long quotes using &gt; like this\n&gt; To be or not to be.\n\nTo be or not to be."
-  },
-  {
-    "objectID": "analysis.html#rubric-on-this-page",
-    "href": "analysis.html#rubric-on-this-page",
-    "title": "Analysis",
-    "section": "Rubric: On this page",
-    "text": "Rubric: On this page\nYou will\n\nIntroduce what motivates your Data Analysis (DA)\n\nWhich variables and relationships are you most interested in?\nWhat questions are you interested in answering?\nProvide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.\n\nModeling and Inference\n\nThe page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.\nExplain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)\nDescribe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.\n\nExplain the flaws and limitations of your analysis\n\nAre there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?\n\nClarity Figures\n\nAre your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?\nEach figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)\nDefault lm output and plots are typically not acceptable.\n\nClarity of Explanations\n\nHow well do you explain each figure/result?\nDo you provide interpretations that suggest further analysis or explanations for observed phenomenon?\n\nOrganization and cleanliness.\n\nMake sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.\nThis page should be self-contained, i.e. provide a description of the relevant data."
+    "text": "These are the steps that you will take today to get started on your project. Today, you will just be brainstorming, and then next week, you’ll get started on the main aspects of the project.\n\nStart by introducing yourselves to each other. I also recommend creating a private channel on Microsoft Teams with all your team members. This will be a place that you can communicate and share ideas, code, problems, etc.\nDiscuss what aspects of the project each of you are more or less excited about. These include\n\nCollecting, cleaning, and munging data ,\nStatistical Modeling,\nVisualization,\nWriting about analyses, and\nManaging and reviewing team work.\n\nBased on this, discuss where you feel your strengths and weaknesses might be.\nNext, start brainstorming questions you hope to answer as part of this project. This question should in some way be addressing issues around racial disparities. The questions you come up with should be at the level of the question we started with when exploring the HMDA data. (“Are there differences in the ease of securing a loan based on the race of the applicant?”) You’ll revise your questions a lot over the course of the project. Come up with a few questions that your group might be interested in exploring.\nBased on these questions, start looking around for data that might help you analyze this. If you are looking at U.S. based data, data.gov is a good source and if you are looking internationally, I recommend checking out the World Bank. Also, try Googling for data. Include “data set” or “dataset” in your query. You might even include “CSV” or some other format. Using “data” by itself in your query often doesn’t work too well. Spend some time searching for data and try to come up with at least three possible data sets. (For your first blog post, you’ll write short proposals about each of them that I’ll give feedback on.)\nCome up with a team name. Next week, I’ll provide the Github Classroom assignment that will be where you work on your final project and you’ll have to have your team name finalized by then. Your project will be hosted online at the website with a URL like sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME.\n\nNext time, you’ll get your final project website set up and write your first blog post."
   },
   {
     "objectID": "data.html",
@@ -133,24 +56,108 @@
     "text": "Rubric: On this page\nYou will\n\nDescribe where/how to find data.\n\nYou must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.\nWhy was the data collected/curated? Who put it together? (This is important, if you don’t know why it was collected then that might not be a good dataset to look at.\n\nDescribe the different data files used and what each variable means.\n\nIf you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.\nUse figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.\n\nDescribe any cleaning you had to do for your data.\n\nYou must include a link to your clean_data.R file.\nRename variables and recode factors to make data more clear.\nAlso, describe any additional R packages you used outside of those covered in class.\nDescribe and show code for how you combined multiple data files and any cleaning that was necessary for that.\nSome repetition of what you do in your clean_data.R file is fine and encouraged if it helps explain what you did.\n\nOrganization, clarity, cleanliness of the page\n\nMake sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.\nThis page should be self-contained."
   },
   {
-    "objectID": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
-    "href": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
-    "title": "First Team Meeting",
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
     "section": "",
-    "text": "These are the steps that you will take today to get started on your project. Today, you will just be brainstorming, and then next week, you’ll get started on the main aspects of the project.\n\nStart by introducing yourselves to each other. I also recommend creating a private channel on Microsoft Teams with all your team members. This will be a place that you can communicate and share ideas, code, problems, etc.\nDiscuss what aspects of the project each of you are more or less excited about. These include\n\nCollecting, cleaning, and munging data ,\nStatistical Modeling,\nVisualization,\nWriting about analyses, and\nManaging and reviewing team work.\n\nBased on this, discuss where you feel your strengths and weaknesses might be.\nNext, start brainstorming questions you hope to answer as part of this project. This question should in some way be addressing issues around racial disparities. The questions you come up with should be at the level of the question we started with when exploring the HMDA data. (“Are there differences in the ease of securing a loan based on the race of the applicant?”) You’ll revise your questions a lot over the course of the project. Come up with a few questions that your group might be interested in exploring.\nBased on these questions, start looking around for data that might help you analyze this. If you are looking at U.S. based data, data.gov is a good source and if you are looking internationally, I recommend checking out the World Bank. Also, try Googling for data. Include “data set” or “dataset” in your query. You might even include “CSV” or some other format. Using “data” by itself in your query often doesn’t work too well. Spend some time searching for data and try to come up with at least three possible data sets. (For your first blog post, you’ll write short proposals about each of them that I’ll give feedback on.)\nCome up with a team name. Next week, I’ll provide the Github Classroom assignment that will be where you work on your final project and you’ll have to have your team name finalized by then. Your project will be hosted online at the website with a URL like sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME.\n\nNext time, you’ll get your final project website set up and write your first blog post."
+    "text": "This comes from the file analysis.qmd.\nWe describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.\nThe audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.\nWhile the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.\nThe style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process."
   },
   {
-    "objectID": "posts/2023-12-20-examples/examples.html",
-    "href": "posts/2023-12-20-examples/examples.html",
-    "title": "Examples",
-    "section": "",
-    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
+    "objectID": "analysis.html#note-on-attribution",
+    "href": "analysis.html#note-on-attribution",
+    "title": "Analysis",
+    "section": "Note on Attribution",
+    "text": "Note on Attribution\nIn general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.\nIf you are directly quoting from a source, please make that clear. You can show long quotes using &gt; like this\n&gt; To be or not to be.\n\nTo be or not to be."
   },
   {
-    "objectID": "posts/2023-12-20-examples/examples.html#figure-sizing",
-    "href": "posts/2023-12-20-examples/examples.html#figure-sizing",
-    "title": "Examples",
+    "objectID": "analysis.html#rubric-on-this-page",
+    "href": "analysis.html#rubric-on-this-page",
+    "title": "Analysis",
+    "section": "Rubric: On this page",
+    "text": "Rubric: On this page\nYou will\n\nIntroduce what motivates your Data Analysis (DA)\n\nWhich variables and relationships are you most interested in?\nWhat questions are you interested in answering?\nProvide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.\n\nModeling and Inference\n\nThe page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.\nExplain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)\nDescribe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.\n\nExplain the flaws and limitations of your analysis\n\nAre there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?\n\nClarity Figures\n\nAre your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?\nEach figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)\nDefault lm output and plots are typically not acceptable.\n\nClarity of Explanations\n\nHow well do you explain each figure/result?\nDo you provide interpretations that suggest further analysis or explanations for observed phenomenon?\n\nOrganization and cleanliness.\n\nMake sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.\nThis page should be self-contained, i.e. provide a description of the relevant data."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
+    "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team 7. The members of this team are below."
+  },
+  {
+    "objectID": "about.html#jessica-cannon",
+    "href": "about.html#jessica-cannon",
+    "title": "About",
+    "section": "Jessica Cannon",
+    "text": "Jessica Cannon\nJessica is a current undergraduate student studying data science with a minor in CS. Github"
+  },
+  {
+    "objectID": "about.html#jiahui-liang",
+    "href": "about.html#jiahui-liang",
+    "title": "About",
+    "section": "Jiahui Liang",
+    "text": "Jiahui Liang\n–Description–"
+  },
+  {
+    "objectID": "about.html#jamie-lin",
+    "href": "about.html#jamie-lin",
+    "title": "About",
+    "section": "Jamie Lin",
+    "text": "Jamie Lin\nJamie is a current undergrad majoring in Data Science. Github"
+  },
+  {
+    "objectID": "about.html#zihao-xu",
+    "href": "about.html#zihao-xu",
+    "title": "About",
+    "section": "Zihao Xu",
+    "text": "Zihao Xu\n–Description–"
+  },
+  {
+    "objectID": "about.html#liang-zhong",
+    "href": "about.html#liang-zhong",
+    "title": "About",
+    "section": "Liang Zhong",
+    "text": "Liang Zhong\n–Description–\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
+  },
+  {
+    "objectID": "big_picture.html",
+    "href": "big_picture.html",
+    "title": "Big Picture",
+    "section": "",
+    "text": "This comes from the file big_picture.qmd.\nThink of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations."
+  },
+  {
+    "objectID": "big_picture.html#rubric-on-this-page",
+    "href": "big_picture.html#rubric-on-this-page",
+    "title": "Big Picture",
+    "section": "Rubric: On this page",
+    "text": "Rubric: On this page\n\nTitle\n\nYour big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.\n\nClarity of Explanation\n\nYou should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.\nEach figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.\n\nCreativity\n\nDo your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.\n\nInteractive component\n\nQuality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?\n\nThis page should be self-contained.\n\nNote: This page should have no code visible, i.e. use #| echo: FALSE."
+  },
+  {
+    "objectID": "big_picture.html#rubric-other-components",
+    "href": "big_picture.html#rubric-other-components",
+    "title": "Big Picture",
+    "section": "Rubric: Other components",
+    "text": "Rubric: Other components\n\nVideo Recording\nMake a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.\n\n\nRest of the Site\nFinally, here are important things to keep in mind for the rest of the site.\nThe main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MA [46]15 Final Project",
+    "section": "",
+    "text": "Final Project due May 5, 2024 at 11:59pm.\nThis comes from the index.qmd file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\n\n\n\nOur team’s first blog post, where we review potential dataset candidates. \n\n\n\n\n\nFeb 28, 2025\n\n\nTeam 7\n\n\n\n\n\n\n\n\n\n\n\n\nGeneral Tips\n\n\n\n\n\nSome small but important tips to follow. \n\n\n\n\n\nOct 4, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2023-10-15-getting-started/getting-started.html",
+    "href": "posts/2023-10-15-getting-started/getting-started.html",
+    "title": "Getting started",
+    "section": "",
+    "text": "Below, the items marked with [[OP]] should only be done by one person on the team.\n\nTo get started\n\n[[OP]] One person from the team should click the Github Classroom link on Teams.\n[[OP]] That person types in the group name for their group.\nThe rest of the team now clicks the Github Classroom link and selects their team from the dropdown list.\nFinally, each of you can clone the repository to your laptop like a normal assignment.\n\n\n\nSetting up the site\n\n[[OP]] Open the terminal and run quarto publish gh-pages.\n[[OP]] Select Yes to the prompt:  ? Publish site to https://sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME/ using gh-pages? (Y/n)\n[[OP]] Wait for the process to finish.\nOnce it is done, you can go to the URL it asked you about to see your site.\n\nNote: This is the process you will use every time you want to update your published site. Make sure to always follow the steps below for rendering, previewing, and committing your changes before doing these publish steps. Anyone can publish in the future.\n\n\nCustomize your site\n\n[[OP]] Open the _quarto.yml file and update the title to include your team name.\n[[OP]] Go to the about.qmd and remove the TF’s and professor’s names.\nadd your own along with a short introduction and a link to your Github user page.\n[[OP]] Render the site.\n[[OP]] Check and make sure you didn’t get any errors.\n[[OP]] Commit your changes and push.\n[[OP]] Repeat the steps under Setting up your site.\n\nOnce one person is done with this, each teammate in the group can, in turn, repeat steps 3-7. Before doing so, make sure to pull the changes from teammates before starting to make new changes. (We’ll talk soon about ways to organize your work and resolve conflicts.)\n\n\nStart your first post\n\nTo start your first post first, run remotes::install_github(\"sussmanbu/quartopost\") in your Console.\n[[OP]] Run quartopost::quartopost() (or click Addins-&gt;Create Quarto Post, or use C-Shift-P, type “Create Quarto” and press enter to run the command).\n\nNow you can start working on your post. You’ll want to render your post to see what it will look like on the site.\n\nEvery time you want to make a new post, you can repeat step 2 above.\nWhen you want to publish your progress, follow steps 4-7 from Customize your site.\n\nFinally, make sure to read through everything on this site which has the directions and rubric for the final project."
+  },
+  {
+    "objectID": "posts/2024-10-04-general-tips/general-tips.html",
+    "href": "posts/2024-10-04-general-tips/general-tips.html",
+    "title": "General Tips",
+    "section": "",
+    "text": "Use the tidyverse!\nYou don’t have to tell me what kind of chart something is. For example, the below is not a useful start to a sentence.\n\n\nThe graph presents a horizontal bar chart …\n\n\nEach page should be largely standalone.\nSometimes small tables or even inline numbers are better than a figure.\nRedundant colors (e.g. bar charts where each bar is a different color that doesn’t signify anything) often don’t help.\nProvide some details on how much data was removed in your cleaning process.\nUse the tidyverse!\nImagine I’m an impatient boss. Show me only what is important and relevant.\nCleaning must be entirely in R\nDon’t say things like, well if only everyone did like so and so than everything would be better. There are many things hiding behind the data that would go to explain things. This is an example of a bad conclusion.\n\n\nThe world could benefit form modeling its education systems after Europe’s.\n\nIt is fine to talk about how the European system is better according to certain metrics, but don’t assume that can easily translate to other regions.\n\nDon’t talk about your “journey”. The blog posts tell the story of your journey. The main pages should focus on the data and your findings.\n\n\nUse the tidyverse!\nNo but seriously, when asking ChatGPT to do your project for you, make sure to tell it to use the tidyverse, not base R."
   }
 ]
