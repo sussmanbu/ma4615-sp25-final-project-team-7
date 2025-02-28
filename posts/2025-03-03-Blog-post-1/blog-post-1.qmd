@@ -1,14 +1,10 @@
 ---
-title: "Blog-post-1"
+title: "Blog post 1"
 editor: visual
 ---
 
-# Dataset 1
+# Dataset 1:
 
+# Dataset 2:
 
-
-# Dataset 2
-
-
-
-#Dataset 3
+# Dataset 3:
