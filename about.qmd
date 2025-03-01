@@ -17,11 +17,12 @@ Jessica is a current undergraduate student studying data science with a minor in
 
 ## Jiahui Liang
 
---Description--
+Jiahui is a current student with DS major.
+[Github](https://github.com/jiahui2284)
 
 ## Jamie Lin
 
-Jamie is a current undergrad studying majoring in Data Sciene
+Jamie is a current undergrad majoring in Data Science.
 [Github](https://github.com/jlin305)
 
 ## Zihao Xu
@@ -30,7 +31,7 @@ Jamie is a current undergrad studying majoring in Data Sciene
 
 ## Liang Zhong
 
---Description--
+Liang is a current undergrad majoring in computer science and math.
 
 <!-- Please leave in the information below -->
 
