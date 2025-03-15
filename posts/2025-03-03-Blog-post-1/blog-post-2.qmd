@@ -7,4 +7,20 @@ date: "2025-03-17"
 draft: FALSE
 ---
 
-This week we worked on importing and cleaning out data. We first imported the US Chronic Disease Indicator CSV file. From there, we cleaned up the data by selecting specific columns to analyze: YearStart, LocationDesc, Topic, Question, DataValueType, DataValue, StratificationCategory1, StratificationCategoryID1, and StratificationID1.
+This week we worked on importing and cleaning out data. We first imported the US Chronic Disease Indicator CSV file. From there, we cleaned up the data by selecting specific columns to analyze: YearStart, LocationDesc, Topic, Question, DataValueType, DataValue, StratificationCategory1, StratificationCategoryID1, and StratificationID1.\
+
+Variable Description:
+
+YearStart: The year when the data was collected
+
+LocationDesc: State
+
+Topic: The general category of the health data
+
+Question: A specific health-related question
+
+DataValueType: The type of data value (e.g., mean, median, prevalence ).
+
+DataValue: The actual numerical value.
+
+StratificationCategory1, StratificationCategoryID1, and StratificationID1: Variables relating to age, sex, and race/ethnicity
