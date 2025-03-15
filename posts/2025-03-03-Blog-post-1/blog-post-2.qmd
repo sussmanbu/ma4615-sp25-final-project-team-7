@@ -1,4 +1,8 @@
 ---
 title: "Blog Post 2"
-editor: visual
+description:  |
+  Our team's second blog post, where we update on our progess this week.
+author: "Team 7"
+date: "2025-03-17"
+draft: FALSE
 ---
