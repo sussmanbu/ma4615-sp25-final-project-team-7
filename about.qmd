@@ -33,7 +33,7 @@ Zihao is a current undergraduate student majoring in Econ & Math.
 ## Liang Zhong
 
 Liang is a current undergrad majoring in computer science and math.
-
+[Github](https://github.com/LeoLiangZhong)
 <!-- Please leave in the information below -->
 
 ### About this Template.
