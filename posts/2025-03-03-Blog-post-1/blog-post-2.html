@@ -159,18 +159,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<p><strong>Updates:</strong></p>
 <p>This week, we worked on investigating our data’s background, as well as importing and cleaning out our data. The U.S. Chronic Disease Indicators dataset comes from the Centers for Disease Control and Prevention (CDC). According to their website, the purpose of this dataset is to allow states and territories to uniformly define, collect, and report chronic disease data that are important to public health practice in their area. The data was collected through a variety of surveys conducted by multiple organizations, including the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors. Each row of the dataset contains the original study, survey or system that the information came from in a column labelled “DataSource”.</p>
 <p>One potential issue with the data collection process is that the dataset compiles information from multiple sources, each with its own methodology, sample population, and limitations. For example, the Behavioral Risk Factor Surveillance System (BRFSS) relies on telephone surveys, which may underrepresent individuals without stable phone access. Similarly, data from the Youth Risk Behavior Surveillance System (YRBSS) focuses on high school students, potentially excluding young people who are not enrolled in school. Because the sample populations and data collection methods vary across sources, disparities in representation could introduce biases, particularly regarding racial and socioeconomic groups that may be underrepresented in certain surveys. Nonetheless, this dataset has been widely used for public health research and policymaking; researchers have used CDI data to examine trends in chronic disease prevalence, assess health disparities, and guide public health interventions. Government agencies and policymakers leverage the data to allocate resources, design prevention programs, and inform legislative decisions related to chronic disease management. Given its broad scope, the CDI dataset provides a valuable foundation for studying racial health inequities, but careful attention must be given to data limitations and potential biases in interpretation.</p>
 <p>To begin importing and cleaning out data, we first imported the US Chronic Disease Indicator CSV file. From there, we cleaned up the data by selecting specific columns to analyze: YearStart, LocationDesc, Topic, Question, DataValueType, DataValue, StratificationCategory1, StratificationCategoryID1, and StratificationID1.<br>
 </p>
-<p>Variable Description:</p>
+<p><strong>Variable Description:</strong></p>
 <p>YearStart: The year when the data was collected</p>
 <p>LocationDesc: State</p>
 <p>Topic: The general category of the health data</p>
 <p>Question: A specific health-related question</p>
 <p>DataValueType: The type of data value (e.g., mean, median, prevalence ).</p>
 <p>DataValue: The actual numerical value.</p>
-<p>StratificationCategory1, StratificationCategoryID1, and StratificationID1: Variables relating to age, sex, and race/ethnicity</p>
+<p>StratificationCategory1, and StratificationID1: Variables relating to age, sex, and race/ethnicity</p>
 
 
 
