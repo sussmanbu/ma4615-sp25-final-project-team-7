@@ -5,7 +5,7 @@ data <- read.csv("~/ma4615-sp25-final-project-team-7/dataset/U.S._Chronic_Diseas
 
 # Selecting key variables and clean the value have NA
 data_selected <- data %>%
-  select(YearStart, LocationDesc, Topic, Question,DataValueType,DataValue, StratificationCategory1,StratificationCategoryID1, StratificationID1) %>%
+  select(YearStart, LocationDesc, Topic, Question,DataValueType,DataValue, StratificationID1) %>%
   na.omit() 
 
 saveRDS(data_selected, "~/ma4615-sp25-final-project-team-7/dataset/dataclean.rds")
