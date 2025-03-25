@@ -166,27 +166,85 @@ ul.task-list li input[type="checkbox"] {
 <section id="why-was-this-data-collected" class="level2">
 <h2 class="anchored" data-anchor-id="why-was-this-data-collected">Why Was This Data Collected?</h2>
 <p>The CDI dataset was created to support public health surveillance, policy development, and program planning at both the state and national levels. It provides a standardized way for different states and territories to define, collect, and report chronic disease data, allowing for consistent comparisons across different regions and demographics.</p>
-<p>The data is collected from multiple sources, including: - Behavioral Risk Factor Surveillance System (BRFSS) - Youth Risk Behavior Surveillance System (YRBSS) - National Vital Statistics System (NVSS) - United States Cancer Statistics (USCS) - Centers for Medicare &amp; Medicaid Services (CMS) Data</p>
+<p>The data is collected from multiple sources, including:</p>
+<ul>
+<li><p>Behavioral Risk Factor Surveillance System (BRFSS)</p></li>
+<li><p>Youth Risk Behavior Surveillance System (YRBSS)</p></li>
+<li><p>National Vital Statistics System (NVSS)</p></li>
+<li><p>United States Cancer Statistics (USCS)</p></li>
+<li><p>Centers for Medicare &amp; Medicaid Services (CMS) Data</p></li>
+</ul>
 <p>Because the dataset compiles information from multiple sources, each data source has its own methodology, limitations, and potential biases. For example, BRFSS relies on telephone surveys, which may underrepresent individuals without stable phone access, and YRBSS focuses only on high school students, potentially excluding young people who are not enrolled in school. These factors must be carefully considered when analyzing the data.</p>
 </section>
 <section id="key-variables-in-our-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="key-variables-in-our-analysis">Key Variables in Our Analysis</h2>
 <p>The original dataset consists of 309,215 rows and 34 columns, covering 115 chronic disease indicators across multiple health topics. Since our analysis focuses on racial disparities in chronic disease prevalence and management, we have selected the following key variables:</p>
-<p>YearStart: The year when the data was collected</p>
-<p>LocationDesc: State</p>
-<p>Topic: The general category of the health data</p>
-<p>Question: A specific health-related question</p>
-<p>DataValueType: The type of data value (e.g., mean, median, prevalence ).</p>
-<p>DataValue: The actual numerical value.</p>
-<p>StratificationCategory1, and StratificationID1: Variables relating to age, sex, and race/ethnicity</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Key Variables in the U.S. Chronic Disease Indicators Dataset</caption>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">YearStart</td>
+<td style="text-align: left;">The year the data was collected (2015-2022)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LocationDesc</td>
+<td style="text-align: left;">The state or territory where the data was collected</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Topic</td>
+<td style="text-align: left;">The general category of the health data (e.g., Cardiovascular Disease, Diabetes, Mental Health)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Question</td>
+<td style="text-align: left;">A specific health-related question (e.g., ‘Diabetes among adults’)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DataValueType</td>
+<td style="text-align: left;">The type of data value (e.g., Crude Prevalence, Age-Adjusted Rate)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DataValue</td>
+<td style="text-align: left;">The actual numerical value associated with a given health indicator</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">StratificationID1</td>
+<td style="text-align: left;">The specific stratification variable (e.g., ‘BLK’ for Black, ‘WHT’ for White, ‘HIS’ for Hispanic)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">StratificationCategory1</td>
+<td style="text-align: left;">The category of stratification (e.g., Race/Ethnicity, Age, Gender)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="data-imbalances-and-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="data-imbalances-and-distribution">Data Imbalances and Distribution</h2>
-<p><img src="images/Topic-BarChart.png" class="img-fluid"> Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. Additionally, the LocationDesc variable appears to be evenly distributed, suggesting that no single state or territory is disproportionately represented in the dataset.</p>
+<p><img src="images/Topic-BarChart.png" class="img-fluid"> Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. <img src="images/Location-BarChart.png" class="img-fluid"></p>
+<p>Additionally, the LocationDesc variable appears to be mostly evenly distributed, suggesting that each state or territory is proportionately represented in the dataset.</p>
 </section>
 <section id="data-cleaning-and-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h2>
-<p>To prepare the dataset for analysis, we performed the following cleaning steps: - Selected Relevant Variables: We reduced the dataset to the eight most important columns related to disease prevalence, stratification categories, and geographic information. - Removed Missing Values: We used the na.omit() function to exclude any incomplete data points. - Filtered Out Extreme Outliers: Using a box plot analysis, we identified and removed eight unusually large values (greater than 1,000,000) in the DataValue column. - Checked for Unusual Frequencies: We visualized category distributions to detect imbalances in health topic coverage.</p>
+<p>To prepare the dataset for analysis, we performed the following cleaning steps:</p>
+<ul>
+<li><p><strong>Selected Relevant Variables:</strong> We reduced the dataset to the eight most important columns related to disease prevalence, stratification categories, and geographic information.</p></li>
+<li><p><strong>Removed Missing Values:</strong> We used the na.omit() function to exclude any incomplete data points.</p></li>
+<li><p><strong>Filtered Out Extreme Outliers:</strong> Using a box plot analysis, we identified and removed eight unusually large values (greater than 1,000,000) in the DataValue column.</p></li>
+<li><p><strong>Checked for Unusual Frequencies:</strong> We visualized category distributions to detect imbalances in health topic coverage.</p></li>
+</ul>
 <section id="cleaned-dataset-file" class="level4">
 <h4 class="anchored" data-anchor-id="cleaned-dataset-file">Cleaned Dataset File:</h4>
 <p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/dataclean.rds">Cleaned Data</a></p>
@@ -200,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="additional-notes">Additional Notes</h2>
 <ul>
 <li>No variable renaming or recoding was necessary, as the dataset already had clear labels.</li>
-<li>No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2, here).</li>
+<li>No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2).</li>
 </ul>
 
 
