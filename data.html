@@ -121,13 +121,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-makes-a-good-data-set" id="toc-what-makes-a-good-data-set" class="nav-link active" data-scroll-target="#what-makes-a-good-data-set">What makes a good data set?</a></li>
-  <li><a href="#where-to-keep-data" id="toc-where-to-keep-data" class="nav-link" data-scroll-target="#where-to-keep-data">Where to keep data?</a>
-  <ul class="collapse">
-  <li><a href="#sharing-your-data" id="toc-sharing-your-data" class="nav-link" data-scroll-target="#sharing-your-data">Sharing your data</a></li>
-  <li><a href="#clean-data-script" id="toc-clean-data-script" class="nav-link" data-scroll-target="#clean-data-script">Clean data script</a></li>
-  </ul></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
+  <li><a href="#where-to-find-the-data" id="toc-where-to-find-the-data" class="nav-link active" data-scroll-target="#where-to-find-the-data">Where to Find the Data</a></li>
+  <li><a href="#why-was-this-data-collected" id="toc-why-was-this-data-collected" class="nav-link" data-scroll-target="#why-was-this-data-collected">Why Was This Data Collected?</a></li>
+  <li><a href="#key-variables-in-our-analysis" id="toc-key-variables-in-our-analysis" class="nav-link" data-scroll-target="#key-variables-in-our-analysis">Key Variables in Our Analysis</a></li>
+  <li><a href="#data-imbalances-and-distribution" id="toc-data-imbalances-and-distribution" class="nav-link" data-scroll-target="#data-imbalances-and-distribution">Data Imbalances and Distribution</a></li>
+  <li><a href="#data-cleaning-and-preprocessing" id="toc-data-cleaning-and-preprocessing" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</a></li>
+  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes">Additional Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -159,64 +158,49 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
-<p>This comes from the file <code>data.qmd</code>.</p>
-<p>Your first steps in this project will be to find data to work on.</p>
-<p>I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.</p>
-<p>Initially, you will study <em>one dataset</em> but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable. Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.</p>
-<section id="what-makes-a-good-data-set" class="level2">
-<h2 class="anchored" data-anchor-id="what-makes-a-good-data-set">What makes a good data set?</h2>
-<ul>
-<li>Data you are interested in and care about.</li>
-<li>Data where there are a lot of potential questions that you can explore.</li>
-<li>A data set that isn’t completely cleaned already.</li>
-<li>Multiple sources for data that you can combine.</li>
-<li>Some type of time and/or location component.</li>
-</ul>
+<section id="where-to-find-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="where-to-find-the-data">Where to Find the Data</h2>
+<p>The dataset used in this analysis is the U.S. Chronic Disease Indicators (CDI) dataset, which is published by the Centers for Disease Control and Prevention (CDC). The dataset was developed through a collaborative effort involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors.</p>
+<p>The dataset can be accessed directly from the CDC Chronic Disease Indicators Portal: <a href="https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw/about_data">CDC Chronic Disease Indicators Dataset</a></p>
 </section>
-<section id="where-to-keep-data" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-keep-data">Where to keep data?</h2>
-<p>Below 50mb: In <code>dataset</code> folder</p>
-<p>Above 50mb: In <code>dataset-ignore</code> folder which you will have to create manually. This folder will be ignored by <code>git</code> so you’ll have to manually sync these files across your team.</p>
-<section id="sharing-your-data" class="level3">
-<h3 class="anchored" data-anchor-id="sharing-your-data">Sharing your data</h3>
-<p>For small datasets (&lt;50mb), you can use the <code>dataset</code> folder that is tracked by github. Stage and commit the files just like you would any other file.</p>
-<p>For larger datasets, you’ll need to create a new folder in the project root directory named <code>dataset-ignore</code>. This will be ignored by git (based off the <code>.gitignore</code> file in the project root directory) which will help you avoid issues with Github’s size limits. Your team will have to manually make sure the data files in <code>dataset-ignore</code> are synced across team members.</p>
-<p>Your <a href=".\scripts/clean_data.R">clean_data.R</a> file in the <code>scripts</code> folder is the file where you will import the raw data that you download, clean it, and write <code>.rds</code> file(s) (using <code>write_rds</code>) that you’ll load in your analysis page. If desirable, you can have multiple scripts that produce different derived data sets, just make sure to link to them on this page.</p>
-<p>You should never use absolute paths (eg. <code>/Users/danielsussman/path/to/project/</code> or <code>C:\MA415\\Final_Project\</code>). Instead, use the <code>here</code> function from the <a href="https://here.r-lib.org/articles/here.html"><code>here</code> package</a> to avoid path problems.</p>
+<section id="why-was-this-data-collected" class="level2">
+<h2 class="anchored" data-anchor-id="why-was-this-data-collected">Why Was This Data Collected?</h2>
+<p>The CDI dataset was created to support public health surveillance, policy development, and program planning at both the state and national levels. It provides a standardized way for different states and territories to define, collect, and report chronic disease data, allowing for consistent comparisons across different regions and demographics.</p>
+<p>The data is collected from multiple sources, including: - Behavioral Risk Factor Surveillance System (BRFSS) - Youth Risk Behavior Surveillance System (YRBSS) - National Vital Statistics System (NVSS) - United States Cancer Statistics (USCS) - Centers for Medicare &amp; Medicaid Services (CMS) Data</p>
+<p>Because the dataset compiles information from multiple sources, each data source has its own methodology, limitations, and potential biases. For example, BRFSS relies on telephone surveys, which may underrepresent individuals without stable phone access, and YRBSS focuses only on high school students, potentially excluding young people who are not enrolled in school. These factors must be carefully considered when analyzing the data.</p>
 </section>
-<section id="clean-data-script" class="level3">
-<h3 class="anchored" data-anchor-id="clean-data-script">Clean data script</h3>
-<p>The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them. This file might create a derivative data set that you then use for your subsequent analysis. Note that you don’t need to run this script from every post/page. Instead, you can load in the results of this script, which will usually be <code>.rds</code> files. In your data page you’ll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes. To link to this file, you can use <code>[cleaning script](/scripts/clean_data.R)</code> wich appears as <a href=".\scripts/clean_data.R">cleaning script</a>.</p>
-<hr>
+<section id="key-variables-in-our-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="key-variables-in-our-analysis">Key Variables in Our Analysis</h2>
+<p>The original dataset consists of 309,215 rows and 34 columns, covering 115 chronic disease indicators across multiple health topics. Since our analysis focuses on racial disparities in chronic disease prevalence and management, we have selected the following key variables:</p>
+<p>YearStart: The year when the data was collected</p>
+<p>LocationDesc: State</p>
+<p>Topic: The general category of the health data</p>
+<p>Question: A specific health-related question</p>
+<p>DataValueType: The type of data value (e.g., mean, median, prevalence ).</p>
+<p>DataValue: The actual numerical value.</p>
+<p>StratificationCategory1, and StratificationID1: Variables relating to age, sex, and race/ethnicity</p>
+</section>
+<section id="data-imbalances-and-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="data-imbalances-and-distribution">Data Imbalances and Distribution</h2>
+<p><img src="images/Topic-BarChart.png" class="img-fluid"> Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. Additionally, the LocationDesc variable appears to be evenly distributed, suggesting that no single state or territory is disproportionately represented in the dataset.</p>
+</section>
+<section id="data-cleaning-and-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h2>
+<p>To prepare the dataset for analysis, we performed the following cleaning steps: - Selected Relevant Variables: We reduced the dataset to the eight most important columns related to disease prevalence, stratification categories, and geographic information. - Removed Missing Values: We used the na.omit() function to exclude any incomplete data points. - Filtered Out Extreme Outliers: Using a box plot analysis, we identified and removed eight unusually large values (greater than 1,000,000) in the DataValue column. - Checked for Unusual Frequencies: We visualized category distributions to detect imbalances in health topic coverage.</p>
+<section id="cleaned-dataset-file" class="level4">
+<h4 class="anchored" data-anchor-id="cleaned-dataset-file">Cleaned Dataset File:</h4>
+<p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/dataclean.rds">Cleaned Data</a></p>
+</section>
+<section id="cleaning-script" class="level4">
+<h4 class="anchored" data-anchor-id="cleaning-script">Cleaning Script:</h4>
+<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/clean_data.R">Cleaning Script</a></p>
 </section>
 </section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
+<section id="additional-notes" class="level2">
+<h2 class="anchored" data-anchor-id="additional-notes">Additional Notes</h2>
 <ul>
-<li>Describe where/how to find data.
-<ul>
-<li>You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.</li>
-<li>Why was the data collected/curated? Who put it together? (This is important, if you don’t know why it was collected then that might not be a good dataset to look at.</li>
-</ul></li>
-<li>Describe the different data files used and what each variable means.
-<ul>
-<li>If you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.</li>
-<li>Use figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.</li>
-</ul></li>
-<li>Describe any cleaning you had to do for your data.
-<ul>
-<li>You <em>must</em> include a link to your <code>clean_data.R</code> file.</li>
-<li>Rename variables and recode factors to make data more clear.</li>
-<li>Also, describe any additional R packages you used outside of those covered in class.</li>
-<li>Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.</li>
-<li>Some repetition of what you do in your <code>clean_data.R</code> file is fine and encouraged if it helps explain what you did.</li>
-</ul></li>
-<li>Organization, clarity, cleanliness of the page
-<ul>
-<li>Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.</li>
-<li>This page should be self-contained.</li>
-</ul></li>
+<li>No variable renaming or recoding was necessary, as the dataset already had clear labels.</li>
+<li>No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2, here).</li>
 </ul>
 
 
