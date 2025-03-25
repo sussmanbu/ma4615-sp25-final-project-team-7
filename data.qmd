@@ -3,76 +3,64 @@ title: Data
 description: We describe the sources of our data and the cleaning process.
 toc: true
 draft: false
+editor: 
+  markdown: 
+    wrap: sentence
 ---
 
 ![](images/data-import-cheatsheet-thumbs.png)
 
+## Where to Find the Data
+The dataset used in this analysis is the U.S. Chronic Disease Indicators (CDI) dataset, which is published by the Centers for Disease Control and Prevention (CDC). The dataset was developed through a collaborative effort involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors.
 
-This comes from the file `data.qmd`.
+The dataset can be accessed directly from the CDC Chronic Disease Indicators Portal: [CDC Chronic Disease Indicators Dataset](https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw/about_data)
 
-Your first steps in this project will be to find data to work on.
+## Why Was This Data Collected?
+The CDI dataset was created to support public health surveillance, policy development, and program planning at both the state and national levels. It provides a standardized way for different states and territories to define, collect, and report chronic disease data, allowing for consistent comparisons across different regions and demographics.
 
-I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
+The data is collected from multiple sources, including:
+- Behavioral Risk Factor Surveillance System (BRFSS)
+- Youth Risk Behavior Surveillance System (YRBSS)
+- National Vital Statistics System (NVSS)
+- United States Cancer Statistics (USCS)
+- Centers for Medicare & Medicaid Services (CMS) Data
 
+Because the dataset compiles information from multiple sources, each data source has its own methodology, limitations, and potential biases. For example, BRFSS relies on telephone surveys, which may underrepresent individuals without stable phone access, and YRBSS focuses only on high school students, potentially excluding young people who are not enrolled in school. These factors must be carefully considered when analyzing the data.
 
-Initially, you will study _one dataset_ but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable.
-Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
+## Key Variables in Our Analysis
+The original dataset consists of 309,215 rows and 34 columns, covering 115 chronic disease indicators across multiple health topics. Since our analysis focuses on racial disparities in chronic disease prevalence and management, we have selected the following key variables:
 
+YearStart: The year when the data was collected
 
-## What makes a good data set?
+LocationDesc: State
 
-* Data you are interested in and care about.
-* Data where there are a lot of potential questions that you can explore.
-* A data set that isn't completely cleaned already.
-* Multiple sources for data that you can combine.
-* Some type of time and/or location component.
+Topic: The general category of the health data
 
+Question: A specific health-related question
 
-## Where to keep data?
+DataValueType: The type of data value (e.g., mean, median, prevalence ).
 
+DataValue: The actual numerical value.
 
-Below 50mb: In `dataset` folder
+StratificationCategory1, and StratificationID1: Variables relating to age, sex, and race/ethnicity
 
-Above 50mb: In `dataset-ignore` folder which you will have to create manually. This folder will be ignored by `git` so you'll have to manually sync these files across your team.
+## Data Imbalances and Distribution
+![](images/Topic-BarChart.png)
+Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. Additionally, the LocationDesc variable appears to be evenly distributed, suggesting that no single state or territory is disproportionately represented in the dataset.
 
-### Sharing your data
+## Data Cleaning and Preprocessing
+To prepare the dataset for analysis, we performed the following cleaning steps:
+- Selected Relevant Variables: We reduced the dataset to the eight most important columns related to disease prevalence, stratification categories, and geographic information.
+- Removed Missing Values: We used the na.omit() function to exclude any incomplete data points.
+- Filtered Out Extreme Outliers: Using a box plot analysis, we identified and removed eight unusually large values (greater than 1,000,000) in the DataValue column.
+- Checked for Unusual Frequencies: We visualized category distributions to detect imbalances in health topic coverage.
 
+#### Cleaned Dataset File:
+You can download the cleaned dataset used in our analysis here: [Cleaned Data](/dataset/dataclean.rds)
 
-For small datasets (<50mb), you can use the `dataset` folder that is tracked by github. Stage and commit the files just like you would any other file.
+#### Cleaning Script:
+For full transparency, our data cleaning script is available for review: [Cleaning Script](/scripts/clean_data.R)
 
-For larger datasets, you'll need to create a new folder in the project root directory named `dataset-ignore`. This will be ignored by git (based off the `.gitignore` file in the project root directory) which will help you avoid issues with Github's size limits. Your team will have to manually make sure the data files in `dataset-ignore` are synced across team members.
-
-Your [clean_data.R](/scripts/clean_data.R) file in the `scripts` folder is the file where you will import the raw data that you download, clean it, and write `.rds` file(s) (using `write_rds`) that you'll load in your analysis page. If desirable, you can have multiple scripts that produce different derived data sets, just make sure to link to them on this page.
-
-You should never use absolute paths (eg. `/Users/danielsussman/path/to/project/` or `C:\MA415\\Final_Project\`).
-Instead, use the `here` function from the [`here` package](https://here.r-lib.org/articles/here.html) to avoid path problems.
-
-### Clean data script
-
-The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them.
-This file might create a derivative data set that you then use for your subsequent analysis.
-Note that you don't need to run this script from every post/page.
-Instead, you can load in the results of this script, which will usually be `.rds` files. In your data page you'll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes.
-To link to this file, you can use `[cleaning script](/scripts/clean_data.R)` wich appears as [cleaning script](/scripts/clean_data.R). 
-
-----
-
-## Rubric: On this page
-
-You will
-
-* Describe where/how to find data.
-  * You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
-  * Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
-* Describe the different data files used and what each variable means. 
-  * If you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.
-  * Use figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.
-* Describe any cleaning you had to do for your data.
-  * You *must* include a link to your `clean_data.R` file.
-  * Rename variables and recode factors to make data more clear.
-  * Also, describe any additional R packages you used outside of those covered in class.
-  * Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
-  * Some repetition of what you do in your `clean_data.R` file is fine and encouraged if it helps explain what you did.
-* Organization, clarity, cleanliness of the page
-  * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
-  * This page should be self-contained.
+## Additional Notes
+- No variable renaming or recoding was necessary, as the dataset already had clear labels.
+- No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2, here).

@@ -1,13 +1,14 @@
-# This file is purely as an example.
-# Note, you may end up creating more than one cleaned data set and saving that
-# to separate files in order to work on different aspects of your project
-
+library(dplyr)
 library(tidyverse)
+library(here)
 
-loan_data <- read_csv(here::here("dataset", "loan_refusal.csv"))
+# Load the dataset
+data <- read_csv(here::here("dataset", "U.S._Chronic_Disease_Indicators (1).csv"))
 
-## CLEAN the data
-loan_data_clean <- loan_data |>
-  pivot_longer(2:5, names_to = "group", values_to = "refusal_rate")
+# Selecting key variables, cleaning NA values, and filtering out outliers
+data_selected <- data %>%
+  select(YearStart, LocationDesc, Topic, Question, DataValueType, DataValue, StratificationID1, StratificationCategory1) %>%
+  filter(DataValue < 1000000) %>%
+  na.omit()
 
-write_rds(loan_data_clean, file = here::here("dataset", "loan_refusal_clean.rds"))
+saveRDS(data_selected, file = here::here("dataset", "dataclean.rds"))
