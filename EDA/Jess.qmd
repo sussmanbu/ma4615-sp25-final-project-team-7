@@ -1,0 +1,70 @@
+---
+title: "Jess"
+draft: TRUE
+---
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(here))
+# Load the data set
+data <- readRDS(here::here("dataset", "dataclean.rds"))
+```
+
+```{r}
+head(data)
+```
+
+Shape of New Data:
+```{r}
+nrow(data)
+ncol(data)
+```
+
+Boxplot of Data Values:
+```{r}
+library(ggplot2)
+ggplot(data, aes(x = DataValue)) + 
+  geom_boxplot() + 
+  labs(title = "Boxplot of Data Values", x = "DataValue")
+```
+
+Boxplot of Data Values (scaled):
+```{r}
+data$DataValue_scaled <- scale(data$DataValue)
+ggplot(data, aes(x = DataValue_scaled)) + 
+  geom_boxplot() + 
+  labs(title = "Boxplot of Data Values", x = "DataValue_scaled") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+Health Topic Frequency Bar Graph:
+```{r}
+library(dplyr)
+
+# Count occurrences of each Topic
+topic_counts <- data %>%
+  count(Topic, sort = TRUE)
+
+# Plot the frequency of each Topic
+ggplot(topic_counts, aes(x = reorder(Topic, n), y = n)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +  # Flip for better readability
+  labs(title = "Frequency of Each Health Topic", x = "Health Topic", y = "Count") +
+  theme_minimal()
+```
+
+
+Location Frequency Bar Graph:
+```{r}
+# Count occurrences of each Location
+location_counts <- data %>%
+  count(LocationDesc, sort = TRUE)
+
+# Plot the frequency of each Location
+ggplot(location_counts, aes(x = reorder(LocationDesc, n), y = n)) +
+  geom_bar(stat = "identity", fill = "darkgreen") +
+  coord_flip() +  # Flip for better readability
+  labs(title = "Frequency of Each Location", x = "Location (State/Territory)", y = "Count") +
+  theme_minimal()
+```
+
