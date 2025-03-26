@@ -1,5 +1,0 @@
----
-title: "Jamie"
-editor: visual
-draft: True
----
