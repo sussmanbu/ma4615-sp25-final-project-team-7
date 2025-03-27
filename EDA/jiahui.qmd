@@ -1,0 +1,56 @@
+---
+title: "jiahui"
+format: html
+draft: True
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+data <- readRDS("~/ma4615-sp25-final-project-team-7/dataset/dataclean.rds")
+
+topic_summary <- data %>%
+  count(Topic) %>%
+  mutate(Percentage = (n / sum(n)) * 100)
+
+print(topic_summary)
+
+ggplot(topic_summary, aes(x = Topic, y = Percentage, fill = Topic)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Percentage Distribution of Health Conditions",
+       x = "Health Condition",
+       y = "Percentage (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none")
+
+
+
+
+```
+This graph illustrates the distribution of various health conditions within the dataset. Each bar represents a health condition, indicating the proportion (%) of records related to each specific health issue. Cardiovascular Disease is the most represented health condition in the dataset. This indicates its high relevance as a major health issue, likely due to its widespread prevalence and significant impact on public health. But Chronic Kidney Disease is the lowest rate in the health problem report,that mean less common within the population.
+
+
+```{r}
+cardio_data <- data %>% 
+  filter(Topic == "Cardiovascular Disease")
+
+location_summary <- cardio_data %>%
+  count(LocationDesc) %>%
+  mutate(Percentage = (n / sum(n)) * 100) %>%
+  arrange(desc(Percentage))
+
+print(location_summary)
+
+ggplot(location_summary, aes(x = reorder(LocationDesc, -Percentage), y = Percentage)) +
+  geom_bar(stat = "identity", fill = "tomato") +
+  labs(title = "Percentage Distribution of Cardiovascular Disease by Location",
+       x = "Location",
+       y = "Percentage (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+This data shows how Cardiovascular Disease is distributed across different geographic locations. Specifically, it indicates the proportion (percentage) of reported cases or data points related to Cardiovascular Disease from each location. In this report, we can clearly see that if a state has a denser population, it will have more patients. (If the population is similar, the difference is not big) and sparsely populated areas, such as "Virgin Island" and "Puerto Rico", have fewer patient reports.
