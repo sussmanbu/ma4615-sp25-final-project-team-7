@@ -2,8 +2,8 @@
 title: "LiangZhong"
 editor: visual
 ---
- focusing on how the frequency of alcohol consumption is associated with depression scores in high school students. Specifically, we can filter our dataset to include only high school-aged individuals, then create scatter plots and perform a linear regression analysis to quantify the relationship. Initial results suggest that higher alcohol consumption is linked to higher depression scores, indicating that alcohol use might be a contributing risk factor for depression in this population.
----
+
+## focusing on how the frequency of alcohol consumption is associated with depression scores in high school students. Specifically, we can filter our dataset to include only high school-aged individuals, then create scatter plots and perform a linear regression analysis to quantify the relationship. Initial results suggest that higher alcohol consumption is linked to higher depression scores, indicating that alcohol use might be a contributing risk factor for depression in this population.
 
 ```{r}
 library(tidyverse)
