@@ -34,6 +34,8 @@ age_asthma <- age_data %>%
 
 library(ggplot2)
 
+
+#graph
 ggplot(gender_asthma, aes(x = StratificationID1, y = avg_prevalence, fill = StratificationID1)) +
   geom_bar(stat = "identity") +
   labs(title = "Asthma Prevalence by Gender", x = "Gender", y = "Prevalence (%)") +
