@@ -1,0 +1,47 @@
+---
+title: "Zihao"
+format: html
+draft: True
+---
+```{r}
+data <- readRDS(here::here("dataset", "dataclean.rds"))
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+demo_data <- dataclean %>%
+  filter(DataValueType == "Crude Prevalence")
+
+gender_data <- demo_data %>% filter(StratificationCategory1 == "Sex")
+age_data <- demo_data %>% filter(StratificationCategory1 == "Age")
+
+
+# Gender
+gender_asthma <- gender_data %>%
+  filter(Topic == "Asthma") %>%
+  group_by(StratificationID1) %>%
+  summarise(avg_prevalence = mean(DataValue, na.rm = TRUE))
+
+# Age
+age_asthma <- age_data %>%
+  filter(Topic == "Asthma") %>%
+  group_by(StratificationID1) %>%
+  summarise(avg_prevalence = mean(DataValue, na.rm = TRUE))
+
+library(ggplot2)
+
+ggplot(gender_asthma, aes(x = StratificationID1, y = avg_prevalence, fill = StratificationID1)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Asthma Prevalence by Gender", x = "Gender", y = "Prevalence (%)") +
+  theme_minimal()
+
+ggplot(age_asthma, aes(x = StratificationID1, y = avg_prevalence, fill = StratificationID1)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Asthma Prevalence by Age Group", x = "Age Group", y = "Prevalence (%)") +
+  theme_minimal()
+
+```
