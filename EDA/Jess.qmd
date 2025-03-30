@@ -3,6 +3,8 @@ title: "Jess"
 draft: TRUE
 ---
 
+# BLOG POST 3 EDA
+
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(here))
@@ -68,3 +70,176 @@ ggplot(location_counts, aes(x = reorder(LocationDesc, n), y = n)) +
   theme_minimal()
 ```
 
+
+# BLOG POST 4 EDA
+
+Import Libraries (again):
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(scales)
+library(tidyverse)
+```
+
+Double check for NA values:
+```{r}
+colSums(is.na(data))  # Identify missing data in each column
+```
+
+Visualizing Trends Over Time:
+    a.) Line plot of Health Outcomes over the years
+```{r}
+# Aggregate data by Year and Topic (Health Outcome)
+health_trends <- data %>%
+  filter(Topic %in% c("Arthritis", "Asthma", "Disability", "Mental Health")) %>%
+  group_by(YearStart, Topic) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE))
+
+# Line plot
+ggplot(health_trends, aes(x = YearStart, y = AverageValue, color = Topic)) +
+  geom_line(size = 1) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Trends in Health Outcomes Over Time",
+       x = "Year",
+       y = "Average Health Outcome Value",
+       color = "Health Outcome") +
+  scale_x_continuous(breaks = seq(2015, 2022, 1))
+```
+
+Exploring Race-Based Disparities:
+    b.) Bar chart of Health Outcomes by Race
+```{r}
+# Filter for Race/Ethnicity data
+race_health <- data %>%
+  filter(StratificationCategory1 == "Race/Ethnicity", 
+         Topic %in% c("Arthritis", "Asthma", "Disability", "Mental Health")) %>%
+  group_by(StratificationID1, Topic) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE)) %>%
+  mutate(StratificationID1 = factor(StratificationID1, 
+         levels = c("WHT", "BLK", "HIS", "MRC", "AIAN", "API", "HAPI", "ASN"),
+         labels = c("White", "Black", "Hispanic", "Multiracial", 
+                    "American Indian/Alaska Native", "Asian/Pacific Islander", 
+                    "Hawaiian/Pacific Islander", "Asian")))
+
+# Create bar plot
+ggplot(race_health, aes(x = StratificationID1, y = AverageValue, fill = Topic)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  labs(title = "Health Outcome Disparities by Race/Ethnicity",
+       x = "Race/Ethnicity",
+       y = "Average Health Outcome Value",
+       fill = "Health Condition") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Exploring Geographic Disparities:
+    c.) Heat map of Health Outcomes by Location
+```{r}
+# Aggregate data by Location and Health Topic
+location_health <- data %>%
+  filter(Topic %in% c("Arthritis", "Asthma", "Disability", "Mental Health"),
+         LocationDesc != "United States") %>%
+  group_by(LocationDesc, Topic) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE))
+
+# Heatmap
+ggplot(location_health, aes(x = Topic, y = LocationDesc, fill = AverageValue)) +
+  geom_tile() +
+  theme_minimal() +
+  scale_fill_gradient(low = "white", high = "red") +
+  labs(title = "Heatmap of Health Outcomes by Location",
+       x = "Health Outcome",
+       y = "Location",
+       fill = "Avg Value") +
+  theme(axis.text.y = element_text(size = 8))
+```
+
+Modeling - Linear Regression
+    A simple linear regression model to predict certain health outcome rates using race, year, and location.
+```{r}
+# Filter data for relevant health outcomes and ensure proper stratification
+lm_data <- data %>%
+  filter(Topic %in% c("Arthritis", "Asthma", "Disability", "Mental Health"),
+         StratificationCategory1 == "Race/Ethnicity",
+         LocationDesc != "United States") %>%
+  select(YearStart, LocationDesc, StratificationID1, Topic, DataValue)
+
+head(lm_data)
+```
+
+```{r}
+nrow(lm_data)
+ncol(lm_data)
+```
+
+Build and run models:
+```{r}
+
+# Convert categorical variables to factors
+lm_data <- lm_data %>%
+  mutate(LocationDesc = as.factor(LocationDesc),
+         StratificationID1 = factor(StratificationID1, 
+             levels = c("WHT", "BLK", "HIS", "MRC", "AIAN", "API", "HAPI", "ASN"),
+             labels = c("White", "Black", "Hispanic", "Multiracial", 
+                        "American Indian/Alaska Native", "Asian/Pacific Islander", 
+                        "Hawaiian/Pacific Islander", "Asian")),
+         Topic = as.factor(Topic))
+
+# Create linear models for each health outcome
+models <- lm_data %>%
+  nest(data = -Topic) %>%
+  mutate(model = map(data, ~ lm(DataValue ~ YearStart + LocationDesc + StratificationID1, data = .)))
+
+# Display model summaries
+models %>%
+  mutate(summary = map(model, summary)) %>%
+  select(Topic, summary) %>%
+  print()
+```
+See Summary Table of Model Coefficients:
+```{r}
+library(dplyr)
+library(broom)
+library(gt)
+
+# Extract model summaries into a tidy table
+# Extract and tidy model summaries
+model_results <- models %>%
+  mutate(tidy_summary = map(model, tidy)) %>%  # Apply tidy() to model
+  unnest(tidy_summary) %>%
+  select(Topic, term, estimate, std.error, p.value) %>%
+  mutate(significance = case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01  ~ "**",
+    p.value < 0.05  ~ "*",
+    TRUE            ~ ""
+  ))
+
+# Display the results in a formatted table
+model_results %>%
+  gt() %>%
+  tab_header(title = "Regression Results for Health Outcomes") %>%
+  fmt_number(columns = c(estimate, std.error, p.value), decimals = 3)
+```
+
+See Diagnostic Residual Plots (residuals vs. fitted values):
+```{r}
+# Extract fitted values and residuals from each model
+residuals_data <- models %>%
+  mutate(residuals = map(model, residuals), 
+         fitted = map(model, fitted.values)) %>%
+  unnest(c(residuals, fitted))
+
+# Create Residuals vs. Fitted plot
+ggplot(residuals_data, aes(x = fitted, y = residuals)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  facet_wrap(~ Topic, scales = "free") +  # One plot per health outcome
+  labs(title = "Residuals vs. Fitted Values",
+       x = "Fitted Values",
+       y = "Residuals") +
+  theme_minimal()
+```
+Randomly scattered residuals indicate that this is a good model fit. Patterns (curved, funnel shape, etc.) would indicate issues such as non-linearity or heteroscedasticity.
