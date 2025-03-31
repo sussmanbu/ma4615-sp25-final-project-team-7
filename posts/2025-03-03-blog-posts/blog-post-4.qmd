@@ -1,0 +1,30 @@
+---
+title: "Blog Post 4"
+description:  |
+  Our team's fourth blog post, where we update on our exploratory data analysis.
+author: "Team 7"
+date: "2025-03-31"
+draft: FALSE
+---
+
+This week, we expanded our exploratory data analysis by investigating health disparities across racial and ethnic groups. Specifically, we visualized how the prevalence of four health outcomes—Arthritis, Asthma, Disability, and Mental Health—varies by race and ethnicity.
+
+![](../../images/HealthOutcome_byRace.png)
+
+The bar chart shown above highlights clear disparities, with some conditions disproportionately affecting specific racial groups. For example, Multiracial and American Indian/Alaska Native groups consistently show higher average rates across multiple conditions, particularly for Disability and Mental Health, while Asian populations generally report lower values across the board. This visualization offers a meaningful entry point into the structural inequities embedded in public health outcomes and suggests important directions for deeper statistical analysis.
+
+![](../../images/lm_results_MentalHealth.png)
+![](../../images/lm_results_Disability.png)
+![](../../images/lm_results_Arthritis.png)
+
+To explore these relationships more rigorously, we fit a set of simple linear regression models to predict each of the four health outcome rates using three main predictors: YearStart, Location, and Race/Ethnicity (via the StratificationID1 column). A small portion of our modeling results is shown above; the modeling results confirmed some patterns from the EDA. For example, in the Disability model, race emerged as a significant predictor: the coefficients for American Indian/Alaska Native (+14.78), Multiracial (+10.53), and Hispanic (+3.23) were all statistically significant with p-values < 0.001, indicating strong disparities. Similarly, in the Arthritis model, race also showed significance: the Asian group had a significantly lower rate (−10.96), while the Black and Multiracial groups had higher average rates. Location was also an important factor in many models, with states like California, New York, and Maryland frequently showing significant coefficients. While these are just initial models, they already suggest important structural differences in chronic disease rates by both race and geography. Moving forward, we hope to refine these models and explore potential mediating variables such as social determinants of health.
+
+Almong with race, we also discovered some discrepancies with age. We discovered that there was an inconsistent age group among StratificationID1. To observer how this effects the different health conditions, we first wanted to see which age grouped were analyzed and not.
+![](../../images/age_prev.png)
+
+From the graph, we realized not every health condition was observed for every age group, nor were the range of age groups consistent. For exam, there would be an age 10-14 age group, as well as a 12-17. Given this information, we focused on analysis of alcohol and tabacco use in high school students. We were able to do this by filtering out "high school students" within Question.
+![](../../images/alctab_race.png)
+![](../../images/alctab_prev.png)
+We were able to visualize the average prevelance of alcohol and tabacco use among high school students within the different race categories, as well as how the prevelance changes over time.
+
+
