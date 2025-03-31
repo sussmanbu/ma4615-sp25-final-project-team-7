@@ -58,4 +58,40 @@ ggplot(year_summary, aes(x = YearStart, y = mean_prevalence, color = Stratificat
   labs(title = "Trend in Alcohol & Tobacco Use by Race Over Time", x = "Year", y = "Prevalence") 
 
 ```
+Age distribution 
+
+```{r}
+unique(data$StratificationID1[data$StratificationCategory1 == "Age"])
+
+```
+
+```{r}
+ggplot(
+  filter(
+    mutate(
+      data,
+      AgeGroup = case_when(
+        StratificationID1 %in% c("AGE1_5", "AGE4M5Y") ~ "0–5",
+        StratificationID1 %in% c("AGE6_9", "AGE6_11") ~ "6–11",
+        StratificationID1 %in% c("AGE1013", "AGE6_14") ~ "10–14",
+        StratificationID1 == "AGE1217" ~ "12–17",
+        StratificationID1 == "AGE1844" ~ "18–44",
+        StratificationID1 == "AGE4564" ~ "45–64",
+        StratificationID1 == "AGE65P" ~ "65+",
+        StratificationID1 == "AGE0_44" ~ "0–44",
+        TRUE ~ NA_character_
+      )
+    ),
+    StratificationCategory1 == "Age" & !is.na(AgeGroup)
+  ),
+  aes(x = AgeGroup, y = DataValue, fill = Topic)
+) +
+  geom_bar(stat = "summary", fun = "mean", position = "dodge") +
+  labs(
+    title = "Mean Prevalence of Topics by Age Group",
+    x = "Age Group",
+    y = "Mean Prevalence"
+  )
+
+```
 
