@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA [46]15 Final Project – MA [46]15 Final Project Team 7</title>
+<title>LiangZhong – MA [46]15 Final Project Team 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +100,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MA [46]15 Final Project Team 7</span>
     </a>
   </div>
@@ -149,19 +123,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./big_picture.html"> 
+    <a class="nav-link" href="../big_picture.html"> 
 <span class="menu-text">Big Picture</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
+    <a class="nav-link" href="../analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link" href="../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
 </ul>
@@ -172,284 +146,61 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">MA [46]15 Final Project</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LiangZhong</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<p><img src="images/data-science.png" class="img-fluid"></p>
-<section id="final-project-due-may-5-2024-at-1159pm." class="level1">
-<h1>Final Project due May 5, 2024 at 11:59pm.</h1>
-<p>This comes from the <code>index.qmd</code> file.</p>
+</header>
 
+
+<section id="focusing-on-how-the-frequency-of-alcohol-consumption-is-associated-with-depression-scores-in-high-school-students.-specifically-we-can-filter-our-dataset-to-include-only-high-school-aged-individuals-then-create-scatter-plots-and-perform-a-linear-regression-analysis-to-quantify-the-relationship.-initial-results-suggest-that-higher-alcohol-consumption-is-linked-to-higher-depression-scores-indicating-that-alcohol-use-might-be-a-contributing-risk-factor-for-depression-in-this-population." class="level2">
+<h2 class="anchored" data-anchor-id="focusing-on-how-the-frequency-of-alcohol-consumption-is-associated-with-depression-scores-in-high-school-students.-specifically-we-can-filter-our-dataset-to-include-only-high-school-aged-individuals-then-create-scatter-plots-and-perform-a-linear-regression-analysis-to-quantify-the-relationship.-initial-results-suggest-that-higher-alcohol-consumption-is-linked-to-higher-depression-scores-indicating-that-alcohol-use-might-be-a-contributing-risk-factor-for-depression-in-this-population.">focusing on how the frequency of alcohol consumption is associated with depression scores in high school students. Specifically, we can filter our dataset to include only high school-aged individuals, then create scatter plots and perform a linear regression analysis to quantify the relationship. Initial results suggest that higher alcohol consumption is linked to higher depression scores, indicating that alcohol use might be a contributing risk factor for depression in this population.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the cleaned dataset</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># dataclean &lt;- readRDS("dataclean.rds")</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for high schoolers (assuming ages 14-18 represent high school students)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># highschoolers &lt;- dataclean %&gt;% filter(age &gt;= 14, age &lt;= 18)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with a linear trend line</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(highschoolers, aes(x = alcohol_consumption, y = depression_score)) +</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(alpha = 0.6) +</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_smooth(method = "lm", se = FALSE, color = "blue") +</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># labs(title = "Alcohol Consumption vs. Depression in High Schoolers",</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>       <span class="co"># x = "Alcohol Consumption (frequency per week)",</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="co"># y = "Depression Score") +</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme_minimal()</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear model</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># model &lt;- lm(depression_score ~ alcohol_consumption, data = highschoolers)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1743393600000" data-listing-file-modified-sort="1743448842567" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="285">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external"></a></p><a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external">
-<p class="card-img-top"><img src="images\HealthOutcome_byRace.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external">Blog Post 4</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external">Our team’s fourth blog post, where we update on our exploratory data analysis. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-03-blog-posts/blog-post-4.html" class="no-external">
-<div class="listing-date">
-Mar 31, 2025
-</div>
-<div class="listing-author">
-Team 7
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1742788800000" data-listing-file-modified-sort="1742871503238" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="538">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external"></a></p><a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external">
-<p class="card-img-top"><img src="images\DataValue-BoxPlot.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external">Blog Post 3</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external">Our team’s third blog post, where we update on our progess this week. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-03-blog-posts/blog-post-3.html" class="no-external">
-<div class="listing-date">
-Mar 24, 2025
-</div>
-<div class="listing-author">
-Team 7
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1742184000000" data-listing-file-modified-sort="1742238889126" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="389">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external"></a></p><a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external">Blog Post 2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external">Our team’s second blog post, where we update on our progess this week. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-03-blog-posts/blog-post-2.html" class="no-external">
-<div class="listing-date">
-Mar 17, 2025
-</div>
-<div class="listing-author">
-Team 7
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1740718800000" data-listing-file-modified-sort="1742236818543" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="692">
-<div class="thumbnail">
-<p><a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external"></a></p><a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external">Blog Post 1</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external">Our team’s first blog post, where we review potential dataset candidates. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-03-03-blog-posts/blog-post-1.html" class="no-external">
-<div class="listing-date">
-Feb 28, 2025
-</div>
-<div class="listing-author">
-Team 7
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1728014400000" data-listing-file-modified-sort="1742236818543" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="232">
-<div class="thumbnail">
-<p><a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external"></a></p><a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">General Tips</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">Some small but important tips to follow. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-10-04-general-tips/general-tips.html" class="no-external">
-<div class="listing-date">
-Oct 4, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="" data-listing-date-sort="1708923600000" data-listing-file-modified-sort="1742236818541" data-listing-date-modified-sort="1708923600000" data-listing-reading-time-sort="1" data-listing-word-count-sort="56">
-<div class="thumbnail">
-<p><a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a></p><a href="./posts/2023-12-20-examples/examples.html" class="no-external">
-<p class="card-img-top"><img src="posts\2023-12-20-examples\examples_files\figure-html\unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">Examples</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-</div>
-<div class="listing-description">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">Here are some examples of changing the size of a figure.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-12-20-examples/examples.html" class="no-external">
-<div class="listing-date">
-Feb 26, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="" data-listing-date-sort="1708664400000" data-listing-file-modified-sort="1742236818541" data-listing-date-modified-sort="1708664400000" data-listing-reading-time-sort="3" data-listing-word-count-sort="402">
-<div class="thumbnail">
-<p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a></p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">Getting started</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-</div>
-<div class="listing-description">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">Directions to set up your website and create your first post. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-10-15-getting-started/getting-started.html" class="no-external">
-<div class="listing-date">
-Feb 23, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="" data-listing-date-sort="1708491600000" data-listing-file-modified-sort="1742236818541" data-listing-date-modified-sort="1708491600000" data-listing-reading-time-sort="3" data-listing-word-count-sort="404">
-<div class="thumbnail">
-<p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a></p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">
-<p><img loading="lazy" src="./posts/2023-10-13-first-team-meeting/a-business-team-giving-fist-bump-in-agreement.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">First Team Meeting</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-
-</div>
-<div class="listing-description">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">This post details the steps you’ll take for your first team meeting. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2023-10-13-first-team-meeting/first-team-meeting.html" class="no-external">
-<div class="listing-date">
-Feb 21, 2024
-</div>
-<div class="listing-author">
-Daniel Sussman
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

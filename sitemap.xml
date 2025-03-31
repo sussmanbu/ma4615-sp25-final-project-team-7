@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-3.html</loc>
-    <lastmod>2025-03-25T02:58:23.238Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-4.html</loc>
+    <lastmod>2025-03-31T19:20:42.567Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-1.html</loc>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-2.html</loc>
+    <lastmod>2025-03-17T19:14:49.126Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2024-10-04-general-tips/general-tips.html</loc>
     <lastmod>2025-03-17T18:40:18.543Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2023-12-20-examples/examples.html</loc>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2023-10-15-getting-started/getting-started.html</loc>
     <lastmod>2025-03-17T18:40:18.541Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2023-10-13-first-team-meeting/first-team-meeting.html</loc>
-    <lastmod>2025-03-17T18:40:18.541Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/index.html</loc>
+    <lastmod>2025-03-17T18:40:18.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/LiangZhong.html</loc>
+    <lastmod>2025-03-31T19:17:18.865Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/data.html</loc>
@@ -33,19 +41,23 @@
     <lastmod>2025-03-17T18:40:18.090Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/index.html</loc>
-    <lastmod>2025-03-17T18:40:18.533Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/Zihao.html</loc>
+    <lastmod>2025-03-28T18:38:15.102Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2023-10-15-getting-started/getting-started.html</loc>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2023-10-13-first-team-meeting/first-team-meeting.html</loc>
     <lastmod>2025-03-17T18:40:18.541Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2024-10-04-general-tips/general-tips.html</loc>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2023-12-20-examples/examples.html</loc>
+    <lastmod>2025-03-17T18:40:18.541Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-1.html</loc>
     <lastmod>2025-03-17T18:40:18.543Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-2.html</loc>
-    <lastmod>2025-03-17T19:14:49.126Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-3.html</loc>
+    <lastmod>2025-03-25T02:58:23.238Z</lastmod>
   </url>
 </urlset>
