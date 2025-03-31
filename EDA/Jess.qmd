@@ -82,11 +82,6 @@ library(scales)
 library(tidyverse)
 ```
 
-Double check for NA values:
-```{r}
-colSums(is.na(data))  # Identify missing data in each column
-```
-
 Visualizing Trends Over Time:
     a.) Line plot of Health Outcomes over the years
 ```{r}

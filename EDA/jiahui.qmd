@@ -8,7 +8,7 @@ draft: True
 library(dplyr)
 library(ggplot2)
 
-data <- readRDS("~/ma4615-sp25-final-project-team-7/dataset/dataclean.rds")
+data <- readRDS(here::here("dataset", "dataclean.rds"))
 
 topic_summary <- data %>%
   count(Topic) %>%

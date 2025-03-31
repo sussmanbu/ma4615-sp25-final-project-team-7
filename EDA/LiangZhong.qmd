@@ -6,25 +6,25 @@ editor: visual
 ## focusing on how the frequency of alcohol consumption is associated with depression scores in high school students. Specifically, we can filter our dataset to include only high school-aged individuals, then create scatter plots and perform a linear regression analysis to quantify the relationship. Initial results suggest that higher alcohol consumption is linked to higher depression scores, indicating that alcohol use might be a contributing risk factor for depression in this population.
 
 ```{r}
-library(tidyverse)
+# library(tidyverse)
 
 # Load the cleaned dataset
-dataclean <- readRDS("dataclean.rds")
+# dataclean <- readRDS("dataclean.rds")
 
 # Filter the data for high schoolers (assuming ages 14-18 represent high school students)
-highschoolers <- dataclean %>% filter(age >= 14, age <= 18)
+# highschoolers <- dataclean %>% filter(age >= 14, age <= 18)
 
 # Create a scatter plot with a linear trend line
-ggplot(highschoolers, aes(x = alcohol_consumption, y = depression_score)) +
-  geom_point(alpha = 0.6) +
-  geom_smooth(method = "lm", se = FALSE, color = "blue") +
-  labs(title = "Alcohol Consumption vs. Depression in High Schoolers",
-       x = "Alcohol Consumption (frequency per week)",
-       y = "Depression Score") +
-  theme_minimal()
+# ggplot(highschoolers, aes(x = alcohol_consumption, y = depression_score)) +
+  # geom_point(alpha = 0.6) +
+  # geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  # labs(title = "Alcohol Consumption vs. Depression in High Schoolers",
+       # x = "Alcohol Consumption (frequency per week)",
+       # y = "Depression Score") +
+  # theme_minimal()
 
 # Fit a linear model
-model <- lm(depression_score ~ alcohol_consumption, data = highschoolers)
-summary(model)
+# model <- lm(depression_score ~ alcohol_consumption, data = highschoolers)
+# summary(model)
 
 ```
