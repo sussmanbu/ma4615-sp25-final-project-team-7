@@ -3,4 +3,59 @@ title: "Jamie"
 format: html
 draft: True
 ---
+Analyzing alcohol and tabaco use among high school student by race
+
+```{r}
+library(here)
+library(dplyr)
+library(ggplot2)
+data <- readRDS(here::here("dataset", "dataclean.rds"))
+```
+
+```{r part1}
+
+summary_by_race <- summarise(
+  group_by(
+    filter(
+      data,
+      Topic %in% c("Alcohol", "Tobacco") &
+        grepl("high school students", Question, ignore.case = TRUE) &
+        StratificationCategory1 == "Race/Ethnicity"
+    ),
+    Topic, StratificationID1
+  ),
+  mean_prevalence = mean(DataValue, na.rm = TRUE),
+  .groups = "drop"   # This removes the grouping and silences the message
+)
+
+ggplot(summary_by_race, aes(x = StratificationID1, y = mean_prevalence, fill = Topic)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Alcohol and Tobacco Use Among High School Students by Race/Ethnicity",
+    x = "Race/Ethnicity (Code)",
+    y = "Average Prevalence"
+  ) 
+```
+Compare Across Years
+```{r part2}
+year_summary <- summarise(
+  group_by(
+    filter(
+      data,
+      Topic %in% c("Alcohol", "Tobacco") &
+        grepl("high school students", Question, ignore.case = TRUE) &
+        StratificationCategory1 == "Race/Ethnicity"
+    ),
+    Topic, StratificationID1, YearStart
+  ),
+  mean_prevalence = mean(DataValue, na.rm = TRUE),
+  .groups = "drop"
+)
+
+ggplot(year_summary, aes(x = YearStart, y = mean_prevalence, color = StratificationID1)) +
+  geom_line() +
+  facet_wrap(~ Topic) +
+  labs(title = "Trend in Alcohol & Tobacco Use by Race Over Time", x = "Year", y = "Prevalence") 
+
+```
 
