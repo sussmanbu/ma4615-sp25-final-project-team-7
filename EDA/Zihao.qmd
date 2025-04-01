@@ -13,7 +13,7 @@ library(ggplot2)
 ```
 
 ```{r}
-demo_data <- dataclean %>%
+demo_data <- data %>%
   filter(DataValueType == "Crude Prevalence")
 
 gender_data <- demo_data %>% filter(StratificationCategory1 == "Sex")
