@@ -159,7 +159,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This week, we expanded our exploratory data analysis by investigating health disparities across racial and ethnic groups. Specifically, we visualized how the prevalence of four health outcomes—Arthritis, Asthma, Disability, and Mental Health—varies by race and ethnicity.</p>
+<p>This week, we built upon our exploratory data analysis and identified some discrepancies related to age data. Specifically, we found inconsistencies in the age groups within the StratificationID1 column. To better understand how these discrepancies might impact the analysis of different health conditions, we first examined the extent to which each age group had been analyzed.</p>
+<p><img src="../../images/age_prev.png" class="img-fluid"></p>
+<p>From the graph above, it became clear that not all health conditions were analyzed for every age group, and there was a lack of consistency in the age group ranges. For example, we observed both a 10-14 age group and a 12-17 age group, which indicate overlap and potential misclassification. We took these findings into account as we continued with our analysis.</p>
+<p>Next, we decided to investigate health disparities across racial and ethnic groups. Specifically, we visualized how the prevalence of four health outcomes—Arthritis, Asthma, Disability, and Mental Health—varies by race and ethnicity.</p>
 <p><img src="../../images/HealthOutcome_byRace.png" class="img-fluid"></p>
 <p>The bar chart shown above highlights clear disparities, with some conditions disproportionately affecting specific racial groups. For example, Multiracial and American Indian/Alaska Native groups consistently show higher average rates across multiple conditions, particularly for Disability and Mental Health, while Asian populations generally report lower values across the board. This visualization offers a meaningful entry point into the structural inequities embedded in public health outcomes and suggests important directions for deeper statistical analysis.</p>
 <p><img src="../../images/lm_results_MentalHealth.png" class="img-fluid"> <img src="../../images/lm_results_Disability.png" class="img-fluid"> <img src="../../images/lm_results_Arthritis.png" class="img-fluid"></p>
