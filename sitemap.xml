@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-5.html</loc>
-    <lastmod>2025-04-07T23:24:49.356Z</lastmod>
+    <lastmod>2025-04-08T01:18:40.339Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-3.html</loc>
@@ -25,11 +25,7 @@
     <lastmod>2025-04-04T19:13:10.848Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/data.html</loc>
-    <lastmod>2025-03-25T01:35:32.882Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/analysis.html</loc>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/big_picture.html</loc>
     <lastmod>2025-03-17T18:40:18.090Z</lastmod>
   </url>
   <url>
@@ -37,8 +33,12 @@
     <lastmod>2025-03-17T18:56:26.682Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/big_picture.html</loc>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/analysis.html</loc>
     <lastmod>2025-03-17T18:40:18.090Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/data.html</loc>
+    <lastmod>2025-03-25T01:35:32.882Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/LiangZhong.html</loc>
