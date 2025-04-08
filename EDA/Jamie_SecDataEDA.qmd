@@ -1,0 +1,83 @@
+---
+title: "Jamie_SecDataEDA"
+format: html
+draft: True
+---
+
+```{r}
+library(here)
+
+data <- readRDS(here::here("dataset", "merged_data_2022.rds"))
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+
+
+# Make sure PCTIC is numeric
+data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
+
+# Summarize insurance rate by income level
+income_summary <- data %>%
+  group_by(Income) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  arrange(desc(AvgInsured))
+
+# Print summary
+print(income_summary)
+
+# Plot
+ggplot(income_summary, aes(x = reorder(Income, AvgInsured), y = AvgInsured)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "Average Percent Insured by Income Level",
+    x = "Income Level",
+    y = "% Insured"
+  ) +
+  coord_flip() +
+  theme_minimal()
+
+
+
+```
+
+```{r}
+# Again, ensure PCTIC is numeric
+data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
+
+# Summarize insurance rate by race and income
+race_income_summary <- data %>%
+  group_by(Race, Income) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  arrange(desc(AvgInsured))
+
+# Print summary
+print(race_income_summary)
+
+# Plot
+ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Percent Insured by Race and Income Level",
+    x = "Income Level",
+    y = "% Insured"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+```
+
+```{r}
+str(data$PCTIC)
+```
+
