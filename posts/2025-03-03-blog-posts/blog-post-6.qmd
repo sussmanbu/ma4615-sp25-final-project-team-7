@@ -1,5 +1,5 @@
 ---
-title: "Blog Post 5"
+title: "Blog Post 6"
 description:  |
   Our team's six blog post
 author: "Team 7"
