@@ -7,3 +7,20 @@ date: "2025-04-14"
 draft: FALSE
 ---
 
+#Summary
+As we approach the final stages of our project, this week was a chance to reflect on how far we’ve come, address any loose ends, and think more concretely about the Analysis and Big Picture sections of our final deliverable. 
+
+We’ve spent the past several weeks working with the CDC’s Chronic Disease Indicators (CDI) dataset, focusing on chronic disease prevalence by race, geography, and other stratifying variables. Along the way, we’ve addressed outliers, inconsistencies in age groups, topic imbalances, and missing data. We’ve also framed our work through the lens of data equity, being mindful of how disparities are interpreted and communicated.
+
+To deepen our analysis, we merged the CDI data with the SAHIE dataset, which provided us with valuable information on health insurance coverage by income, race, and geography. This added an important layer to our exploration, allowing us to investigate not just who experiences worse health outcomes, but how insurance coverage and income levels might affect chronic disease outcomes in various racial and ethnic groups.
+
+# More Possiblie Analysis
+As we look ahead, we’ve identified several possible directions to strengthen our final analysis:
+
+- Intersectional Modeling: Now that we have race, income, and insurance status, we can include interaction terms (e.g., Race × Income) in our regression models to explore how disparities compound across identities.
+  
+- Geographic Patterns: We may explore insurance or disease prevalence by state.
+
+- Time Trends (if feasible): Although we've focused on 2022, the CDI dataset includes multiple years. If time allows, we may incorporate a time component to observe how disparities have changed over time.
+
+# What We Have Left
