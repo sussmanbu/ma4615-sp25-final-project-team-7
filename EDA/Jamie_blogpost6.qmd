@@ -18,4 +18,6 @@ Changes necessary columns to num
 data <- data %>%
   mutate(across(c(NIPR, NUI, NIC, PCTUI, PCTIC), as.numeric))
 ```
+
+
 ```
