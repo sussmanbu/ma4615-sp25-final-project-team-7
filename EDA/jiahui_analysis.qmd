@@ -1,0 +1,67 @@
+---
+title: "jiahui_analysis"
+format: html
+draft: TRUE
+---
+
+## Introduce what motivates your Data Analysis (DA)
+This analysis are explore about the race, income , and insurance coversage in the effect of the preventative helathcare in U.S
+We are interested in Unsterstanding:
+How the uninsurance tare vary across racial and income groups?
+
+Does the populations have higher uninsurance rates less likely to engage in preventative health behaviors? such as vaccination.
+
+How extent can insurance to help the difference social population have the difference in the preventative care?
+
+```{r}
+#| echo: false
+print(merged_data)
+
+```
+
+## Modeling and Inference
+
+```{r}
+#| echo: false
+# Again, ensure PCTIC is numeric
+data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
+
+# Summarize insurance rate by race and income
+race_income_summary <- data %>%
+  group_by(Race, Income) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  arrange(desc(AvgInsured))
+
+# Print summary
+print(race_income_summary)
+
+# Plot
+ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Percent Insured by Race and Income Level",
+    x = "Income Level",
+    y = "% Insured"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with InsuranceAs we move from <135% poverty to All, there's a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.
+
+## Flaws and limitations in analysis
+
+No causality – Cross-sectional data only shows associations, not cause-and-effect.
+
+Simplified model – Linear regression may miss complex relationships; omitted variables could bias results.
+
+Small sample sizes – Some racial/income subgroups have limited data, reducing reliability.
+
+Data merging challenges – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )
+
+Unmeasured factors – Missing variables  could influence outcomes.
+
+Aggregation bias – State-level averages may hide local disparities.
+
