@@ -1,0 +1,9 @@
+---
+title: "Blog Post 7"
+description:  |
+  Our team's sixth blog post, where we reflect on the progress for interactive.
+author: "Team 7"
+date: "2025-04-22"
+draft: FALSE
+---
+
