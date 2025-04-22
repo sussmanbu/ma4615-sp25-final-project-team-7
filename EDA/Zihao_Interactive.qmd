@@ -1,4 +1,11 @@
 ```{r}
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(here)
+```
+
+```{r}
 data <- readRDS(here("dataset", "dataclean.rds"))
 ```
 
