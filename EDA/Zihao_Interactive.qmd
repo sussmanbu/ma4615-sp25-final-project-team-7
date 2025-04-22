@@ -1,0 +1,99 @@
+```{r}
+data <- readRDS(here("dataset", "dataclean.rds"))
+```
+
+```{r}
+# UI
+ui <- fluidPage(
+  titlePanel("U.S. Chronic Disease Explorer"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("topic", "Select a Disease Topic:",
+                 choices = unique(data$Topic)),
+      selectInput("state", "Select a State:",
+                 choices = unique(data$LocationDesc)),
+      sliderInput("year", "Select Year:",
+                 min = min(data$YearStart, na.rm = TRUE),
+                 max = max(data$YearStart, na.rm = TRUE),
+                 value = max(data$YearStart, na.rm = TRUE),
+                 step = 1),
+      checkboxInput("showAllStrata", "Show All Stratifications", TRUE)
+    ),
+    mainPanel(
+      plotOutput("diseasePlot"),
+      textOutput("dataMessage")
+    )
+  )
+)
+```
+
+```{r}
+# Server
+server <- function(input, output, session) {
+  
+  # state choicesc
+  observe({
+    updateSelectInput(
+      session, 
+      "state",
+      choices = data %>% 
+        filter(Topic == input$topic) %>% 
+        pull(LocationDesc) %>% 
+        unique()
+    )
+  })
+  
+  filtered_data <- reactive({
+    req(input$topic, input$state, input$year)
+    
+    df <- data %>%
+      filter(
+        Topic == input$topic,
+        LocationDesc == input$state,
+        YearStart == input$year
+      )
+    
+    if (!input$showAllStrata) {
+      df <- filter(df, StratificationCategory1 == "Overall")
+    }
+    
+    df
+  })
+  
+  # Create plot
+  output$diseasePlot <- renderPlot({
+    df <- filtered_data()
+    
+    if (nrow(df) == 0) {
+      return(NULL)
+    }
+    
+    ggplot(df, aes(x = reorder(StratificationID1, DataValue), 
+                  y = DataValue, 
+                  fill = StratificationCategory1)) +
+      geom_col() +
+      labs(
+        title = paste(input$topic, "in", input$state, "(", input$year, ")"),
+        x = "Stratification Group",
+        y = "Value",
+        fill = "Category"
+      ) +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  })
+  
+  output$dataMessage <- renderText({
+    df <- filtered_data()
+    if (nrow(df) == 0) {
+      "No data available for the selected filters. Please try different options."
+    } else {
+      paste("Showing", nrow(df), "records.")
+    }
+  })
+}
+```
+
+```{r}
+# Run 
+shinyApp(ui, server)
+```
