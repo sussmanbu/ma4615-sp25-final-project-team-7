@@ -1,9 +1,14 @@
 ---
 title: "Blog Post 7"
 description:  |
-  Our team's sixth blog post, where we reflect on the progress for interactive.
+  Our team's seventh blog post, where we reflect on the progress we've made for our interactive.
 author: "Team 7"
 date: "2025-04-22"
 draft: FALSE
 ---
 
+As we approach the final stages of our project, we’ve made significant progress on the interactive component that will accompany our analysis. The goal of our interactive is to provide users with an engaging way to explore the prevalence of chronic disease outcomes across the U.S. by filtering on key dimensions. These specifically include disease topic, state, year, and demographic stratifications (age, sex, and race/ethnicity). We designed this tool with personalization and accessibility in mind, aiming to empower users to zoom in on trends most relevant to their own communities or interests—something that’s often not possible through static visuals alone.
+
+Our current interactive, built using Shinylive, allows users to select a disease topic from the CDC’s Chronic Disease Indicators (CDI), choose a state and year, and view a corresponding bar chart that breaks down disease prevalence across multiple stratification categories. We felt that this aligned well with the principles of a successful interactive: it facilitates both big-picture exploration and more targeted insights by enabling user input, while also offering contextual cues such as custom titles and a message prompt when no data is available for a selected filter. One of our goals with this design was to strike a balance between usability and depth, allowing users to observe racial or age-based disparities in disease data while maintaining an intuitive, responsive interface.
+
+Although the interactive is already functional, we’re continuing to iterate on its design. Some of our planned refinements include potentially removing years with sparse data (particularly 2018 and earlier), improving axis labels for clarity, and adding checkboxes to allow users to isolate specific stratification dimensions (such as race only, or age only) for more focused analysis. We also still need to move the tool to the Big Picture page on our project website and plan to do so very soon, integrating it with the broader narrative of our findings. In the final days of our project, we’ll be formally completing the Analysis and Big Picture pages, where our main results will be summarized, and producing a video walkthrough as a team to demonstrate how our interactive tool works and why it’s meaningful.
