@@ -15,6 +15,9 @@ How extent can insurance to help the difference social population have the diffe
 
 ```{r}
 #| echo: false
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(here))
+merged_data <- readRDS(here("dataset", "merged_data_2022.rds"))
 print(merged_data)
 
 ```
@@ -24,6 +27,7 @@ print(merged_data)
 ```{r}
 #| echo: false
 # Again, ensure PCTIC is numeric
+data = merged_data
 data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
 
 # Summarize insurance rate by race and income

@@ -1,0 +1,102 @@
+---
+title: "jamie_interactive"
+format: html
+draft: True
+---
+
+
+```{r}
+
+```
+
+```{r}
+library(here)
+library(dplyr)
+
+data <- readRDS(here::here("dataset", "merged_data_2022.rds"))
+```
+
+```{r}
+data <- data %>%
+  mutate(across(c(NIPR, NUI, NIC, PCTUI, PCTIC), as.numeric))
+```
+
+```{r}
+state_vax <- data %>%
+  group_by(LocationDesc) %>%
+  summarise(avg_vax = mean(DataValue, na.rm = TRUE)) %>%
+  rename(state = LocationDesc)
+
+```
+
+```{r}
+library(tigris)
+library(sf)
+library(readr)
+
+us_states <- states(cb = TRUE) %>%
+  filter(!STATEFP %in% c("60", "66", "69", "72", "78")) %>%  # Remove Guam, PR, etc.
+  select(state = NAME, geometry)
+
+# Step 3: Merge vaccination data with spatial geometries
+us_map_data <- left_join(us_states, state_vax, by = "state")
+
+# Step 4: Simplify geometries and keep only relevant columns
+us_map_data_small <- us_map_data %>%
+  select(state, avg_vax, geometry) %>%  # Drop extra columns
+  st_simplify(dTolerance = 0.01, preserveTopology = TRUE)
+```
+
+
+```{r}
+write_rds(us_map_data_small, "dataset_for_shiny/us_states_vax_map_small.rds")
+
+```
+
+```{r} 
+#| echo: false
+#| standalone: true
+#| viewerHeight: 650
+#| language: shiny
+
+library(shiny)
+library(tidyverse)
+library(leaflet)
+library(sf)
+
+# Load your map-ready RDS (update this link once uploaded)
+us_data <- read_rds("dataset_for_shiny/us_states_vax_map_small.rds")
+
+
+ui <- fluidPage(
+  titlePanel("Average Flu Vaccination Rate by State (2022)"),
+  leafletOutput("map", height = 600)
+)
+
+server <- function(input, output) {
+  output$map <- renderLeaflet({
+    pal <- colorNumeric("YlGnBu", domain = us_data$avg_vax)
+
+    leaflet(us_data) %>%
+      addProviderTiles("CartoDB.Positron") %>%
+      addPolygons(
+        fillColor = ~pal(avg_vax),
+        weight = 1,
+        color = "white",
+        fillOpacity = 0.8,
+        label = ~paste0(state, ": ", round(avg_vax, 1), "%"),
+        highlight = highlightOptions(weight = 2, color = "#666", fillOpacity = 0.7),
+        labelOptions = labelOptions(textsize = "13px")
+      ) %>%
+      addLegend("bottomright", pal = pal, values = ~avg_vax,
+                title = "Vaccination Rate (%)", opacity = 1)
+  })
+}
+
+
+```
+
+```{r}
+shinyApp(ui, server)
+
+```
