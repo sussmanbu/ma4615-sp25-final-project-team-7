@@ -30,6 +30,7 @@ print(getwd())
 data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
 ```
 
+
 ## Note on Attribution
 
 In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
@@ -43,6 +44,90 @@ If you are directly quoting from a source, please make that clear. You can show 
 > To be or not to be.
 
 ------------------------------------------------------------------------
+
+
+
+
+
+
+## Introduce what motivates your Data Analysis (DA)
+This analysis are explore about the race, income , and insurance coversage in the effect of the preventative helathcare in U.S
+We are interested in Unsterstanding:
+How the uninsurance tare vary across racial and income groups?
+
+Does the populations have higher uninsurance rates less likely to engage in preventative health behaviors? such as vaccination.
+
+How extent can insurance to help the difference social population have the difference in the preventative care?
+
+```{r}
+#| echo: false
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(here))
+merged_data <- readRDS(here("dataset", "merged_data_2022.rds"))
+print(merged_data)
+
+```
+
+## Modeling and Inference
+
+```{r}
+#| echo: false
+# Again, ensure PCTIC is numeric
+data = merged_data
+data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
+
+# Summarize insurance rate by race and income
+race_income_summary <- data %>%
+  group_by(Race, Income) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  arrange(desc(AvgInsured))
+
+# Print summary
+print(race_income_summary)
+
+# Plot
+ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Percent Insured by Race and Income Level",
+    x = "Income Level",
+    y = "% Insured"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from <135% poverty to All, there's a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.
+
+## Flaws and limitations in analysis
+
+No causality – Cross-sectional data only shows associations, not cause-and-effect.
+
+Simplified model – Linear regression may miss complex relationships; omitted variables could bias results.
+
+Small sample sizes – Some racial/income subgroups have limited data, reducing reliability.
+
+Data merging challenges – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )
+
+Unmeasured factors – Missing variables  could influence outcomes.
+
+Aggregation bias – State-level averages may hide local disparities.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Rubric: On this page
 
