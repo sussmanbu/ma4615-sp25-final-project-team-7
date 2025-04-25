@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -155,8 +121,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#example-of-loading-data" id="toc-example-of-loading-data" class="nav-link active" data-scroll-target="#example-of-loading-data">Example of loading data</a></li>
-  <li><a href="#note-on-attribution" id="toc-note-on-attribution" class="nav-link" data-scroll-target="#note-on-attribution">Note on Attribution</a></li>
+  <li><a href="#introduce-what-motivates-your-data-analysis-da" id="toc-introduce-what-motivates-your-data-analysis-da" class="nav-link active" data-scroll-target="#introduce-what-motivates-your-data-analysis-da">Introduce what motivates your Data Analysis (DA)</a></li>
+  <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a></li>
+  <li><a href="#flaws-and-limitations-in-analysis" id="toc-flaws-and-limitations-in-analysis" class="nav-link" data-scroll-target="#flaws-and-limitations-in-analysis">Flaws and limitations in analysis</a></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   </ul>
 </nav>
@@ -189,16 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"></p>
-<p>This comes from the file <code>analysis.qmd</code>.</p>
-<p>We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.</p>
-<p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
-<p>While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.</p>
-<p>The style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process.</p>
-<section id="example-of-loading-data" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-loading-data">Example of loading data</h3>
-<p>The code below shows an example of loading the loan refusal data set (which you should delete at some point).</p>
+<section id="introduce-what-motivates-your-data-analysis-da" class="level2">
+<h2 class="anchored" data-anchor-id="introduce-what-motivates-your-data-analysis-da">Introduce what motivates your Data Analysis (DA)</h2>
+<p>This analysis are explore about the race, income , and insurance coversage in the effect of the preventative helathcare in U.S We are interested in Unsterstanding: How the uninsurance tare vary across racial and income groups?</p>
+<p>Does the populations have higher uninsurance rates less likely to engage in preventative health behaviors? such as vaccination.</p>
+<p>How extent can insurance to help the difference social population have the difference in the preventative care?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'tidyverse' was built under R version 4.4.2</code></pre>
 </div>
@@ -206,33 +169,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Warning: package 'lubridate' was built under R version 4.4.2</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre><code>Warning: package 'here' was built under R version 4.4.2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/jessr/Documents/MA415 Projects/ma4615-sp25-final-project-team-7"</code></pre>
+<pre><code># A tibble: 1,234,350 × 15
+    Year LocationDesc Topic   Question DataValueType DataValue Race  Age   Sex  
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
+ 2  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
+ 3  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
+ 4  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
+ 5  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
+ 6  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
+ 7  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
+ 8  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
+ 9  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
+10  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
+# ℹ 1,234,340 more rows
+# ℹ 6 more variables: Income &lt;chr&gt;, NIPR &lt;chr&gt;, NUI &lt;chr&gt;, NIC &lt;chr&gt;,
+#   PCTUI &lt;chr&gt;, PCTIC &lt;chr&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/loan_refusal_clean.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="note-on-attribution" class="level2">
-<h2 class="anchored" data-anchor-id="note-on-attribution">Note on Attribution</h2>
-<p>In general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.</p>
-<p>If you are directly quoting from a source, please make that clear. You can show long quotes using <code>&gt;</code> like this</p>
-<pre><code>&gt; To be or not to be.</code></pre>
-<blockquote class="blockquote">
-<p>To be or not to be.</p>
-</blockquote>
-<hr>
+<section id="modeling-and-inference" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-and-inference">Modeling and Inference</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Race'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 42 × 4
+# Groups:   Race [7]
+   Race  Income           AvgInsured Count
+   &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;int&gt;
+ 1 ASN   All                    93.4 17715
+ 2 WHT   All                    93.1 51645
+ 3 MRC   All                    90.8 31635
+ 4 ASN   138-400% poverty       90.6 17715
+ 5 WHT   138-400% poverty       90.5 51645
+ 6 HAPI  All                    90.4  2055
+ 7 BLK   All                    90.3 38700
+ 8 BLK   138-400% poverty       89.7 38700
+ 9 ASN   &lt; 400% poverty         89.4 17715
+10 WHT   &lt; 400% poverty         89.2 51645
+# ℹ 32 more rows</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from &lt;135% poverty to All, there’s a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.</p>
+</section>
+<section id="flaws-and-limitations-in-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="flaws-and-limitations-in-analysis">Flaws and limitations in analysis</h2>
+<p>No causality – Cross-sectional data only shows associations, not cause-and-effect.</p>
+<p>Simplified model – Linear regression may miss complex relationships; omitted variables could bias results.</p>
+<p>Small sample sizes – Some racial/income subgroups have limited data, reducing reliability.</p>
+<p>Data merging challenges – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )</p>
+<p>Unmeasured factors – Missing variables could influence outcomes.</p>
+<p>Aggregation bias – State-level averages may hide local disparities.</p>
 </section>
 <section id="rubric-on-this-page" class="level2">
 <h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
