@@ -6,3 +6,8 @@ author: "Team 7"
 date: "2025-04-30"
 draft: FALSE
 ---
+
+
+
+![](../../images/visualization_map.png)
+· To polish our visualizations and tables, our group focused on both clarity and aesthetic appeal. For example, when creating a choropleth map to show disease cases across U.S. states, we started by summarizing the data to calculate total case counts by region. We then used ggplot2 to build a clean static map and applied color gradients that enhance readability. Instead of keeping the default color scheme, we chose a smoother green gradient to better reflect a health-related theme and reduce visual fatigue. We also formatted the legend using scaled units (thousands of cases) to make the data more digestible. Small details—like removing unnecessary axes and using theme_void()—helped draw attention directly to the data. These refinements made the visualization not only more informative but also more professional and visually engaging.
