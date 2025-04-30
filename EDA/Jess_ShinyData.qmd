@@ -1,0 +1,34 @@
+```{r}
+library(dplyr)
+library(here)
+```
+
+```{r}
+data <- readRDS(here("dataset", "dataclean.rds"))
+```
+
+```{r}
+unique(data$Topic)
+```
+
+```{r}
+shiny_data <- data %>%
+  filter(
+    (Topic == "Diabetes" & Question == "Diabetes among adults") |
+    (Topic == "Asthma" & Question == "Current asthma among adults") |
+    (Topic == "Arthritis" & Question == "Arthritis among adults") |
+    (Topic == "Chronic Obstructive Pulmonary Disease" & Question == "Chronic obstructive pulmonary disease among adults") |
+    (Topic == "Alcohol" & Question %in% c("Binge drinking prevalence among adults", "Binge drinking prevalence among high school students")) |
+    (Topic == "Mental Health") |
+    (Topic == "Disability")
+  )
+```
+
+```{r}
+shiny_data
+```
+
+```{r}
+saveRDS(shiny_data, file = here::here("dataset_for_shiny", "cdi_shiny_data.rds"))
+```
+
