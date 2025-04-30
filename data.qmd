@@ -10,8 +10,10 @@ editor:
 
 ![](images/data-import-cheatsheet-thumbs.png)
 
+# Dataset 1: U.S. Chronic Disease Indicators (CDI)
+
 ## Where to Find the Data
-The dataset used in this analysis is the U.S. Chronic Disease Indicators (CDI) dataset, which is published by the Centers for Disease Control and Prevention (CDC). The dataset was developed through a collaborative effort involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors.
+This dataset was published by the Centers for Disease Control and Prevention (CDC). It was developed through a collaborative effort involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors.
 
 The dataset can be accessed directly from the CDC Chronic Disease Indicators Portal: [CDC Chronic Disease Indicators Dataset](https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw/about_data)
 
@@ -80,6 +82,13 @@ You can download the cleaned dataset used in our analysis here: [Cleaned Data](/
 
 #### Cleaning Script:
 For full transparency, our data cleaning script is available for review: [Cleaning Script](/scripts/clean_data.R)
+
+# Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)
+
+## Where to Find the Data
+
+## Why Was This Data Collected?
+
 
 ## Additional Notes
 - No variable renaming or recoding was necessary, as the dataset already had clear labels.
