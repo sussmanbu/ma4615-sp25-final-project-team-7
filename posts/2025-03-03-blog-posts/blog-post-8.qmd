@@ -1,0 +1,8 @@
+---
+title: "Blog Post 8"
+description:  |
+  Our team's eigth blog post, we talk about how we are wrapping up our project.
+author: "Team 7"
+date: "2025-04-30"
+draft: FALSE
+---
