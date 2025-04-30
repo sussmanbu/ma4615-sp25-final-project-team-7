@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="We describe the sources of our data and the cleaning process.">
 
-<title>Data – MA [46]15 Final Project Team 7</title>
+<title>jess_shinydata – MA [46]15 Final Project Team 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,17 +102,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MA [46]15 Final Project Team 7</span>
     </a>
   </div>
@@ -90,19 +123,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./big_picture.html"> 
+    <a class="nav-link" href="../big_picture.html"> 
 <span class="menu-text">Big Picture</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
+    <a class="nav-link" href="../analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./data.html" aria-current="page"> 
+    <a class="nav-link" href="../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
 </ul>
@@ -116,173 +149,101 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#dataset-1-u.s.-chronic-disease-indicators-cdi" id="toc-dataset-1-u.s.-chronic-disease-indicators-cdi" class="nav-link active" data-scroll-target="#dataset-1-u.s.-chronic-disease-indicators-cdi">Dataset 1: U.S. Chronic Disease Indicators (CDI)</a>
-  <ul class="collapse">
-  <li><a href="#where-to-find-the-data" id="toc-where-to-find-the-data" class="nav-link" data-scroll-target="#where-to-find-the-data">Where to Find the Data</a></li>
-  <li><a href="#why-was-this-data-collected" id="toc-why-was-this-data-collected" class="nav-link" data-scroll-target="#why-was-this-data-collected">Why Was This Data Collected?</a></li>
-  <li><a href="#key-variables-in-our-analysis" id="toc-key-variables-in-our-analysis" class="nav-link" data-scroll-target="#key-variables-in-our-analysis">Key Variables in Our Analysis</a></li>
-  <li><a href="#data-imbalances-and-distribution" id="toc-data-imbalances-and-distribution" class="nav-link" data-scroll-target="#data-imbalances-and-distribution">Data Imbalances and Distribution</a></li>
-  <li><a href="#data-cleaning-and-preprocessing" id="toc-data-cleaning-and-preprocessing" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</a></li>
-  </ul></li>
-  <li><a href="#dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs" id="toc-dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs" class="nav-link" data-scroll-target="#dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs">Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)</a>
-  <ul class="collapse">
-  <li><a href="#where-to-find-the-data-1" id="toc-where-to-find-the-data-1" class="nav-link" data-scroll-target="#where-to-find-the-data-1">Where to Find the Data</a></li>
-  <li><a href="#why-was-this-data-collected-1" id="toc-why-was-this-data-collected-1" class="nav-link" data-scroll-target="#why-was-this-data-collected-1">Why Was This Data Collected?</a></li>
-  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes">Additional Notes</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Data</h1>
-</div>
-
-<div>
-  <div class="description">
-    We describe the sources of our data and the cleaning process.
-  </div>
-</div>
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
-<section id="dataset-1-u.s.-chronic-disease-indicators-cdi" class="level1">
-<h1>Dataset 1: U.S. Chronic Disease Indicators (CDI)</h1>
-<section id="where-to-find-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-find-the-data">Where to Find the Data</h2>
-<p>This dataset was published by the Centers for Disease Control and Prevention (CDC). It was developed through a collaborative effort involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors.</p>
-<p>The dataset can be accessed directly from the CDC Chronic Disease Indicators Portal: <a href="https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw/about_data">CDC Chronic Disease Indicators Dataset</a></p>
-</section>
-<section id="why-was-this-data-collected" class="level2">
-<h2 class="anchored" data-anchor-id="why-was-this-data-collected">Why Was This Data Collected?</h2>
-<p>The CDI dataset was created to support public health surveillance, policy development, and program planning at both the state and national levels. It provides a standardized way for different states and territories to define, collect, and report chronic disease data, allowing for consistent comparisons across different regions and demographics.</p>
-<p>The data is collected from multiple sources, including:</p>
-<ul>
-<li><p>Behavioral Risk Factor Surveillance System (BRFSS)</p></li>
-<li><p>Youth Risk Behavior Surveillance System (YRBSS)</p></li>
-<li><p>National Vital Statistics System (NVSS)</p></li>
-<li><p>United States Cancer Statistics (USCS)</p></li>
-<li><p>Centers for Medicare &amp; Medicaid Services (CMS) Data</p></li>
-</ul>
-<p>Because the dataset compiles information from multiple sources, each data source has its own methodology, limitations, and potential biases. For example, BRFSS relies on telephone surveys, which may underrepresent individuals without stable phone access, and YRBSS focuses only on high school students, potentially excluding young people who are not enrolled in school. These factors must be carefully considered when analyzing the data.</p>
-</section>
-<section id="key-variables-in-our-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="key-variables-in-our-analysis">Key Variables in Our Analysis</h2>
-<p>The original dataset consists of 309,215 rows and 34 columns, covering 115 chronic disease indicators across multiple health topics. Since our analysis focuses on racial disparities in chronic disease prevalence and management, we have selected the following key variables:</p>
 <div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Key Variables in the U.S. Chronic Disease Indicators Dataset</caption>
-<colgroup>
-<col style="width: 19%">
-<col style="width: 80%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">YearStart</td>
-<td style="text-align: left;">The year the data was collected (2015-2022)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LocationDesc</td>
-<td style="text-align: left;">The state or territory where the data was collected</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Topic</td>
-<td style="text-align: left;">The general category of the health data (e.g., Cardiovascular Disease, Diabetes, Mental Health)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Question</td>
-<td style="text-align: left;">A specific health-related question (e.g., ‘Diabetes among adults’)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DataValueType</td>
-<td style="text-align: left;">The type of data value (e.g., Crude Prevalence, Age-Adjusted Rate)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DataValue</td>
-<td style="text-align: left;">The actual numerical value associated with a given health indicator</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">StratificationID1</td>
-<td style="text-align: left;">The specific stratification variable (e.g., ‘BLK’ for Black, ‘WHT’ for White, ‘HIS’ for Hispanic)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">StratificationCategory1</td>
-<td style="text-align: left;">The category of stratification (e.g., Race/Ethnicity, Age, Gender)</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'here' was built under R version 4.4.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at C:/Users/jessr/Documents/MA415 Projects/ma4615-sp25-final-project-team-7</code></pre>
 </div>
 </div>
-</section>
-<section id="data-imbalances-and-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="data-imbalances-and-distribution">Data Imbalances and Distribution</h2>
-<p><img src="images/Topic-BarChart.png" class="img-fluid"> Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. <img src="images/Location-BarChart.png" class="img-fluid"></p>
-<p>Additionally, the LocationDesc variable appears to be mostly evenly distributed, suggesting that each state or territory is proportionately represented in the dataset.</p>
-</section>
-<section id="data-cleaning-and-preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h2>
-<p>To prepare the dataset for analysis, we performed the following cleaning steps:</p>
-<ul>
-<li><p><strong>Selected Relevant Variables:</strong> We reduced the dataset to the eight most important columns related to disease prevalence, stratification categories, and geographic information.</p></li>
-<li><p><strong>Removed Missing Values:</strong> We used the na.omit() function to exclude any incomplete data points.</p></li>
-<li><p><strong>Filtered Out Extreme Outliers:</strong> Using a box plot analysis, we identified and removed eight unusually large values (greater than 1,000,000) in the DataValue column.</p></li>
-<li><p><strong>Checked for Unusual Frequencies:</strong> We visualized category distributions to detect imbalances in health topic coverage.</p></li>
-</ul>
-<section id="cleaned-dataset-file" class="level4">
-<h4 class="anchored" data-anchor-id="cleaned-dataset-file">Cleaned Dataset File:</h4>
-<p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/dataclean.rds">Cleaned Data</a></p>
-</section>
-<section id="cleaning-script" class="level4">
-<h4 class="anchored" data-anchor-id="cleaning-script">Cleaning Script:</h4>
-<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/clean_data.R">Cleaning Script</a></p>
-</section>
-</section>
-</section>
-<section id="dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs" class="level1">
-<h1>Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)</h1>
-<section id="where-to-find-the-data-1" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-find-the-data-1">Where to Find the Data</h2>
-</section>
-<section id="why-was-this-data-collected-1" class="level2">
-<h2 class="anchored" data-anchor-id="why-was-this-data-collected-1">Why Was This Data Collected?</h2>
-</section>
-<section id="additional-notes" class="level2">
-<h2 class="anchored" data-anchor-id="additional-notes">Additional Notes</h2>
-<ul>
-<li>No variable renaming or recoding was necessary, as the dataset already had clear labels.</li>
-<li>No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2).</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"dataset"</span>, <span class="st">"dataclean.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>Topic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Diabetes"                                       
+ [2] "Asthma"                                         
+ [3] "Health Status"                                  
+ [4] "Mental Health"                                  
+ [5] "Alcohol"                                        
+ [6] "Arthritis"                                      
+ [7] "Tobacco"                                        
+ [8] "Disability"                                     
+ [9] "Sleep"                                          
+[10] "Immunization"                                   
+[11] "Oral Health"                                    
+[12] "Nutrition, Physical Activity, and Weight Status"
+[13] "Cancer"                                         
+[14] "Cardiovascular Disease"                         
+[15] "Chronic Obstructive Pulmonary Disease"          
+[16] "Cognitive Health and Caregiving"                
+[17] "Social Determinants of Health"                  
+[18] "Chronic Kidney Disease"                         
+[19] "Maternal Health"                                </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>shiny_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Diabetes"</span> <span class="sc">&amp;</span> Question <span class="sc">==</span> <span class="st">"Diabetes among adults"</span>) <span class="sc">|</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Asthma"</span> <span class="sc">&amp;</span> Question <span class="sc">==</span> <span class="st">"Current asthma among adults"</span>) <span class="sc">|</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Arthritis"</span> <span class="sc">&amp;</span> Question <span class="sc">==</span> <span class="st">"Arthritis among adults"</span>) <span class="sc">|</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Chronic Obstructive Pulmonary Disease"</span> <span class="sc">&amp;</span> Question <span class="sc">==</span> <span class="st">"Chronic obstructive pulmonary disease among adults"</span>) <span class="sc">|</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Alcohol"</span> <span class="sc">&amp;</span> Question <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Binge drinking prevalence among adults"</span>, <span class="st">"Binge drinking prevalence among high school students"</span>)) <span class="sc">|</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Mental Health"</span>) <span class="sc">|</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    (Topic <span class="sc">==</span> <span class="st">"Disability"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>shiny_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 33,497 × 8
+   YearStart LocationDesc  Topic         Question        DataValueType DataValue
+       &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt;             &lt;dbl&gt;
+ 1      2019 Arkansas      Diabetes      Diabetes among… Crude Preval…      13.6
+ 2      2019 Idaho         Diabetes      Diabetes among… Crude Preval…      10.6
+ 3      2019 Iowa          Asthma        Current asthma… Crude Preval…      10.3
+ 4      2019 Iowa          Mental Health Depression amo… Crude Preval…      31  
+ 5      2019 Louisiana     Mental Health Depression amo… Crude Preval…      29.3
+ 6      2019 Maryland      Mental Health Depression amo… Crude Preval…      19.2
+ 7      2019 Nebraska      Diabetes      Diabetes among… Crude Preval…       9.4
+ 8      2019 Nevada        Arthritis     Arthritis amon… Crude Preval…      46.1
+ 9      2019 Nevada        Asthma        Current asthma… Crude Preval…       7.1
+10      2019 New Hampshire Arthritis     Arthritis amon… Crude Preval…      22.7
+# ℹ 33,487 more rows
+# ℹ 2 more variables: StratificationID1 &lt;chr&gt;, StratificationCategory1 &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(shiny_data, <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset_for_shiny"</span>, <span class="st">"cdi_shiny_data.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

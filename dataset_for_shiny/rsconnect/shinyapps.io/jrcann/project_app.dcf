@@ -1,0 +1,13 @@
+name: project_app
+title: project_app
+username: jrcann
+account: jrcann
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14654831
+bundleId: 10208175
+url: https://jrcann.shinyapps.io/project_app/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: loan_refusal_clean.rds|us_states_vax_map_small.rds

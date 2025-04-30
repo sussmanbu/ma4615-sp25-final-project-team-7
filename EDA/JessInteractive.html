@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="We describe the sources of our data and the cleaning process.">
 
-<title>Data – MA [46]15 Final Project Team 7</title>
+<title>Shiny Attempt – MA [46]15 Final Project Team 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,22 +23,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.1/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,17 +73,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MA [46]15 Final Project Team 7</span>
     </a>
   </div>
@@ -90,19 +94,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./big_picture.html"> 
+    <a class="nav-link" href="../big_picture.html"> 
 <span class="menu-text">Big Picture</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
+    <a class="nav-link" href="../analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./data.html" aria-current="page"> 
+    <a class="nav-link" href="../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
 </ul>
@@ -116,41 +120,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#dataset-1-u.s.-chronic-disease-indicators-cdi" id="toc-dataset-1-u.s.-chronic-disease-indicators-cdi" class="nav-link active" data-scroll-target="#dataset-1-u.s.-chronic-disease-indicators-cdi">Dataset 1: U.S. Chronic Disease Indicators (CDI)</a>
-  <ul class="collapse">
-  <li><a href="#where-to-find-the-data" id="toc-where-to-find-the-data" class="nav-link" data-scroll-target="#where-to-find-the-data">Where to Find the Data</a></li>
-  <li><a href="#why-was-this-data-collected" id="toc-why-was-this-data-collected" class="nav-link" data-scroll-target="#why-was-this-data-collected">Why Was This Data Collected?</a></li>
-  <li><a href="#key-variables-in-our-analysis" id="toc-key-variables-in-our-analysis" class="nav-link" data-scroll-target="#key-variables-in-our-analysis">Key Variables in Our Analysis</a></li>
-  <li><a href="#data-imbalances-and-distribution" id="toc-data-imbalances-and-distribution" class="nav-link" data-scroll-target="#data-imbalances-and-distribution">Data Imbalances and Distribution</a></li>
-  <li><a href="#data-cleaning-and-preprocessing" id="toc-data-cleaning-and-preprocessing" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</a></li>
-  </ul></li>
-  <li><a href="#dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs" id="toc-dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs" class="nav-link" data-scroll-target="#dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs">Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)</a>
-  <ul class="collapse">
-  <li><a href="#where-to-find-the-data-1" id="toc-where-to-find-the-data-1" class="nav-link" data-scroll-target="#where-to-find-the-data-1">Where to Find the Data</a></li>
-  <li><a href="#why-was-this-data-collected-1" id="toc-why-was-this-data-collected-1" class="nav-link" data-scroll-target="#why-was-this-data-collected-1">Why Was This Data Collected?</a></li>
-  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes">Additional Notes</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data</h1>
+<h1 class="title">Shiny Attempt</h1>
 </div>
 
-<div>
-  <div class="description">
-    We describe the sources of our data and the cleaning process.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -165,124 +143,130 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
-<section id="dataset-1-u.s.-chronic-disease-indicators-cdi" class="level1">
-<h1>Dataset 1: U.S. Chronic Disease Indicators (CDI)</h1>
-<section id="where-to-find-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-find-the-data">Where to Find the Data</h2>
-<p>This dataset was published by the Centers for Disease Control and Prevention (CDC). It was developed through a collaborative effort involving the CDC, the Council of State and Territorial Epidemiologists, and the National Association of Chronic Disease Directors.</p>
-<p>The dataset can be accessed directly from the CDC Chronic Disease Indicators Portal: <a href="https://data.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators/hksd-2xuw/about_data">CDC Chronic Disease Indicators Dataset</a></p>
-</section>
-<section id="why-was-this-data-collected" class="level2">
-<h2 class="anchored" data-anchor-id="why-was-this-data-collected">Why Was This Data Collected?</h2>
-<p>The CDI dataset was created to support public health surveillance, policy development, and program planning at both the state and national levels. It provides a standardized way for different states and territories to define, collect, and report chronic disease data, allowing for consistent comparisons across different regions and demographics.</p>
-<p>The data is collected from multiple sources, including:</p>
-<ul>
-<li><p>Behavioral Risk Factor Surveillance System (BRFSS)</p></li>
-<li><p>Youth Risk Behavior Surveillance System (YRBSS)</p></li>
-<li><p>National Vital Statistics System (NVSS)</p></li>
-<li><p>United States Cancer Statistics (USCS)</p></li>
-<li><p>Centers for Medicare &amp; Medicaid Services (CMS) Data</p></li>
-</ul>
-<p>Because the dataset compiles information from multiple sources, each data source has its own methodology, limitations, and potential biases. For example, BRFSS relies on telephone surveys, which may underrepresent individuals without stable phone access, and YRBSS focuses only on high school students, potentially excluding young people who are not enrolled in school. These factors must be carefully considered when analyzing the data.</p>
-</section>
-<section id="key-variables-in-our-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="key-variables-in-our-analysis">Key Variables in Our Analysis</h2>
-<p>The original dataset consists of 309,215 rows and 34 columns, covering 115 chronic disease indicators across multiple health topics. Since our analysis focuses on racial disparities in chronic disease prevalence and management, we have selected the following key variables:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Key Variables in the U.S. Chronic Disease Indicators Dataset</caption>
-<colgroup>
-<col style="width: 19%">
-<col style="width: 80%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">YearStart</td>
-<td style="text-align: left;">The year the data was collected (2015-2022)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LocationDesc</td>
-<td style="text-align: left;">The state or territory where the data was collected</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Topic</td>
-<td style="text-align: left;">The general category of the health data (e.g., Cardiovascular Disease, Diabetes, Mental Health)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Question</td>
-<td style="text-align: left;">A specific health-related question (e.g., ‘Diabetes among adults’)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DataValueType</td>
-<td style="text-align: left;">The type of data value (e.g., Crude Prevalence, Age-Adjusted Rate)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DataValue</td>
-<td style="text-align: left;">The actual numerical value associated with a given health indicator</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">StratificationID1</td>
-<td style="text-align: left;">The specific stratification variable (e.g., ‘BLK’ for Black, ‘WHT’ for White, ‘HIS’ for Hispanic)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">StratificationCategory1</td>
-<td style="text-align: left;">The category of stratification (e.g., Race/Ethnicity, Age, Gender)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="data-imbalances-and-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="data-imbalances-and-distribution">Data Imbalances and Distribution</h2>
-<p><img src="images/Topic-BarChart.png" class="img-fluid"> Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. <img src="images/Location-BarChart.png" class="img-fluid"></p>
-<p>Additionally, the LocationDesc variable appears to be mostly evenly distributed, suggesting that each state or territory is proportionately represented in the dataset.</p>
-</section>
-<section id="data-cleaning-and-preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h2>
-<p>To prepare the dataset for analysis, we performed the following cleaning steps:</p>
-<ul>
-<li><p><strong>Selected Relevant Variables:</strong> We reduced the dataset to the eight most important columns related to disease prevalence, stratification categories, and geographic information.</p></li>
-<li><p><strong>Removed Missing Values:</strong> We used the na.omit() function to exclude any incomplete data points.</p></li>
-<li><p><strong>Filtered Out Extreme Outliers:</strong> Using a box plot analysis, we identified and removed eight unusually large values (greater than 1,000,000) in the DataValue column.</p></li>
-<li><p><strong>Checked for Unusual Frequencies:</strong> We visualized category distributions to detect imbalances in health topic coverage.</p></li>
-</ul>
-<section id="cleaned-dataset-file" class="level4">
-<h4 class="anchored" data-anchor-id="cleaned-dataset-file">Cleaned Dataset File:</h4>
-<p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/dataclean.rds">Cleaned Data</a></p>
-</section>
-<section id="cleaning-script" class="level4">
-<h4 class="anchored" data-anchor-id="cleaning-script">Cleaning Script:</h4>
-<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/clean_data.R">Cleaning Script</a></p>
-</section>
-</section>
-</section>
-<section id="dataset-2-small-area-health-insurance-estimates-sahie-using-the-american-community-survey-acs" class="level1">
-<h1>Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)</h1>
-<section id="where-to-find-the-data-1" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-find-the-data-1">Where to Find the Data</h2>
-</section>
-<section id="why-was-this-data-collected-1" class="level2">
-<h2 class="anchored" data-anchor-id="why-was-this-data-collected-1">Why Was This Data Collected?</h2>
-</section>
-<section id="additional-notes" class="level2">
-<h2 class="anchored" data-anchor-id="additional-notes">Additional Notes</h2>
-<ul>
-<li>No variable renaming or recoding was necessary, as the dataset already had clear labels.</li>
-<li>No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2).</li>
-</ul>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 3000
+
+library(shiny)
+library(tidyverse)
+options("readr.edition" = 1)
+
+# Load data
+data &lt;- read_rds("https://github.com/sussmanbu/ma4615-sp25-final-project-team-7/raw/refs/heads/main/dataset/dataclean.rds")
+
+# Prepare ordered stratification options
+strata_choices &lt;- c("Overall", sort(setdiff(unique(data$StratificationCategory1), "Overall")))
+
+# Define UI
+ui &lt;- fluidPage(
+  titlePanel("U.S. Chronic Disease Explorer"),
+  verticalLayout(
+    selectInput("topic", "Select a Disease Topic:",
+                choices = sort(unique(data$Topic))),
+    selectInput("state", "Select a State:",
+                choices = sort(setdiff(unique(data$LocationDesc), "United States"))),
+    selectInput("strata_filter", "Select Stratification Category:",
+                choices = strata_choices,
+                selected = "Overall"),
+    plotOutput("diseasePlot", height = "600px"),
+    textOutput("dataMessage"),
+    br(),
+    h4("Big Takeaways:"),
+    uiOutput("takeaways")  # Dynamic HTML content for bullets
+  )
+)
+
+# Define server
+server &lt;- function(input, output, session) {
+
+  # Update state options when topic changes
+  observe({
+    updateSelectInput(
+      session,
+      "state",
+      choices = sort(
+        setdiff(
+          data %&gt;% filter(Topic == input$topic) %&gt;% pull(LocationDesc) %&gt;% unique(),
+          "United States"
+        )
+      )
+    )
+  })
+
+  filtered_data &lt;- reactive({
+    req(input$topic, input$state, input$strata_filter)
+    data %&gt;%
+      filter(
+        Topic == input$topic,
+        LocationDesc %in% c(input$state, "United States"),
+        StratificationCategory1 == input$strata_filter,
+        DataValueType == "Crude Prevalence"
+      )
+  })
+
+  output$diseasePlot &lt;- renderPlot({
+    df &lt;- filtered_data()
+    if (nrow(df) == 0) return(NULL)
+
+    ggplot(df, aes(x = StratificationID1, y = DataValue, fill = LocationDesc)) +
+      geom_col(position = "dodge") +
+      facet_wrap(~ LocationDesc, ncol = 1) +
+      labs(
+        title = paste("Chronic Disease Data for", input$state, "vs United States"),
+        x = "Stratification Group",
+        y = "Prevalence / Rate",
+        fill = "Location"
+      ) +
+      scale_fill_manual(values = setNames(c("#1f77b4", "#ff7f0e"), c("United States", input$state))) +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  })
+
+  output$dataMessage &lt;- renderText({
+    df &lt;- filtered_data()
+    if (nrow(df) == 0) {
+      "No data available for the selected filters. Please try different options."
+    } else {
+      paste("Showing", nrow(df), "records for", input$state, "and United States.")
+    }
+  })
+
+  output$takeaways &lt;- renderUI({
+    df &lt;- filtered_data()
+    if (nrow(df) == 0) return(NULL)
+
+    # Compute mean values by location and strat group
+    summary_df &lt;- df %&gt;%
+      group_by(LocationDesc, StratificationID1) %&gt;%
+      summarize(mean_val = mean(DataValue, na.rm = TRUE), .groups = "drop") %&gt;%
+      pivot_wider(names_from = LocationDesc, values_from = mean_val) %&gt;%
+      filter(!is.na(`United States`) &amp; !is.na(!!sym(input$state)))  # Keep only comparable rows
+
+    bullets &lt;- summary_df %&gt;%
+      mutate(
+        comparison = ifelse(
+          !!sym(input$state) &gt; `United States`, "higher", "lower"
+        ),
+        text = paste0(
+          "The average prevalence of ", input$topic, " in ", input$state, 
+          " for the ", input$strata_filter, " stratification group (", StratificationID1, 
+          ") is ", round(!!sym(input$state), 2), "%. This is ", comparison, 
+          " than the average prevalence across the United States (", 
+          round(`United States`, 2), "%)."
+        )
+      ) %&gt;%
+      pull(text)
+
+    HTML(paste("&lt;ul&gt;", paste(paste0("&lt;li&gt;", bullets, "&lt;/li&gt;"), collapse = ""), "&lt;/ul&gt;"))
+  })
+}
+
+# Run the app
+shinyApp(ui = ui, server = server)</code></pre>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -377,7 +361,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/sussmanbu\.github\.io\/ma4615-sp25-final-project-team-7\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
