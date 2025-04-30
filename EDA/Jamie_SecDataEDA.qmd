@@ -78,6 +78,66 @@ ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
 ```
 
 ```{r}
-str(data$PCTIC)
+unique(data$Topic)
 ```
 
+```{r}
+shiny_data <- data %>%
+  filter(
+    (Topic == "Diabetes" & Question == "Diabetes among adults") |
+    (Topic == "Asthma" & Question == "Current asthma among adults") |
+    (Topic == "Arthritis" & Question == "Arthritis among adults") |
+    (Topic == "Chronic Obstructive Pulmonary Disease" & Question == "Chronic obstructive pulmonary disease among adults") |
+    (Topic == "Alcohol" & Question %in% c("Binge drinking prevalence among adults", "Binge drinking prevalence among high school students")) |
+    (Topic == "Mental Health") |
+    (Topic == "Disability")
+  )
+```
+
+```{r}
+# Ensure PCTIC is numeric
+shiny_data$PCTIC <- as.numeric(gsub("[^0-9.]", "", shiny_data$PCTIC))
+
+# Group and summarize
+topic_race_summary <- shiny_data %>%
+  group_by(Topic, Race) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  arrange(Topic, desc(AvgInsured))
+
+ggplot(topic_race_summary, aes(x = Race, y = AvgInsured, fill = Race)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ Topic, scales = "free_y") +
+  labs(
+    title = "Percent Insured by Race Across Health Topics",
+    x = "Race",
+    y = "% Insured"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+```{r}
+topic_race_income_summary <- shiny_data %>%
+  group_by(Topic, Race, Income) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  arrange(Topic, Income, desc(AvgInsured))
+ggplot(topic_race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ Topic) +
+  labs(
+    title = "Percent Insured by Race and Income Across Topics",
+    x = "Income Level",
+    y = "% Insured"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```

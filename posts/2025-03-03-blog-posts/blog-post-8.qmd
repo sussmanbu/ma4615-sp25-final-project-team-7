@@ -6,3 +6,6 @@ author: "Team 7"
 date: "2025-04-30"
 draft: FALSE
 ---
+
+# Thesis:
+The Hispanic and American Indian and Alaska Native race group have a lower insured rate compare to other ethnic groups, resulting in higher chronic disease prevelance.
