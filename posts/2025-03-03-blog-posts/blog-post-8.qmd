@@ -7,6 +7,7 @@ date: "2025-04-30"
 draft: FALSE
 ---
 
+Our team has solidified the central thesis that will guide our final interpretations and visualizations. As a team, we have collectively focused our efforts throughout this project on identifying the key social and structural factors influencing chronic disease prevalence across racial groups in the U.S. After analyzing trends across race, insurance coverage, and chronic health conditions, we have found compelling evidence to support our thesis: Chronic diseases are disproportionately prevalent among minority racial groups in the United States, particularly Hispanic and American Indian/Alaskan Native populations, and this disparity is strongly associated with lower rates of health insurance coverage within these communities.
 
 
 ![](../../images/visualization_map.png)
