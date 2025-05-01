@@ -133,7 +133,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#where-to-find-the-data-1" id="toc-where-to-find-the-data-1" class="nav-link" data-scroll-target="#where-to-find-the-data-1">Where to Find the Data</a></li>
   <li><a href="#why-was-this-data-collected-1" id="toc-why-was-this-data-collected-1" class="nav-link" data-scroll-target="#why-was-this-data-collected-1">Why Was This Data Collected?</a></li>
-  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes">Additional Notes</a></li>
+  <li><a href="#key-variables-in-our-analysis-1" id="toc-key-variables-in-our-analysis-1" class="nav-link" data-scroll-target="#key-variables-in-our-analysis-1">Key Variables in Our Analysis</a></li>
+  <li><a href="#data-imbalances-and-distribution-1" id="toc-data-imbalances-and-distribution-1" class="nav-link" data-scroll-target="#data-imbalances-and-distribution-1">Data Imbalances and Distribution</a></li>
+  <li><a href="#data-cleaning-and-preprocessing-1" id="toc-data-cleaning-and-preprocessing-1" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing-1">Data Cleaning and Preprocessing</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -165,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
+<p><img src="images/data_page_pic.png" class="img-fluid"></p>
 <section id="dataset-1-u.s.-chronic-disease-indicators-cdi" class="level1">
 <h1>Dataset 1: U.S. Chronic Disease Indicators (CDI)</h1>
 <section id="where-to-find-the-data" class="level2">
@@ -269,18 +271,52 @@ ul.task-list li input[type="checkbox"] {
 <h1>Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)</h1>
 <section id="where-to-find-the-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="where-to-find-the-data-1">Where to Find the Data</h2>
+<p>This dataset was published within the United States Census Bureau. The dataset can be accessed directly from the Small Area Health Insurance Estimates website: <a href="https://www.census.gov/data/datasets/time-series/demo/sahie/estimates-acs.html">CDC Chronic Disease Indicators Dataset</a></p>
 </section>
 <section id="why-was-this-data-collected-1" class="level2">
 <h2 class="anchored" data-anchor-id="why-was-this-data-collected-1">Why Was This Data Collected?</h2>
-</section>
-<section id="additional-notes" class="level2">
-<h2 class="anchored" data-anchor-id="additional-notes">Additional Notes</h2>
+<p>The Small Area Health Insurance Estimates (SAHIE) program was created to develop model-based estimates of health insurance coverage for counties and states. This program builds on the work of the Small Area Income and Poverty Estimates (SAIPE) program. SAHIE is the only source of single-year health insurance coverage estimates.</p>
+<p>SAHIE data can be used to analyze geographic variation in health insurance coverage, as well as disparities in coverage by race/ethnicity, sex, age and income levels that reflect thresholds for state and federal assistance programs. Because consistent estimates are available from 2008 to 2022, SAHIE reflects annual changes over time.</p>
+<p>For 2008-2022, SAHIE publishes state and county estimates of population with and without health insurance coverage, along with measures of uncertainty, for the full cross-classification of:</p>
 <ul>
-<li>No variable renaming or recoding was necessary, as the dataset already had clear labels.</li>
-<li>No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2).</li>
+<li><p><strong>5 age categories:</strong> 0-64, 18-64, 21-64, 40-64, and 50-64</p></li>
+<li><p><strong>3 sex categories:</strong> Both sexes, Male, and Female</p></li>
+<li><p><strong>6 income categories:</strong> All incomes, as well as the following income-to-poverty ratio (IPR) categories: 0-138%, 0-200%, 0-250%, 0-400%, and 138-400% of the poverty threshold</p></li>
+<li><p><strong>8 races/ethnicities (for states only):</strong> All races/ethnicities, White alone (not Hispanic or Latino), Black or African American alone (not Hispanic or Latino), American Indian and Alaska Native alone (not Hispanic or Latino), Asian alone (not Hispanic or Latino), Native Hawaiian and Other Pacific Islander alone (not Hispanic or Latino), Two or More Races (not Hispanic or Latino), Hispanic or Latino (any race).</p></li>
 </ul>
+</section>
+<section id="key-variables-in-our-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-variables-in-our-analysis-1">Key Variables in Our Analysis</h2>
+<p>The original dataset consisted of 338,850 rows and 26 columns. Since the SAHIE files are large and updated yearly, we decided to focus on just the year 2022, since it is the most recent year on file. After cleaning out this dataset to better align with the aim of our analysis, it now contains 37,026 observations with 11 variables. This cleaned dataset allows us to analyze health insurance coverage across different states in a more focused manner, examining how it varies by sex, race, and age, as well as how income levels affect insurance rates—particularly in relation to the topics covered in our first dataset.</p>
+<p>We have selected the following key variables for our analysis:</p>
+<ul>
+<li>Age</li>
+<li>Race</li>
+<li>Sex</li>
+<li>Income</li>
+<li>NIPR</li>
+<li>NUI</li>
+<li>NIC</li>
+<li>PCTUI</li>
+<li>PCTIC</li>
+<li>Location</li>
+</ul>
+</section>
+<section id="data-imbalances-and-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-imbalances-and-distribution-1">Data Imbalances and Distribution</h2>
+<p><img src="images/insurec_race.png" class="img-fluid"> The above figure shows in detail the correlation between income gap and insurance coverage, as well as the income gap between each race. The below is figure show the different healthy topic with the different Income level with insurance rate that across with the different race.</p>
+<p><img src="images/insured_topic2.png" class="img-fluid"></p>
+</section>
+<section id="data-cleaning-and-preprocessing-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing-1">Data Cleaning and Preprocessing</h2>
+<section id="cleaned-dataset-file-1" class="level4">
+<h4 class="anchored" data-anchor-id="cleaned-dataset-file-1">Cleaned Dataset File:</h4>
+</section>
+<section id="cleaning-script-1" class="level4">
+<h4 class="anchored" data-anchor-id="cleaning-script-1">Cleaning Script:</h4>
 
 
+</section>
 </section>
 </section>
 

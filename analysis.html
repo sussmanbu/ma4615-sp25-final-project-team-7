@@ -124,7 +124,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduce-what-motivates-your-data-analysis-da" id="toc-introduce-what-motivates-your-data-analysis-da" class="nav-link active" data-scroll-target="#introduce-what-motivates-your-data-analysis-da">Introduce what motivates your Data Analysis (DA)</a></li>
   <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a></li>
   <li><a href="#flaws-and-limitations-in-analysis" id="toc-flaws-and-limitations-in-analysis" class="nav-link" data-scroll-target="#flaws-and-limitations-in-analysis">Flaws and limitations in analysis</a></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   </ul>
 </nav>
     </div>
@@ -224,6 +223,55 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from &lt;135% poverty to All, there’s a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = PCTIC ~ Race + Income, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-31.451  -3.632   0.718   4.082  24.949 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            73.69521    0.02276 3237.42   &lt;2e-16 ***
+RaceASN                12.42277    0.02751  451.61   &lt;2e-16 ***
+RaceBLK                11.30478    0.02301  491.25   &lt;2e-16 ***
+RaceHAPI                9.92183    0.06284  157.90   &lt;2e-16 ***
+RaceHIS                -3.84406    0.02268 -169.48   &lt;2e-16 ***
+RaceMRC                10.67535    0.02392  446.21   &lt;2e-16 ***
+RaceWHT                11.94425    0.02194  544.32   &lt;2e-16 ***
+Income&lt; 200% poverty    0.51967    0.02080   24.98   &lt;2e-16 ***
+Income&lt; 250% poverty    1.16157    0.02080   55.84   &lt;2e-16 ***
+Income&lt; 400% poverty    3.42280    0.02080  164.53   &lt;2e-16 ***
+Income138-400% poverty  5.03089    0.02080  241.83   &lt;2e-16 ***
+IncomeAll               7.25467    0.02080  348.73   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.672 on 1234338 degrees of freedom
+Multiple R-squared:  0.5308,    Adjusted R-squared:  0.5308 
+F-statistic: 1.269e+05 on 11 and 1234338 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model Performance Metrics:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 44.516 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE: 6.672 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R-squared: 0.531 </code></pre>
+</div>
+</div>
+<p>This section evaluates the effectiveness of predicting insurance coverage rates (PCTIC) using race and income as predictors through a linear regression model. The purpose of this analysis is to determine how accurately race and income can explain variations in insurance coverage.</p>
+<p>First, a linear regression model was fitted with insurance coverage as the dependent variable and both race and income as independent variables. The detailed summary statistics of the regression model provide insights into the strength and significance of these predictors.</p>
+<p>To assess model performance, predicted values and residuals were obtained from the model. From these residuals, the Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R²) were calculated. MSE indicates the average squared difference between observed and predicted values, providing an overall measure of prediction error magnitude. RMSE, the square root of MSE, gives a more intuitive measure of the average prediction error. The R-squared value indicates the proportion of the variance in insurance coverage explained by the race and income predictors; a higher R-squared value implies better predictive power.</p>
+<p>The calculated performance metrics are as follows: - Mean Squared Error (MSE) - Root Mean Squared Error (RMSE) - R-squared (R²)</p>
+<p>These metrics collectively provide a comprehensive evaluation of how well race and income can predict insurance coverage.</p>
 </section>
 <section id="flaws-and-limitations-in-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="flaws-and-limitations-in-analysis">Flaws and limitations in analysis</h2>
@@ -233,44 +281,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Data merging challenges – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )</p>
 <p>Unmeasured factors – Missing variables could influence outcomes.</p>
 <p>Aggregation bias – State-level averages may hide local disparities.</p>
-</section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
-<ul>
-<li>Introduce what motivates your Data Analysis (DA)
-<ul>
-<li>Which variables and relationships are you most interested in?</li>
-<li>What questions are you interested in answering?</li>
-<li>Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.</li>
-</ul></li>
-<li>Modeling and Inference
-<ul>
-<li>The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.</li>
-<li>Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)</li>
-<li>Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.</li>
-</ul></li>
-<li>Explain the flaws and limitations of your analysis
-<ul>
-<li>Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?</li>
-</ul></li>
-<li>Clarity Figures
-<ul>
-<li>Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?</li>
-<li>Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)</li>
-<li>Default <code>lm</code> output and plots are typically not acceptable.</li>
-</ul></li>
-<li>Clarity of Explanations
-<ul>
-<li>How well do you explain each figure/result?</li>
-<li>Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?</li>
-</ul></li>
-<li>Organization and cleanliness.
-<ul>
-<li>Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.</li>
-<li>This page should be self-contained, i.e.&nbsp;provide a description of the relevant data.</li>
-</ul></li>
-</ul>
 
 
 </section>
