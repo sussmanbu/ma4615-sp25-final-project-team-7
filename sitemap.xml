@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-8.html</loc>
-    <lastmod>2025-04-29T23:21:46.949Z</lastmod>
+    <lastmod>2025-05-01T03:36:29.295Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/posts/2025-03-03-blog-posts/blog-post-6.html</loc>
@@ -33,28 +33,32 @@
     <lastmod>2025-04-22T17:29:23.190Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/Zihao_Interactive.html</loc>
-    <lastmod>2025-04-22T17:29:23.188Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/Zihao_visualization_map.html</loc>
+    <lastmod>2025-04-30T23:47:07.466Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/big_picture.html</loc>
-    <lastmod>2025-04-30T18:14:52.671Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/about.html</loc>
-    <lastmod>2025-03-17T18:56:26.682Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/analysis.html</loc>
-    <lastmod>2025-04-25T18:40:04.810Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/Jess_ShinyData.html</loc>
+    <lastmod>2025-04-30T06:06:36.726Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/data.html</loc>
     <lastmod>2025-04-30T15:18:36.103Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/Jess_ShinyData.html</loc>
-    <lastmod>2025-04-30T06:06:36.726Z</lastmod>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/analysis.html</loc>
+    <lastmod>2025-04-25T18:40:04.810Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/about.html</loc>
+    <lastmod>2025-03-17T18:56:26.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/big_picture.html</loc>
+    <lastmod>2025-04-30T18:14:52.671Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/EDA/Zihao_Interactive.html</loc>
+    <lastmod>2025-04-22T17:29:23.188Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/ma4615-sp25-final-project-team-7/index.html</loc>
