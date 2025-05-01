@@ -8,7 +8,7 @@ editor:
     wrap: sentence
 ---
 
-![](images/data-import-cheatsheet-thumbs.png)
+![](images/data_page_pic.png)
 
 # Dataset 1: U.S. Chronic Disease Indicators (CDI)
 
@@ -86,25 +86,40 @@ For full transparency, our data cleaning script is available for review: [Cleani
 # Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)
 
 ## Where to Find the Data
-This dataset was published in united states census bureau. The dataset can be accessed directly from the Small Area Health Insurance Estimates(/https://www.census.gov/programs-surveys/sahie.html)
+This dataset was published within the United States Census Bureau. The dataset can be accessed directly from the Small Area Health Insurance Estimates website: [CDC Chronic Disease Indicators Dataset](https://www.census.gov/data/datasets/time-series/demo/sahie/estimates-acs.html)
 
 ## Why Was This Data Collected?
 The Small Area Health Insurance Estimates (SAHIE) program was created to develop model-based estimates of health insurance coverage for counties and states. This program builds on the work of the Small Area Income and Poverty Estimates (SAIPE) program. SAHIE is the only source of single-year health insurance coverage estimates.
 
 SAHIE data can be used to analyze geographic variation in health insurance coverage, as well as disparities in coverage by race/ethnicity, sex, age and income levels that reflect thresholds for state and federal assistance programs. Because consistent estimates are available from 2008 to 2022, SAHIE reflects annual changes over time.
 
-For 2008-2022, SAHIE publishes STATE and COUNTY estimates of population with and without health insurance coverage, along with measures of uncertainty, for the full cross-classification of:
+For 2008-2022, SAHIE publishes state and county estimates of population with and without health insurance coverage, along with measures of uncertainty, for the full cross-classification of:
 
-5 age categories: 0-64, 18-64, 21-64, 40-64, and 50-64
-3 sex categories: both sexes, male, and female
-6 income categories: all incomes, as well as income-to-poverty ratio (IPR) categories 0-138%, 0-200%, 0-250%, 0-400%, and 138-400% of the poverty threshold
-8 races/ethnicities (for states only): all races/ethnicities, White alone (not Hispanic or Latino), Black or African American alone (not Hispanic or Latino), American Indian and Alaska Native alone (not Hispanic or Latino), Asian alone (not Hispanic or Latino), Native Hawaiian and Other Pacific Islander alone (not Hispanic or Latino), Two or More Races (not Hispanic or Latino), Hispanic or Latino (any race).
+- **5 age categories:** 0-64, 18-64, 21-64, 40-64, and 50-64
+
+- **3 sex categories:** Both sexes, Male, and Female
+
+- **6 income categories:** All incomes, as well as the following income-to-poverty ratio (IPR) categories: 0-138%, 0-200%, 0-250%, 0-400%, and 138-400% of the poverty threshold
+
+- **8 races/ethnicities (for states only):** All races/ethnicities, White alone (not Hispanic or Latino), Black or African American alone (not Hispanic or Latino), American Indian and Alaska Native alone (not Hispanic or Latino), Asian alone (not Hispanic or Latino), Native Hawaiian and Other Pacific Islander alone (not Hispanic or Latino), Two or More Races (not Hispanic or Latino), Hispanic or Latino (any race).
 
 
-## Key Variables in Our Analysis with Dataset 2
-The original dataset with after cleaned there are 37026 obversions with 11 variables. This can help the analysis the insurance cover with in each different state, what different with sex/race/age in the different health topic(relative with the Dataset 1 ), also, how different income level effect the insurance rate.
-So we do choice : Age, Income ,Race,Sex,and the Location as the key variable of this dataset.
-[Dataset cleaned]: (/dataset/sahie_cleaned.rds)
+## Key Variables in Our Analysis
+The original dataset consisted of 338,850 rows and 26 columns. Since the SAHIE files are large and updated yearly, we decided to focus on just the year 2022, since it is the most recent year on file. After cleaning out this dataset to better align with the aim of our analysis, it now contains 37,026 observations with 11 variables. This cleaned dataset allows us to analyze health insurance coverage across different states in a more focused manner, examining how it varies by sex, race, and age, as well as how income levels affect insurance rates—particularly in relation to the topics covered in our first dataset.
+
+We have selected the following key variables for our analysis:
+
+- Age
+- Race
+- Sex
+- Income
+- NIPR
+- NUI
+- NIC
+- PCTUI
+- PCTIC
+- Location
+
 
 ## Data Imbalances and Distribution
 
@@ -114,3 +129,8 @@ The below is figure show the different healthy topic with the different Income l
 
 ![](images/insured_topic2.png)
 
+## Data Cleaning and Preprocessing
+
+#### Cleaned Dataset File:
+
+#### Cleaning Script:
