@@ -71,22 +71,30 @@ ui <- fluidPage(
   hr(),
   h4("Takeaways"),
   uiOutput("takeaways"),
-  br()
+  br(),
+  uiOutput("disclaimer"),
+  br(),
 )
 
 # Define server
 server <- function(input, output, session) {
   
   observe({
+    valid_states <- sort(
+      setdiff(
+        data %>% filter(Topic == input$topic) %>% pull(LocationDesc) %>% unique(),
+        "United States"
+      )
+    )
+    
+    # Retain the selected state if still valid
+    selected_state <- if (input$state %in% valid_states) input$state else valid_states[1]
+    
     updateSelectInput(
       session,
       "state",
-      choices = sort(
-        setdiff(
-          data %>% filter(Topic == input$topic) %>% pull(LocationDesc) %>% unique(),
-          "United States"
-        )
-      )
+      choices = valid_states,
+      selected = selected_state
     )
   })
   
@@ -181,6 +189,49 @@ server <- function(input, output, session) {
     
     bullets <- summary_df$text
     HTML(paste("<ul>", paste(paste0("<li>", bullets, "</li>"), collapse = ""), "</ul>"))
+  })
+  
+  output$disclaimer <- renderUI({
+    df <- filtered_data()
+    if (nrow(df) == 0) return(NULL)
+    
+    state_vals <- df %>%
+      filter(LocationDesc == input$state & !is.na(DataValue)) %>%
+      pull(StratificationID1)
+    
+    us_vals <- df %>%
+      filter(LocationDesc == "United States" & !is.na(DataValue)) %>%
+      pull(StratificationID1)
+    
+    missing_vals <- setdiff(us_vals, state_vals)
+    
+    if (length(missing_vals) == 0) return(NULL)
+    
+    label_map <- c(
+      "SEXM" = "Male", "SEXF" = "Female", "OVR" = "Overall",
+      "AGE1844" = "18–44", "AGE0_44" = "0–44", "AGE4564" = "45–64",
+      "AGE65P" = "65+", "AGE4M5Y" = "0–5", "AGE6_14" = "6–14",
+      "AGE1_5" = "1–5", "AGE1217" = "12–17", "AGE6_9" = "6–9",
+      "AGE1013" = "10–13", "AGE6_11" = "6–11",
+      "GRD9" = "Grade 9", "GRD10" = "Grade 10", "GRD11" = "Grade 11", "GRD12" = "Grade 12",
+      "WHT" = "White", "BLK" = "Black", "HIS" = "Hispanic", "MRC" = "Multiracial",
+      "AIAN" = "American Indian/Alaskan Native", "ASN" = "Asian", "API" = "Asian or Pacific Islander",
+      "HAPI" = "Hawaiian/Pacific Islander"
+    )
+    
+    pretty_vals <- ifelse(!is.na(label_map[missing_vals]), label_map[missing_vals], missing_vals)
+    
+    # Format: "A", "A and B", "A, B, and C"
+    formatted <- if (length(pretty_vals) == 1) {
+      pretty_vals
+    } else if (length(pretty_vals) == 2) {
+      paste(pretty_vals, collapse = " and ")
+    } else {
+      paste0(paste(pretty_vals[-length(pretty_vals)], collapse = ", "), ", and ", pretty_vals[length(pretty_vals)])
+    }
+    
+    HTML(paste0("<p style='color:#a94442; font-size:16px; margin-top:15px;'><strong>Disclaimer:</strong> ", 
+                formatted, " data could not be found within our ", input$state, " state data.</p>"))
   })
 }
 
