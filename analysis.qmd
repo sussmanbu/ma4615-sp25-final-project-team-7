@@ -60,6 +60,49 @@ ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
 ```
 First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from <135% poverty to All, there's a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.
 
+```{r}
+#| echo: false
+library(broom)
+
+# Linear model: Predicting insurance coverage by Race and Income
+model <- lm(PCTIC ~ Race + Income, data = data)
+
+# Model summary
+summary(model)
+
+# Model diagnostics: RMSE, MSE, and R²
+model_perf <- augment(model)
+
+# Calculate performance metrics
+mse <- mean(model_perf$.resid^2, na.rm = TRUE)
+rmse <- sqrt(mse)
+r_squared <- summary(model)$r.squared
+
+# Print performance metrics
+cat("Model Performance Metrics:\n")
+cat("MSE:", round(mse, 3), "\n")
+cat("RMSE:", round(rmse, 3), "\n")
+cat("R-squared:", round(r_squared, 3), "\n")
+
+
+
+
+```
+This section evaluates the effectiveness of predicting insurance coverage rates (PCTIC) using race and income as predictors through a linear regression model. The purpose of this analysis is to determine how accurately race and income can explain variations in insurance coverage.
+
+First, a linear regression model was fitted with insurance coverage as the dependent variable and both race and income as independent variables. The detailed summary statistics of the regression model provide insights into the strength and significance of these predictors.
+
+To assess model performance, predicted values and residuals were obtained from the model. From these residuals, the Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R²) were calculated. MSE indicates the average squared difference between observed and predicted values, providing an overall measure of prediction error magnitude. RMSE, the square root of MSE, gives a more intuitive measure of the average prediction error. The R-squared value indicates the proportion of the variance in insurance coverage explained by the race and income predictors; a higher R-squared value implies better predictive power.
+
+The calculated performance metrics are as follows:
+- Mean Squared Error (MSE)
+- Root Mean Squared Error (RMSE)
+- R-squared (R²)
+
+These metrics collectively provide a comprehensive evaluation of how well race and income can predict insurance coverage.
+
+
+
 ## Flaws and limitations in analysis
 
 No causality – Cross-sectional data only shows associations, not cause-and-effect.
