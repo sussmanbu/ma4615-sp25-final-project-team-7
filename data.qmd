@@ -86,10 +86,31 @@ For full transparency, our data cleaning script is available for review: [Cleani
 # Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)
 
 ## Where to Find the Data
+This dataset was published in united states census bureau. The dataset can be accessed directly from the Small Area Health Insurance Estimates(/https://www.census.gov/programs-surveys/sahie.html)
 
 ## Why Was This Data Collected?
+The Small Area Health Insurance Estimates (SAHIE) program was created to develop model-based estimates of health insurance coverage for counties and states. This program builds on the work of the Small Area Income and Poverty Estimates (SAIPE) program. SAHIE is the only source of single-year health insurance coverage estimates.
+
+SAHIE data can be used to analyze geographic variation in health insurance coverage, as well as disparities in coverage by race/ethnicity, sex, age and income levels that reflect thresholds for state and federal assistance programs. Because consistent estimates are available from 2008 to 2022, SAHIE reflects annual changes over time.
+
+For 2008-2022, SAHIE publishes STATE and COUNTY estimates of population with and without health insurance coverage, along with measures of uncertainty, for the full cross-classification of:
+
+5 age categories: 0-64, 18-64, 21-64, 40-64, and 50-64
+3 sex categories: both sexes, male, and female
+6 income categories: all incomes, as well as income-to-poverty ratio (IPR) categories 0-138%, 0-200%, 0-250%, 0-400%, and 138-400% of the poverty threshold
+8 races/ethnicities (for states only): all races/ethnicities, White alone (not Hispanic or Latino), Black or African American alone (not Hispanic or Latino), American Indian and Alaska Native alone (not Hispanic or Latino), Asian alone (not Hispanic or Latino), Native Hawaiian and Other Pacific Islander alone (not Hispanic or Latino), Two or More Races (not Hispanic or Latino), Hispanic or Latino (any race).
 
 
-## Additional Notes
-- No variable renaming or recoding was necessary, as the dataset already had clear labels.
-- No additional R packages were used outside of standard libraries covered in class (dplyr, tidyverse, ggplot2).
+## Key Variables in Our Analysis with Dataset 2
+The original dataset with after cleaned there are 37026 obversions with 11 variables. This can help the analysis the insurance cover with in each different state, what different with sex/race/age in the different health topic(relative with the Dataset 1 ), also, how different income level effect the insurance rate.
+So we do choice : Age, Income ,Race,Sex,and the Location as the key variable of this dataset.
+[Dataset cleaned]: (/dataset/sahie_cleaned.rds)
+
+## Data Imbalances and Distribution
+
+![](images/insurec_race.png)
+The above figure shows in detail the correlation between income gap and insurance coverage, as well as the income gap between each race.
+The below is figure show the different healthy topic with the different Income level with insurance rate that across with the different race.
+
+![](images/insured_topic2.png)
+
