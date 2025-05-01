@@ -7,5 +7,13 @@ date: "2025-04-30"
 draft: FALSE
 ---
 
+<<<<<<< HEAD
 # Thesis:
 The Hispanic and American Indian and Alaska Native race group have a lower insured rate compare to other ethnic groups, resulting in higher chronic disease prevelance.
+=======
+Our team has solidified the central thesis that will guide our final interpretations and visualizations. As a team, we have collectively focused our efforts throughout this project on identifying the key social and structural factors influencing chronic disease prevalence across racial groups in the U.S. After analyzing trends across race, insurance coverage, and chronic health conditions, we have found compelling evidence to support our thesis: Chronic diseases are disproportionately prevalent among minority racial groups in the United States, particularly Hispanic and American Indian/Alaskan Native populations, and this disparity is strongly associated with lower rates of health insurance coverage within these communities.
+
+
+![](../../images/visualization_map.png)
+· To polish our visualizations and tables, our group focused on both clarity and aesthetic appeal. For example, when creating a choropleth map to show disease cases across U.S. states, we started by summarizing the data to calculate total case counts by region. We then used ggplot2 to build a clean static map and applied color gradients that enhance readability. Instead of keeping the default color scheme, we chose a smoother green gradient to better reflect a health-related theme and reduce visual fatigue. We also formatted the legend using scaled units (thousands of cases) to make the data more digestible. Small details—like removing unnecessary axes and using theme_void()—helped draw attention directly to the data. These refinements made the visualization not only more informative but also more professional and visually engaging.
+>>>>>>> ed848d407b1493083f5ab7bcc1660e77f16f89b6

@@ -1,0 +1,41 @@
+```{r}
+library(tidyverse)
+library(sf)         # for shapefiles (spatial data)
+library(ggplot2)    # for plotting
+library(dplyr)
+library(here)
+data <- readRDS(here("dataset", "dataclean.rds"))
+```
+
+```{r}
+# Filter for actual  values
+data_count <- data %>%
+  filter(DataValueType == "Number")
+```
+
+```{r}
+# Group and summarize by state
+disease_counts <- data_count %>%
+  mutate(region = tolower(LocationDesc)) %>%
+  group_by(region) %>%
+  summarise(total_cases_thousands = sum(DataValue, na.rm = TRUE) / 1000)
+```
+
+```{r}
+# Load map
+us_states <- map_data("state")
+map_data <- left_join(us_states, disease_counts, by = "region")
+```
+
+```{r}
+# Plot
+ggplot(map_data, aes(x = long, y = lat, group = group, fill = total_cases_thousands)) +
+  geom_polygon(color = "white") +
+  scale_fill_gradient(
+  low = "#e5f5e0", high = "#238b45", na.value = "grey90",
+  labels = scales::label_number(suffix = "K")
+) +
+  theme_void() +
+  labs(title = "Total Reported Disease Cases by State (in Thousands)", 
+       fill = "Cases (K)")
+```
