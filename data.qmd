@@ -64,7 +64,7 @@ kable(key_variables, caption = "Key Variables in the U.S. Chronic Disease Indica
 Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries.
 ![](images/Location-BarChart.png)
 
-Additionally, the LocationDesc variable appears to be mostly evenly distributed, suggesting that each state or territory is proportionately represented in the dataset.
+Additionally, the LocationDesc variable appears to be mostly evenly distributed at first, but locations like the Virgin Islands, Puerto Rico, Guam, and Wyoming show up significantly less frequently than the rest of the locations. This suggests that each state or territory is not proportionately represented in the dataset.
 
 ## Data Cleaning and Preprocessing
 To prepare the dataset for analysis, we performed the following cleaning steps:
@@ -78,10 +78,10 @@ To prepare the dataset for analysis, we performed the following cleaning steps:
 - **Checked for Unusual Frequencies:** We visualized category distributions to detect imbalances in health topic coverage.
 
 #### Cleaned Dataset File:
-You can download the cleaned dataset used in our analysis here: [Cleaned Data](/dataset/dataclean.rds)
+You can download the cleaned dataset used in our analysis here: [Cleaned CDI Data](/dataset/dataclean.rds)
 
 #### Cleaning Script:
-For full transparency, our data cleaning script is available for review: [Cleaning Script](/scripts/clean_data.R)
+For full transparency, our data cleaning script is available for review: [Cleaning Script for CDI](/scripts/clean_data.R)
 
 # Dataset 2: Small Area Health Insurance Estimates (SAHIE) using the American Community Survey (ACS)
 
@@ -109,28 +109,114 @@ The original dataset consisted of 338,850 rows and 26 columns. Since the SAHIE f
 
 We have selected the following key variables for our analysis:
 
-- Age
-- Race
-- Sex
-- Income
-- NIPR
-- NUI
-- NIC
-- PCTUI
-- PCTIC
-- Location
+```{r}
+#| echo: false
+suppressWarnings(library(knitr))
+
+# Create a data frame of key variables from the SAHIE dataset
+key_variables_sahie <- data.frame(
+  Variable = c("Age", "Race", "Sex", "Income", "NIPR", "NUI", "NIC", 
+               "PCTUI", "PCTIC", "Location", "Year"),
+  Description = c(
+    "Age category for the demographic group (e.g., Under 65, 18–64, 50–64)",
+    "Race category (e.g., White alone, Black or African American alone, Hispanic or Latino)",
+    "Sex of the demographic group (Male, Female, or Both)",
+    "Income category, based on percentage of the federal poverty level (e.g., ≤138%, ≤400%)",
+    "Estimated number of people in the demographic group for a given income category",
+    "Estimated number of uninsured individuals in the demographic group",
+    "Estimated number of insured individuals in the demographic group",
+    "Estimated percentage of people uninsured in the demographic group",
+    "Estimated percentage of people insured in the demographic group",
+    "Name of the state (e.g., California, Texas)",
+    "The year the estimate was generated (2022)"
+  )
+)
+
+# Display the table
+kable(key_variables_sahie, caption = "Key Variables in the SAHIE 2022 Dataset")
+```
+
 
 
 ## Data Imbalances and Distribution
 
-![](images/insurec_race.png)
-The above figure shows in detail the correlation between income gap and insurance coverage, as well as the income gap between each race.
-The below is figure show the different healthy topic with the different Income level with insurance rate that across with the different race.
+To explore the distribution of key variables in the SAHIE 2022 dataset, we examined the frequency of observations across several demographic and geographic categories.
 
-![](images/insured_topic2.png)
+```{r}
+#| echo: false
+
+suppressPackageStartupMessages(suppressWarnings(library(tidyverse)))
+library(readr)
+sahie_data <- readRDS(here::here("dataset", "sahie_cleaned.rds"))
+
+sahie_data %>%
+  count(Age) %>%
+  ggplot(aes(x = reorder(Age, -n), y = n)) +
+  geom_bar(stat = "identity", fill = "#ff7f0e") +
+  labs(title = "Distribution of Age Groups in SAHIE 2022", x = "Age Group", y = "Count") +
+  theme_minimal()
+```
+
+The distribution of age groups is mostly consistent across the dataset, with one notable exception: the Under 18 category appears significantly less frequently than the other age groups. This suggests that the dataset primarily focuses on adult populations, which aligns with the dataset's goal of measuring health insurance coverage in working-age groups.
+
+```{r}
+#| echo: false
+
+sahie_data %>%
+  count(Race) %>%
+  ggplot(aes(x = reorder(Race, -n), y = n)) +
+  geom_bar(stat = "identity", fill = "#1f77b4") +
+  labs(title = "Distribution of Race Categories in SAHIE 2022", x = "Race", y = "Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+```{r}
+#| echo: false
+sahie_data %>%
+  count(LocationDesc) %>%
+  ggplot(aes(x = reorder(LocationDesc, -n), y = n)) +
+  geom_bar(stat = "identity", fill = "#2ca02c") +
+  labs(title = "Data Distribution by State", x = "State", y = "Number of Observations") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+```
+
+```{r}
+#| echo: false
+sahie_data %>%
+  count(Income) %>%
+  ggplot(aes(x = reorder(Income, -n), y = n)) +
+  geom_bar(stat = "identity", fill = "#d62728") +
+  labs(title = "Distribution of Income Categories", x = "Income Category", y = "Count") +
+  theme_minimal()
+```
+
+In contrast to the first dataset we analyzed, the SAHIE dataset shows a remarkably balanced distribution across race categories, income brackets, and states/territories. Each race group (e.g., White alone, Black alone, Hispanic/Latino) appears with similar frequency, and all income categories and U.S. locations are represented relatively evenly. This indicates that the dataset is not biased toward any specific population group or region, making it well-suited for demographic comparisons and equity-focused policy analysis.
 
 ## Data Cleaning and Preprocessing
+To prepare the SAHIE 2022 dataset for analysis, we performed the following data cleaning and transformation steps:
+
+- **Filtered for State-Level Data:** We removed all county-level observations by filtering out rows where county_name was not missing, leaving only state-level estimates for consistency across geographic units.
+
+- **Selected and Renamed Relevant Columns:** We narrowed the dataset to key demographic, insurance coverage, and geographic variables. We also renamed columns for readability (e.g., state_name became LocationDesc) as well as easier implementation with our first dataset.
+
+- **Recoded Categorical Variables:** The original dataset encoded demographic categories numerically. We recoded Age, Race, Sex, and Income into meaningful labels (e.g., Race == 2 became “BLK” for Black or African American).
+
+- **Converted Data Types:** Some numerical values (e.g., population counts and percentages) were stored as character strings with formatting symbols like commas and percent signs. We stripped these symbols and converted the values to numeric format to enable analysis.
+
+This cleaning process ensured the dataset was consistent, interpretable, and analysis-ready
 
 #### Cleaned Dataset File:
+You can download the cleaned dataset used in our analysis here: [Cleaned SAHIE Data](/dataset/sahie_cleaned.rds)
 
 #### Cleaning Script:
+For full transparency, our data cleaning script is available for review: [Cleaning Script for SAHIE](/scripts/clean_sahie_data.R)
+
+# Merged Dataset
+
+...
+
+# Addtional R Packages
+- Our group did not use any R packages in this analysis that were outside the scope of this class
