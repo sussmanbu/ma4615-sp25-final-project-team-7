@@ -137,6 +137,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-imbalances-and-distribution-1" id="toc-data-imbalances-and-distribution-1" class="nav-link" data-scroll-target="#data-imbalances-and-distribution-1">Data Imbalances and Distribution</a></li>
   <li><a href="#data-cleaning-and-preprocessing-1" id="toc-data-cleaning-and-preprocessing-1" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing-1">Data Cleaning and Preprocessing</a></li>
   </ul></li>
+  <li><a href="#merged-dataset" id="toc-merged-dataset" class="nav-link" data-scroll-target="#merged-dataset">Merged Dataset</a></li>
+  <li><a href="#addtional-r-packages" id="toc-addtional-r-packages" class="nav-link" data-scroll-target="#addtional-r-packages">Addtional R Packages</a></li>
   </ul>
 </nav>
     </div>
@@ -246,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="data-imbalances-and-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="data-imbalances-and-distribution">Data Imbalances and Distribution</h2>
 <p><img src="images/Topic-BarChart.png" class="img-fluid"> Upon reviewing the dataset, we identified imbalances in data coverage across different health topics. Some health conditions, such as Cardiovascular Disease, Nutrition/Physical Activity/Weight, and Health Status, have over 19,000 recorded values, while others, such as Maternal Health and Chronic Kidney Disease, have fewer than 1,000 entries. <img src="images/Location-BarChart.png" class="img-fluid"></p>
-<p>Additionally, the LocationDesc variable appears to be mostly evenly distributed, suggesting that each state or territory is proportionately represented in the dataset.</p>
+<p>Additionally, the LocationDesc variable appears to be mostly evenly distributed at first, but locations like the Virgin Islands, Puerto Rico, Guam, and Wyoming show up significantly less frequently than the rest of the locations. This suggests that each state or territory is not proportionately represented in the dataset.</p>
 </section>
 <section id="data-cleaning-and-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h2>
@@ -259,11 +261,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="cleaned-dataset-file" class="level4">
 <h4 class="anchored" data-anchor-id="cleaned-dataset-file">Cleaned Dataset File:</h4>
-<p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/dataclean.rds">Cleaned Data</a></p>
+<p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/dataclean.rds">Cleaned CDI Data</a></p>
 </section>
 <section id="cleaning-script" class="level4">
 <h4 class="anchored" data-anchor-id="cleaning-script">Cleaning Script:</h4>
-<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/clean_data.R">Cleaning Script</a></p>
+<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/clean_data.R">Cleaning Script for CDI</a></p>
 </section>
 </section>
 </section>
@@ -289,35 +291,143 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="key-variables-in-our-analysis-1">Key Variables in Our Analysis</h2>
 <p>The original dataset consisted of 338,850 rows and 26 columns. Since the SAHIE files are large and updated yearly, we decided to focus on just the year 2022, since it is the most recent year on file. After cleaning out this dataset to better align with the aim of our analysis, it now contains 37,026 observations with 11 variables. This cleaned dataset allows us to analyze health insurance coverage across different states in a more focused manner, examining how it varies by sex, race, and age, as well as how income levels affect insurance rates—particularly in relation to the topics covered in our first dataset.</p>
 <p>We have selected the following key variables for our analysis:</p>
-<ul>
-<li>Age</li>
-<li>Race</li>
-<li>Sex</li>
-<li>Income</li>
-<li>NIPR</li>
-<li>NUI</li>
-<li>NIC</li>
-<li>PCTUI</li>
-<li>PCTIC</li>
-<li>Location</li>
-</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Key Variables in the SAHIE 2022 Dataset</caption>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 90%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Age</td>
+<td style="text-align: left;">Age category for the demographic group (e.g., Under 65, 18–64, 50–64)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Race</td>
+<td style="text-align: left;">Race category (e.g., White alone, Black or African American alone, Hispanic or Latino)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sex</td>
+<td style="text-align: left;">Sex of the demographic group (Male, Female, or Both)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Income</td>
+<td style="text-align: left;">Income category, based on percentage of the federal poverty level (e.g., ≤138%, ≤400%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NIPR</td>
+<td style="text-align: left;">Estimated number of people in the demographic group for a given income category</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUI</td>
+<td style="text-align: left;">Estimated number of uninsured individuals in the demographic group</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NIC</td>
+<td style="text-align: left;">Estimated number of insured individuals in the demographic group</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PCTUI</td>
+<td style="text-align: left;">Estimated percentage of people uninsured in the demographic group</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PCTIC</td>
+<td style="text-align: left;">Estimated percentage of people insured in the demographic group</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Location</td>
+<td style="text-align: left;">Name of the state (e.g., California, Texas)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Year</td>
+<td style="text-align: left;">The year the estimate was generated (2022)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="data-imbalances-and-distribution-1" class="level2">
 <h2 class="anchored" data-anchor-id="data-imbalances-and-distribution-1">Data Imbalances and Distribution</h2>
-<p><img src="images/insurec_race.png" class="img-fluid"> The above figure shows in detail the correlation between income gap and insurance coverage, as well as the income gap between each race. The below is figure show the different healthy topic with the different Income level with insurance rate that across with the different race.</p>
-<p><img src="images/insured_topic2.png" class="img-fluid"></p>
+<p>To explore the distribution of key variables in the SAHIE 2022 dataset, we examined the frequency of observations across several demographic and geographic categories.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The distribution of age groups is mostly consistent across the dataset, with one notable exception: the Under 18 category appears significantly less frequently than the other age groups. This suggests that the dataset primarily focuses on adult populations, which aligns with the dataset’s goal of measuring health insurance coverage in working-age groups.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In contrast to the first dataset we analyzed, the SAHIE dataset shows a remarkably balanced distribution across race categories, income brackets, and states/territories. Each race group (e.g., White alone, Black alone, Hispanic/Latino) appears with similar frequency, and all income categories and U.S. locations are represented relatively evenly. This indicates that the dataset is not biased toward any specific population group or region, making it well-suited for demographic comparisons and equity-focused policy analysis.</p>
 </section>
 <section id="data-cleaning-and-preprocessing-1" class="level2">
 <h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing-1">Data Cleaning and Preprocessing</h2>
+<p>To prepare the SAHIE 2022 dataset for analysis, we performed the following data cleaning and transformation steps:</p>
+<ul>
+<li><p><strong>Filtered for State-Level Data:</strong> We removed all county-level observations by filtering out rows where county_name was not missing, leaving only state-level estimates for consistency across geographic units.</p></li>
+<li><p><strong>Selected and Renamed Relevant Columns:</strong> We narrowed the dataset to key demographic, insurance coverage, and geographic variables. We also renamed columns for readability (e.g., state_name became LocationDesc) as well as easier implementation with our first dataset.</p></li>
+<li><p><strong>Recoded Categorical Variables:</strong> The original dataset encoded demographic categories numerically. We recoded Age, Race, Sex, and Income into meaningful labels (e.g., Race == 2 became “BLK” for Black or African American).</p></li>
+<li><p><strong>Converted Data Types:</strong> Some numerical values (e.g., population counts and percentages) were stored as character strings with formatting symbols like commas and percent signs. We stripped these symbols and converted the values to numeric format to enable analysis.</p></li>
+</ul>
+<p>This cleaning process ensured the dataset was consistent, interpretable, and analysis-ready</p>
 <section id="cleaned-dataset-file-1" class="level4">
 <h4 class="anchored" data-anchor-id="cleaned-dataset-file-1">Cleaned Dataset File:</h4>
+<p>You can download the cleaned dataset used in our analysis here: <a href=".\dataset/sahie_cleaned.rds">Cleaned SAHIE Data</a></p>
 </section>
 <section id="cleaning-script-1" class="level4">
 <h4 class="anchored" data-anchor-id="cleaning-script-1">Cleaning Script:</h4>
-
-
+<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/clean_sahie_data.R">Cleaning Script for SAHIE</a></p>
 </section>
 </section>
+</section>
+<section id="merged-dataset" class="level1">
+<h1>Merged Dataset</h1>
+<p>…</p>
+</section>
+<section id="addtional-r-packages" class="level1">
+<h1>Addtional R Packages</h1>
+<ul>
+<li>Our group did not use any R packages in this analysis that were outside the scope of this class</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
