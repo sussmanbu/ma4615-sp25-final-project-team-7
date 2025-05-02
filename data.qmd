@@ -195,6 +195,14 @@ sahie_data %>%
 
 In contrast to the first dataset we analyzed, the SAHIE dataset shows a remarkably balanced distribution across race categories, income brackets, and states/territories. Each race group (e.g., White alone, Black alone, Hispanic/Latino) appears with similar frequency, and all income categories and U.S. locations are represented relatively evenly. This indicates that the dataset is not biased toward any specific population group or region, making it well-suited for demographic comparisons and equity-focused policy analysis.
 
+```{r}
+ggplot(sahie_data, aes(x = PCTUI)) +
+  geom_histogram(fill = "#9467bd", bins = 30) +
+  labs(title = "Distribution of Uninsured Rates", x = "Percent Uninsured", y = "Frequency") +
+  theme_minimal()
+```
+Finally, a histogram of the percentage of uninsured individuals (PCTUI) reveals a right-skewed distribution, with most values clustering between 10% and 25%. The peak occurs around 15%, indicating that the majority of geographic and demographic groupings fall within this moderate uninsured rate range. However, the long right tail—extending past 40%—shows that some populations experience significantly higher uninsured rates. This variation highlights persistent disparities in access to health coverage and supports the need for targeted policy interventions.
+
 ## Data Cleaning and Preprocessing
 To prepare the SAHIE 2022 dataset for analysis, we performed the following data cleaning and transformation steps:
 
