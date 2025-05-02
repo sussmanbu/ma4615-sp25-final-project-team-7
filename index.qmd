@@ -1,5 +1,5 @@
 ---
-title: "MA [46]15 Final Project"
+title: "Mapping Health Inequity: An Integrated Analysis of Chronic Disease Disparities Across Racial Groups in the U.S."
 listing:
   contents: "posts/*/*.qmd"
   sort: "date desc"
@@ -12,5 +12,3 @@ title-block-banner: true
 ---
 
 ![](images/home_page_pic.png)
-
-# Final Project due May 5, 2024 at 11:59pm.

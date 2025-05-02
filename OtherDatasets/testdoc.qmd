@@ -1,4 +1,0 @@
----
-title: "testdoc"
-editor: visual
----
