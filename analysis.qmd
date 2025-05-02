@@ -5,18 +5,20 @@ toc: true
 draft: false
 ---
 
-![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
+![](images/analysis_pic.jpg)
 
 
 
 ## Introduce what motivates your Data Analysis (DA)
-This analysis are explore about the race, income , and insurance coversage in the effect of the preventative helathcare in U.S
-We are interested in Unsterstanding:
-How the uninsurance tare vary across racial and income groups?
+This analysis explores how race, income, and health insurance coverage relate to preventative healthcare access in the United States.
 
-Does the populations have higher uninsurance rates less likely to engage in preventative health behaviors? such as vaccination.
+We are interested in understanding:
 
-How extent can insurance to help the difference social population have the difference in the preventative care?
+- How do uninsurance rates vary across racial and income groups?
+
+- Are populations with higher uninsurance rates less likely to engage in preventative health behaviors (e.g., vaccination)?
+
+- To what extent does having insurance reduce disparities in preventative care across different social groups?
 
 ```{r}
 #| echo: false
@@ -101,20 +103,18 @@ The calculated performance metrics are as follows:
 
 These metrics collectively provide a comprehensive evaluation of how well race and income can predict insurance coverage.
 
-
-
 ## Flaws and limitations in analysis
 
-No causality – Cross-sectional data only shows associations, not cause-and-effect.
+**No causality** – Cross-sectional data only shows associations, not cause-and-effect.
 
-Simplified model – Linear regression may miss complex relationships; omitted variables could bias results.
+**Simplified model** – Linear regression may miss complex relationships; omitted variables could bias results.
 
-Small sample sizes – Some racial/income subgroups have limited data, reducing reliability.
+**Small sample sizes** – Some racial/income subgroups have limited data, reducing reliability.
 
-Data merging challenges – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )
+**Data merging challenges** – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )
 
-Unmeasured factors – Missing variables  could influence outcomes.
+**Unmeasured factors** – Missing variables  could influence outcomes.
 
-Aggregation bias – State-level averages may hide local disparities.
+**Aggregation bias** – State-level averages may hide local disparities.
 
 
