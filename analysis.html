@@ -121,9 +121,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduce-what-motivates-your-data-analysis-da" id="toc-introduce-what-motivates-your-data-analysis-da" class="nav-link active" data-scroll-target="#introduce-what-motivates-your-data-analysis-da">Introduce what motivates your Data Analysis (DA)</a></li>
-  <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a></li>
+  <li><a href="#motivation-and-research-questions" id="toc-motivation-and-research-questions" class="nav-link active" data-scroll-target="#motivation-and-research-questions">Motivation and Research Questions</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  </ul></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical Analysis</a></li>
+  <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a>
+  <ul class="collapse">
   <li><a href="#flaws-and-limitations-in-analysis" id="toc-flaws-and-limitations-in-analysis" class="nav-link" data-scroll-target="#flaws-and-limitations-in-analysis">Flaws and limitations in analysis</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -155,25 +162,59 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="images/analysis_pic.jpg" class="img-fluid"></p>
-<section id="introduce-what-motivates-your-data-analysis-da" class="level2">
-<h2 class="anchored" data-anchor-id="introduce-what-motivates-your-data-analysis-da">Introduce what motivates your Data Analysis (DA)</h2>
-<p>This analysis explores how race, income, and health insurance coverage relate to preventative healthcare access in the United States.</p>
-<p>We are interested in understanding:</p>
-<ul>
+<section id="motivation-and-research-questions" class="level1">
+<h1>Motivation and Research Questions</h1>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>The main purpose of this study is to investigate the disparities in chronic disease prevalence across different racial and ethnic groups in the United States. This project also seeks to examine the relationship between preventive health measures—such as vaccination rates and cancer screenings—and chronic disease outcomes, with a focus on potential gaps in access and utilization. By incorporating data on income levels and insurance coverage, the analysis aims to uncover how socioeconomic factors contribute to these health disparities. Understanding these relationships can help identify the most influential factors affecting chronic disease prevalence and support efforts to improve health equity and outcomes nationwide.</p>
+</section>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
+<ol type="1">
+<li><p>How does chronic disease prevalence vary among different racial and ethnic groups across U.S. states?</p></li>
+<li><p>What are the patterns of preventive health measure usage (e.g., screenings, vaccinations) among racial and ethnic groups, and how do these relate to disease outcomes?</p></li>
 <li><p>How do uninsurance rates vary across racial and income groups?</p></li>
-<li><p>Are populations with higher uninsurance rates less likely to engage in preventative health behaviors (e.g., vaccination)?</p></li>
-<li><p>To what extent does having insurance reduce disparities in preventative care across different social groups?</p></li>
-</ul>
+<li><p>Do income level and uninsurance rates correlate with chronic disease prevalence and preventive health measure usage?</p></li>
+</ol>
+</section>
+</section>
+<section id="statistical-analysis" class="level1">
+<h1>Statistical Analysis</h1>
+<p>To begin addressing our first research question, we created a bar plot visualizing the average crude prevalence of several chronic health conditions by race and ethnicity. We decided to investigate health disparities across racial and ethnic groups by examining the prevalence of seven specific health outcomes: <u>Alcohol use</u>, <u>Arthritis</u>, <u>Asthma</u>, <u>COPD (Chronic Obstructive Pulmonary Disease)</u>, <u>Diabetes</u>, <u>Disability</u>, and <u>Mental Health issues</u>. Each condition was averaged within each racial or ethnic category to allow for clearer comparisons across groups.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyverse' was built under R version 4.4.2</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'lubridate' was built under R version 4.4.2</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'here' was built under R version 4.4.2</code></pre>
 </div>
+<p>The bar chart shown above highlights distinct disparities in chronic disease prevalence. Notably, Multiracial and American Indian/Alaska Native populations consistently exhibit higher rates across multiple conditions, with especially elevated levels for Disability and Arthritis concerns. In contrast, Asian populations generally report lower average prevalence across all conditions analyzed. These patterns suggest that chronic disease burdens are not distributed equally and may reflect underlying structural inequities in healthcare access, environmental exposures, or social determinants of health.</p>
+<p>This initial visualization provides a compelling entry point into our analysis. It not only supports the presence of racial and ethnic disparities in chronic disease prevalence, but also sets the stage for more detailed investigation into the socioeconomic and preventive care factors that may be contributing to these outcomes.</p>
+<p>To explore our second research question—<em>What are the patterns of preventive health measure usage among racial and ethnic groups, and how do these relate to disease outcomes?</em>—we visualized the average percentage of adults engaging in four key preventive health behaviors, broken down by race and ethnicity.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The graph above illustrates trends across the following categories:</p>
+<ul>
+<li><p>Colorectal cancer screening among adults aged 45–75 years</p></li>
+<li><p>Influenza vaccination among adults</p></li>
+<li><p>Counseling for physical activity among adults with arthritis</p></li>
+<li><p>Routine checkup within the past year among adults</p></li>
+</ul>
+<p>This visualization highlights several important patterns. First, routine checkups maintain relatively high participation across all racial groups, with especially high rates among Black and Multiracial populations. However, when it comes to influenza vaccination, participation is markedly lower overall, with Black, Hispanic, and American Indian/Alaska Native populations showing the lowest averages—suggesting potential barriers to access or vaccine hesitancy in these communities.</p>
+<p>The colorectal cancer screening and physical activity counseling among adults with arthritis show a more uneven distribution. The Asian and White populations tend to have higher rates of colorectal screening, while Multiracial and American Indian/Alaska Native groups show moderately lower usage. Counseling for physical activity shows notable dips for Hawaiian/Pacific Islander and Multiracial populations, which may point to inconsistencies in healthcare provider practices or systemic disparities in arthritis care.</p>
+<p>Taken together, these disparities in preventive measure usage may help explain some of the patterns seen in chronic disease prevalence. For instance, groups with consistently lower rates of screenings and vaccinations—such as American Indian/Alaska Native and Multiracial populations—also showed higher rates of chronic conditions in our earlier analysis. This reinforces the idea that inequities in preventive care access may contribute to unequal health outcomes.</p>
+<p>-&gt; lead into percent insured by race and income level</p>
+<hr>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,234,350 × 15
     Year LocationDesc Topic   Question DataValueType DataValue Race  Age   Sex  
@@ -193,9 +234,6 @@ ul.task-list li input[type="checkbox"] {
 #   PCTUI &lt;chr&gt;, PCTIC &lt;chr&gt;</code></pre>
 </div>
 </div>
-</section>
-<section id="modeling-and-inference" class="level2">
-<h2 class="anchored" data-anchor-id="modeling-and-inference">Modeling and Inference</h2>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'Race'. You can override using the
@@ -221,12 +259,15 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from &lt;135% poverty to All, there’s a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.</p>
+</section>
+<section id="modeling-and-inference" class="level1">
+<h1>Modeling and Inference</h1>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -276,7 +317,6 @@ F-statistic: 1.269e+05 on 11 and 1234338 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>To assess model performance, predicted values and residuals were obtained from the model. From these residuals, the Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R²) were calculated. MSE indicates the average squared difference between observed and predicted values, providing an overall measure of prediction error magnitude. RMSE, the square root of MSE, gives a more intuitive measure of the average prediction error. The R-squared value indicates the proportion of the variance in insurance coverage explained by the race and income predictors; a higher R-squared value implies better predictive power.</p>
 <p>The calculated performance metrics are as follows: - Mean Squared Error (MSE) - Root Mean Squared Error (RMSE) - R-squared (R²)</p>
 <p>These metrics collectively provide a comprehensive evaluation of how well race and income can predict insurance coverage.</p>
-</section>
 <section id="flaws-and-limitations-in-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="flaws-and-limitations-in-analysis">Flaws and limitations in analysis</h2>
 <p><strong>No causality</strong> – Cross-sectional data only shows associations, not cause-and-effect.</p>
@@ -287,6 +327,7 @@ F-statistic: 1.269e+05 on 11 and 1234338 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong>Aggregation bias</strong> – State-level averages may hide local disparities.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
