@@ -7,29 +7,143 @@ draft: false
 
 ![](images/analysis_pic.jpg)
 
+# Motivation and Research Questions
+## Motivation
+The main purpose of this study is to investigate the disparities in chronic disease prevalence across different racial and ethnic groups in the United States. This project also seeks to examine the relationship between preventive health measures—such as vaccination rates and cancer screenings—and chronic disease outcomes, with a focus on potential gaps in access and utilization. By incorporating data on income levels and insurance coverage, the analysis aims to uncover how socioeconomic factors contribute to these health disparities. Understanding these relationships can help identify the most influential factors affecting chronic disease prevalence and support efforts to improve health equity and outcomes nationwide.
 
+## Research Questions
 
-## Introduce what motivates your Data Analysis (DA)
-This analysis explores how race, income, and health insurance coverage relate to preventative healthcare access in the United States.
+1. How does chronic disease prevalence vary among different racial and ethnic groups across U.S. states?
 
-We are interested in understanding:
+2. What are the patterns of preventive health measure usage (e.g., screenings, vaccinations) among racial and ethnic groups, and how do these relate to disease outcomes?
 
-- How do uninsurance rates vary across racial and income groups?
+3. How do uninsurance rates vary across racial and income groups? 
 
-- Are populations with higher uninsurance rates less likely to engage in preventative health behaviors (e.g., vaccination)?
+4. Do income level and uninsurance rates correlate with chronic disease prevalence and preventive health measure usage?
 
-- To what extent does having insurance reduce disparities in preventative care across different social groups?
+# Statistical Analysis
+
+To begin addressing our first research question, we created a bar plot visualizing the average crude prevalence of several chronic health conditions by race and ethnicity. We decided to investigate health disparities across racial and ethnic groups by examining the prevalence of seven specific health outcomes: <u>Alcohol use</u>, <u>Arthritis</u>, <u>Asthma</u>, <u>COPD (Chronic Obstructive Pulmonary Disease)</u>, <u>Diabetes</u>, <u>Disability</u>, and <u>Mental Health issues</u>. Each condition was averaged within each racial or ethnic category to allow for clearer comparisons across groups.
 
 ```{r}
 #| echo: false
-suppressPackageStartupMessages(library(tidyverse))
-suppressPackageStartupMessages(library(here))
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(here)))
+suppressWarnings(library(ggplot2))
+suppressMessages(suppressWarnings(library(tidyverse)))
+cdi_data = readRDS(here::here("dataset", "dataclean.rds"))
+
+# Filter for Race/Ethnicity data
+race_health <- cdi_data %>%
+  filter(StratificationCategory1 == "Race/Ethnicity", 
+         (Topic == "Diabetes" & Question == "Diabetes among adults") |
+    (Topic == "Asthma" & Question == "Current asthma among adults") |
+    (Topic == "Arthritis" & Question == "Arthritis among adults") |
+    (Topic == "Chronic Obstructive Pulmonary Disease" & Question == "Chronic obstructive pulmonary disease among adults") |
+    (Topic == "Alcohol" & Question %in% c("Binge drinking prevalence among adults", "Binge drinking prevalence among high school students")) |
+    (Topic == "Mental Health") |
+    (Topic == "Disability")) %>%
+  group_by(StratificationID1, Topic) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE), .groups = "drop") %>%
+  mutate(StratificationID1 = factor(StratificationID1, 
+         levels = c("WHT", "BLK", "HIS", "MRC", "AIAN", "API", "HAPI", "ASN"),
+         labels = c("White", "Black", "Hispanic", "Multiracial", 
+                    "American Indian/Alaska Native", "Asian/Pacific Islander", 
+                    "Hawaiian/Pacific Islander", "Asian")))
+
+# Create bar plot
+ggplot(race_health, aes(x = StratificationID1, y = AverageValue, fill = Topic)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  labs(title = "Disease Prevalence by Race/Ethnicity",
+       x = "Race/Ethnicity",
+       y = "Average Crude Prevalence of Condition",
+       fill = "Health Condition") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+The bar chart shown above highlights distinct disparities in chronic disease prevalence. Notably, Multiracial and American Indian/Alaska Native populations consistently exhibit higher rates across multiple conditions, with especially elevated levels for Disability and Arthritis concerns. In contrast, Asian populations generally report lower average prevalence across all conditions analyzed. These patterns suggest that chronic disease burdens are not distributed equally and may reflect underlying structural inequities in healthcare access, environmental exposures, or social determinants of health.
+
+This initial visualization provides a compelling entry point into our analysis. It not only supports the presence of racial and ethnic disparities in chronic disease prevalence, but also sets the stage for more detailed investigation into the socioeconomic and preventive care factors that may be contributing to these outcomes.
+
+To explore our second research question—*What are the patterns of preventive health measure usage among racial and ethnic groups, and how do these relate to disease outcomes?*—we visualized the average percentage of adults engaging in four key preventive health behaviors, broken down by race and ethnicity.
+
+```{r}
+#| echo: false
+# Define the questions of interest
+preventive_questions <- c(
+  "Influenza vaccination among adults",
+  "Routine checkup within the past year among adults",
+  "Colorectal cancer screening among adults aged 45-75 years",
+  "Received health care provider counseling for physical activity among adults with arthritis"
+)
+
+# Filter the dataset for those questions
+preventive_data <- cdi_data %>%
+  filter(Question %in% preventive_questions)
+
+# Filter for Race/Ethnicity data and specific preventive measures
+preventive_race_data <- cdi_data %>%
+  filter(StratificationCategory1 == "Race/Ethnicity", 
+         Question %in% preventive_questions) %>%
+  group_by(StratificationID1, Question) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE), .groups = "drop") %>%
+  mutate(StratificationID1 = factor(StratificationID1, 
+         levels = c("WHT", "BLK", "HIS", "MRC", "AIAN", "API", "HAPI", "ASN"),
+         labels = c("White", "Black", "Hispanic", "Multiracial", 
+                    "American Indian/Alaska Native", "Asian/Pacific Islander", 
+                    "Hawaiian/Pacific Islander", "Asian")))
+
+ggplot(preventive_race_data, aes(x = StratificationID1, y = AverageValue, group = Question, color = Question)) +
+  geom_line() +  # Connect points with lines
+  geom_point(size = 3) +  # Add points for visibility
+  theme_minimal() +
+  labs(title = "Preventive Health Measures Among Adults by Race/Ethnicity",
+       x = "Race/Ethnicity",
+       y = "Average Percentage (%)",
+       color = "Preventive Health Measure") +
+  theme(
+    axis.text.x = element_text(angle = 15, hjust = 1),
+    axis.title.x = element_text(vjust = -1),
+    legend.position = "bottom",
+    legend.box = "vertical",   # Ensure the legend is stacked vertically
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(1, 1, 1, 2, "cm")
+  ) + 
+  scale_color_brewer(palette = "Set2") +
+  guides(color = guide_legend(ncol = 1))  # Arrange legend items vertically
+  
+```
+
+The graph above illustrates trends across the following categories:
+
+- Colorectal cancer screening among adults aged 45–75 years
+
+- Influenza vaccination among adults
+
+- Counseling for physical activity among adults with arthritis
+
+- Routine checkup within the past year among adults
+
+This visualization highlights several important patterns. First, routine checkups maintain relatively high participation across all racial groups, with especially high rates among Black and Multiracial populations. However, when it comes to influenza vaccination, participation is markedly lower overall, with Black, Hispanic, and American Indian/Alaska Native populations showing the lowest averages—suggesting potential barriers to access or vaccine hesitancy in these communities.
+
+The colorectal cancer screening and physical activity counseling among adults with arthritis show a more uneven distribution. The Asian and White populations tend to have higher rates of colorectal screening, while Multiracial and American Indian/Alaska Native groups show moderately lower usage. Counseling for physical activity shows notable dips for Hawaiian/Pacific Islander and Multiracial populations, which may point to inconsistencies in healthcare provider practices or systemic disparities in arthritis care.
+
+Taken together, these disparities in preventive measure usage may help explain some of the patterns seen in chronic disease prevalence. For instance, groups with consistently lower rates of screenings and vaccinations—such as American Indian/Alaska Native and Multiracial populations—also showed higher rates of chronic conditions in our earlier analysis. This reinforces the idea that inequities in preventive care access may contribute to unequal health outcomes.
+
+
+-> lead into percent insured by race and income level
+
+
+_______________________________________________________________________________________________________
+
+```{r}
+#| echo: false
 merged_data <- readRDS(here("dataset", "merged_data_2022.rds"))
 print(merged_data)
 
 ```
-
-## Modeling and Inference
 
 ```{r}
 #| echo: false
@@ -61,6 +175,8 @@ ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from <135% poverty to All, there's a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.
+
+# Modeling and Inference
 
 ```{r}
 #| echo: false
