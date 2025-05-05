@@ -197,6 +197,7 @@ sahie_data %>%
 In contrast to the first dataset we analyzed, the SAHIE dataset shows a remarkably balanced distribution across race categories, income brackets, and states/territories. Each race group (e.g., White alone, Black alone, Hispanic/Latino) appears with similar frequency, and all income categories and U.S. locations are represented relatively evenly. This indicates that the dataset is not biased toward any specific population group or region, making it well-suited for demographic comparisons and equity-focused policy analysis.
 
 ```{r}
+#| echo: false
 ggplot(sahie_data, aes(x = PCTUI)) +
   geom_histogram(fill = "#9467bd", bins = 30) +
   labs(title = "Distribution of Uninsured Rates", x = "Percent Uninsured", y = "Frequency") +
@@ -223,9 +224,41 @@ You can download the cleaned dataset used in our analysis here: [Cleaned SAHIE D
 #### Cleaning Script:
 For full transparency, our data cleaning script is available for review: [Cleaning Script for SAHIE](/scripts/clean_sahie_data.R)
 
-# Merged Dataset
+# Combining the CDI and SAHIE Datasets
+To explore the relationship between health insurance coverage and chronic disease prevalence across racial groups and states, we merged the cleaned versions of the CDI and SAHIE datasets. This merge enabled a more comprehensive analysis of how access to insurance may affect health outcomes in different demographic groups.
 
-...
+**Steps for Merging the Datasets**
+
+1. Filter and Clean CDI Data:
+    
+    - Focused on race/ethnicity (`StratificationCategory1 == "Race/Ethnicity"`)
+    - Mapped race codes (`StratificationID1`) to readable race labels (e.g., `"BLK"`, `"WHT"`)
+    - Renamed `YearStart` to `Year` to match SAHIE format
+    - Filtered to the most recent year (`Year == 2022`) and excluded U.S. territories
+
+2. Read and Prepare SAHIE Data:
+    
+    - Imported the cleaned SAHIE dataset (`sahie_cleaned.rds`)
+    - Focused on relevant columns for race, location, year, and insurance coverage
+
+3. Merged the Two Datasets:
+    
+    - Used `left_join()` from the `dplyr` package
+    - Joined on the common variables: `Year`, `LocationDesc`, and `Race`
+    - Ensured race labels were consistently formatted across both datasets
+
+4. Saved the Merged Dataset
+
+This merged dataset forms the foundation of our statistical analyses and visualizations. It allows us to compare chronic disease rates across insured and uninsured populations, disaggregated by race and state.
+
+#### Cleaned Dataset File:
+You can download the merged dataset used in our analysis here: [Merged Data](/dataset/merged_data_2022.rds)
+
+#### Cleaning Script:
+For full transparency, our data cleaning script is available for review: [Cleaning Script for Data Merge](/scripts/merge_data.R)
 
 # Addtional R Packages
-- Our group did not use any R packages in this analysis that were outside the scope of this class
+Our group used the following R packages in this analysis that were outside what was covered in class:
+
+- **caret:** Used for training a linear regression model with 5-fold cross-validation via train() and trainControl().
+- **knitr:** Used for formatting tables using kable() to display the regression and cross-validation results in a readable format.
