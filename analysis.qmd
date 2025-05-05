@@ -133,7 +133,7 @@ The colorectal cancer screening and physical activity counseling among adults wi
 Taken together, these disparities in preventive measure usage may help explain some of the patterns seen in chronic disease prevalence. For instance, groups with consistently lower rates of screenings and vaccinations—such as American Indian/Alaska Native and Multiracial populations—also showed higher rates of chronic conditions in our earlier analysis. This reinforces the idea that inequities in preventive care access may contribute to unequal health outcomes.
 
 
--> lead into percent insured by race and income level
+-> To further explore the systemic factors influencing health disparities, we turn to insurance coverage. Insurance access is a key determinant of preventive care and chronic disease outcomes. By examining insurance coverage across racial and income groups, we aim to understand how structural inequalities in healthcare access contribute to the disparities observed in earlier sections.
 
 
 _______________________________________________________________________________________________________
@@ -206,7 +206,7 @@ cat("R-squared:", round(r_squared, 3), "\n")
 
 
 ```
-This section evaluates the effectiveness of predicting insurance coverage rates (PCTIC) using race and income as predictors through a linear regression model. The purpose of this analysis is to determine how accurately race and income can explain variations in insurance coverage.
+We build a linear regression model to estimate insurance coverage rates (PCTIC) based on race and income. This approach allows us to quantify the extent to which these two demographic factors contribute to disparities in insurance access. The model provides both explanatory insight and a quantitative basis for policy discussion.
 
 First, a linear regression model was fitted with insurance coverage as the dependent variable and both race and income as independent variables. The detailed summary statistics of the regression model provide insights into the strength and significance of these predictors.
 
@@ -221,16 +221,16 @@ These metrics collectively provide a comprehensive evaluation of how well race a
 
 ## Flaws and limitations in analysis
 
-**No causality** – Cross-sectional data only shows associations, not cause-and-effect.
+**No causality** – The analysis is based on cross-sectional observational data, which can reveal associations but not establish cause-and-effect relationships between variables.
 
-**Simplified model** – Linear regression may miss complex relationships; omitted variables could bias results.
+**Simplified model** - The linear regression model assumes linear relationships and does not account for potential interactions or non-linear effects. Key predictors such as education level, employment status, or geographic access to healthcare are not included and may confound the observed relationships.
 
-**Small sample sizes** – Some racial/income subgroups have limited data, reducing reliability.
+**Small sample sizes** – Some racial and income subgroups (e.g., Native Hawaiian/Pacific Islander or specific income brackets) have relatively small sample sizes, which may reduce statistical reliability and generalizability for those groups.
 
-**Data merging challenges** – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )
+**Data merging challenges** – Merging datasets with differing structures, time frames, or levels of geographic granularity may introduce inconsistencies or measurement errors. For instance, state-level averages may obscure important within-state variation or neighborhood-level disparities.
 
-**Unmeasured factors** – Missing variables  could influence outcomes.
+**Unmeasured factors** – Factors such as language barriers, immigration status, healthcare provider bias, or local public health infrastructure were not captured in the datasets but may significantly affect both insurance access and chronic disease outcomes.
 
-**Aggregation bias** – State-level averages may hide local disparities.
+**Aggregation bias** – Because our analyses are conducted at the state and subgroup levels, they may mask local nuances and individual-level variation. This can lead to aggregation bias, where trends observed in the data do not necessarily reflect the experiences of individuals within those groups.
 
 
