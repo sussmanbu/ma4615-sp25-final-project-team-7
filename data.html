@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -171,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-imbalances-and-distribution-1" id="toc-data-imbalances-and-distribution-1" class="nav-link" data-scroll-target="#data-imbalances-and-distribution-1">Data Imbalances and Distribution</a></li>
   <li><a href="#data-cleaning-and-preprocessing-1" id="toc-data-cleaning-and-preprocessing-1" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing-1">Data Cleaning and Preprocessing</a></li>
   </ul></li>
-  <li><a href="#merged-dataset" id="toc-merged-dataset" class="nav-link" data-scroll-target="#merged-dataset">Merged Dataset</a></li>
+  <li><a href="#combining-the-cdi-and-sahie-datasets" id="toc-combining-the-cdi-and-sahie-datasets" class="nav-link" data-scroll-target="#combining-the-cdi-and-sahie-datasets">Combining the CDI and SAHIE Datasets</a></li>
   <li><a href="#addtional-r-packages" id="toc-addtional-r-packages" class="nav-link" data-scroll-target="#addtional-r-packages">Addtional R Packages</a></li>
   </ul>
 </nav>
@@ -432,10 +398,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In contrast to the first dataset we analyzed, the SAHIE dataset shows a remarkably balanced distribution across race categories, income brackets, and states/territories. Each race group (e.g., White alone, Black alone, Hispanic/Latino) appears with similar frequency, and all income categories and U.S. locations are represented relatively evenly. This indicates that the dataset is not biased toward any specific population group or region, making it well-suited for demographic comparisons and equity-focused policy analysis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sahie_data, <span class="fu">aes</span>(<span class="at">x =</span> PCTUI)) <span class="sc">+</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#9467bd"</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Uninsured Rates"</span>, <span class="at">x =</span> <span class="st">"Percent Uninsured"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -466,14 +428,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="merged-dataset" class="level1">
-<h1>Merged Dataset</h1>
-<p>…</p>
+<section id="combining-the-cdi-and-sahie-datasets" class="level1">
+<h1>Combining the CDI and SAHIE Datasets</h1>
+<p>To explore the relationship between health insurance coverage and chronic disease prevalence across racial groups and states, we merged the cleaned versions of the CDI and SAHIE datasets. This merge enabled a more comprehensive analysis of how access to insurance may affect health outcomes in different demographic groups.</p>
+<p><strong>Steps for Merging the Datasets</strong></p>
+<ol type="1">
+<li><p>Filter and Clean CDI Data:</p>
+<ul>
+<li>Focused on race/ethnicity (<code>StratificationCategory1 == "Race/Ethnicity"</code>)</li>
+<li>Mapped race codes (<code>StratificationID1</code>) to readable race labels (e.g., <code>"BLK"</code>, <code>"WHT"</code>)</li>
+<li>Renamed <code>YearStart</code> to <code>Year</code> to match SAHIE format</li>
+<li>Filtered to the most recent year (<code>Year == 2022</code>) and excluded U.S. territories</li>
+</ul></li>
+<li><p>Read and Prepare SAHIE Data:</p>
+<ul>
+<li>Imported the cleaned SAHIE dataset (<code>sahie_cleaned.rds</code>)</li>
+<li>Focused on relevant columns for race, location, year, and insurance coverage</li>
+</ul></li>
+<li><p>Merged the Two Datasets:</p>
+<ul>
+<li>Used <code>left_join()</code> from the <code>dplyr</code> package</li>
+<li>Joined on the common variables: <code>Year</code>, <code>LocationDesc</code>, and <code>Race</code></li>
+<li>Ensured race labels were consistently formatted across both datasets</li>
+</ul></li>
+<li><p>Saved the Merged Dataset</p></li>
+</ol>
+<p>This merged dataset forms the foundation of our statistical analyses and visualizations. It allows us to compare chronic disease rates across insured and uninsured populations, disaggregated by race and state.</p>
+<section id="cleaned-dataset-file-2" class="level4">
+<h4 class="anchored" data-anchor-id="cleaned-dataset-file-2">Cleaned Dataset File:</h4>
+<p>You can download the merged dataset used in our analysis here: <a href=".\dataset/merged_data_2022.rds">Merged Data</a></p>
+</section>
+<section id="cleaning-script-2" class="level4">
+<h4 class="anchored" data-anchor-id="cleaning-script-2">Cleaning Script:</h4>
+<p>For full transparency, our data cleaning script is available for review: <a href=".\scripts/merge_data.R">Cleaning Script for Data Merge</a></p>
+</section>
 </section>
 <section id="addtional-r-packages" class="level1">
 <h1>Addtional R Packages</h1>
+<p>Our group used the following R packages in this analysis that were outside what was covered in class:</p>
 <ul>
-<li>Our group did not use any R packages in this analysis that were outside the scope of this class</li>
+<li><strong>caret:</strong> Used for training a linear regression model with 5-fold cross-validation via train() and trainControl().</li>
+<li><strong>knitr:</strong> Used for formatting tables using kable() to display the regression and cross-validation results in a readable format.</li>
 </ul>
 
 
