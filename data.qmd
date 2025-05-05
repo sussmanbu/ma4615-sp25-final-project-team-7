@@ -58,6 +58,7 @@ key_variables <- data.frame(
 # Display the table
 kable(key_variables, caption = "Key Variables in the U.S. Chronic Disease Indicators Dataset")
 ```
+Although SAHIE includes a diverse set of racial categories, it aggregates smaller or multiracial groups in ways that may mask within-group disparities. For example, Native Hawaiian and Pacific Islander populations are not always distinguishable in smaller samples, limiting subgroup-specific insights.
 
 ## Data Imbalances and Distribution
 ![](images/Topic-BarChart.png)
