@@ -64,9 +64,41 @@ ggplot(race_health, aes(x = StratificationID1, y = AverageValue, fill = Topic)) 
 
 The bar chart shown above highlights distinct disparities in chronic disease prevalence. Notably, Multiracial and American Indian/Alaska Native populations consistently exhibit higher rates across multiple conditions, with especially elevated levels for Disability and Arthritis concerns. In contrast, Asian populations generally report lower average prevalence across all conditions analyzed. These patterns suggest that chronic disease burdens are not distributed equally and may reflect underlying structural inequities in healthcare access, environmental exposures, or social determinants of health.
 
-This initial visualization provides a compelling entry point into our analysis. It not only supports the presence of racial and ethnic disparities in chronic disease prevalence, but also sets the stage for more detailed investigation into the socioeconomic and preventive care factors that may be contributing to these outcomes.
+```{r}
+#| echo: false
+# Filter for Sex data
+sex_health <- cdi_data %>%
+  filter(StratificationCategory1 == "Sex", 
+         StratificationID1 %in% c("SEXM", "SEXF"),
+         (Topic == "Diabetes" & Question == "Diabetes among adults") |
+         (Topic == "Asthma" & Question == "Current asthma among adults") |
+         (Topic == "Arthritis" & Question == "Arthritis among adults") |
+         (Topic == "Chronic Obstructive Pulmonary Disease" & Question == "Chronic obstructive pulmonary disease among adults") |
+         (Topic == "Alcohol" & Question %in% c("Binge drinking prevalence among adults", "Binge drinking prevalence among high school students")) |
+         (Topic == "Mental Health") |
+         (Topic == "Disability")) %>%
+  group_by(StratificationID1, Topic) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE), .groups = "drop") %>%
+  mutate(StratificationID1 = factor(StratificationID1, 
+         levels = c("SEXM", "SEXF"),
+         labels = c("Male", "Female")))
 
-To explore our second research question—*What are the patterns of preventive health measure usage among racial and ethnic groups, and how do these relate to disease outcomes?*—we visualized the average percentage of adults engaging in four key preventive health behaviors, broken down by race and ethnicity.
+# Create bar plot
+ggplot(sex_health, aes(x = Topic, y = AverageValue, fill = StratificationID1)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  labs(title = "Disease Prevalence by Sex",
+       x = "Health Condition",
+       y = "Average Crude Prevalence of Condition",
+       fill = "Sex") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+We then decided to investigate if sex might be another critical dimension in understanding patterns of chronic disease. Biological differences, social roles, and health behaviors can all contribute to divergent health outcomes between men and women. To explore these potential disparities, we constructed a bar plot comparing average prevalence rates for the same set of chronic health conditions.
+
+The resulting visualization reveals clear differences in chronic disease prevalence between males and females. Arthritis and Disability remain the most prevalent conditions overall, consistent with our earlier findings. However, the distribution of these conditions varies by sex. Alcohol use and Diabetes show higher average prevalence among men, whereas women experience higher rates of Arthritis, Asthma, COPD, Disability, and Mental Health issues. These findings highlight that sex-based health disparities are condition-specific and may reflect differing biological susceptibilities, healthcare-seeking behaviors, or exposures to risk factors.
+
+These initial visualizations provides a compelling entry point into our analysis. It not only supports the presence of disparities in chronic disease prevalence, but also sets the stage for more detailed investigation into the socioeconomic and preventive care factors that may be contributing to these outcomes.
 
 ```{r}
 #| echo: false
@@ -103,20 +135,20 @@ ggplot(preventive_race_data, aes(x = StratificationID1, y = AverageValue, group 
        y = "Average Percentage (%)",
        color = "Preventive Health Measure") +
   theme(
-    axis.text.x = element_text(angle = 15, hjust = 1),
+    axis.text.x = element_text(angle = 15, hjust = 1, size = 8),
     axis.title.x = element_text(vjust = -1),
     legend.position = "bottom",
     legend.box = "vertical",   # Ensure the legend is stacked vertically
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
-    plot.margin = margin(1, 1, 1, 2, "cm")
+    plot.margin = margin(1, 1, 1, 2, "cm"),
+    legend.text = element_text(size = 8)
   ) + 
   scale_color_brewer(palette = "Set2") +
   guides(color = guide_legend(ncol = 1))  # Arrange legend items vertically
-  
 ```
 
-The graph above illustrates trends across the following categories:
+To explore our second research question—*What are the patterns of preventive health measure usage among racial and ethnic groups, and how do these relate to disease outcomes?*—we visualized the average percentage of adults engaging in four key preventive health behaviors, broken down by race and ethnicity. The graph above illustrates trends across the following categories:
 
 - Colorectal cancer screening among adults aged 45–75 years
 
@@ -132,21 +164,9 @@ The colorectal cancer screening and physical activity counseling among adults wi
 
 Taken together, these disparities in preventive measure usage may help explain some of the patterns seen in chronic disease prevalence. For instance, groups with consistently lower rates of screenings and vaccinations—such as American Indian/Alaska Native and Multiracial populations—also showed higher rates of chronic conditions in our earlier analysis. This reinforces the idea that inequities in preventive care access may contribute to unequal health outcomes.
 
-
--> To further explore the systemic factors influencing health disparities, we turn to insurance coverage. Insurance access is a key determinant of preventive care and chronic disease outcomes. By examining insurance coverage across racial and income groups, we aim to understand how structural inequalities in healthcare access contribute to the disparities observed in earlier sections.
-
-
-_______________________________________________________________________________________________________
-
 ```{r}
 #| echo: false
 merged_data <- readRDS(here("dataset", "merged_data_2022.rds"))
-print(merged_data)
-
-```
-
-```{r}
-#| echo: false
 # Again, ensure PCTIC is numeric
 data = merged_data
 data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
@@ -156,12 +176,10 @@ race_income_summary <- data %>%
   group_by(Race, Income) %>%
   summarise(
     AvgInsured = mean(PCTIC, na.rm = TRUE),
-    Count = n()
+    Count = n(),
+    , .groups = "drop"
   ) %>%
   arrange(desc(AvgInsured))
-
-# Print summary
-print(race_income_summary)
 
 # Plot
 ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
@@ -174,52 +192,118 @@ ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from <135% poverty to All, there's a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.
+Building on the patterns observed in preventive care usage, we turned to a critical question: Why do certain racial and ethnic groups consistently experience lower access to preventive treatment? One major hypothesis centers on the role of socioeconomic factors, particularly insurance coverage, as a gateway to regular and proactive healthcare. To investigate this, we visualized insurance coverage rates across racial and ethnic groups, broken down by income level. The graph shows a clear, expected trend: as income level increases—from below 135% of the federal poverty line to the general population—insurance coverage increases across all racial and ethnic groups. This upward trend confirms the strong, positive correlation between income and access to insurance, reinforcing the idea that economic stability plays a critical role in healthcare access.
+
+However, the graph also reveals persistent structural inequities. Even when controlling for income level, Hispanic and American Indian/Alaska Native groups show consistently lower coverage rates compared to other populations. This suggests that raising income alone does not eliminate racial disparities in health coverage. These inequities may be driven by additional barriers such as language access, documentation status, discrimination in insurance systems, or geographic inaccessibility to employer-based plans or Medicaid expansion.
+
+In contrast, Asian and White populations consistently exhibit the highest rates of insurance coverage, often exceeding 90% even at moderate income levels. This may reflect higher rates of employment in sectors that offer employer-sponsored insurance, better navigation of eligibility and enrollment processes, or other structural advantages that facilitate consistent access.
 
 # Modeling and Inference
 
+To formally assess the relationships between disease prevalence and socioeconomic factors, we implemented a Multiple Linear Regression model using DataValue (representing disease prevalence) as the response variable. Our predictor variables included Race, Sex, Income, and PCTIC (percent insured), each selected based on our earlier exploratory analysis.
+
+We considered multiple transformations and groupings. Race and income were treated as categorical variables to reflect policy-relevant groupings, while PCTIC was kept numeric to reflect its continuous nature. We did not include interaction terms in this version of the model but recognize that interactions (e.g., Race × Income or Race × PCTIC) could be explored in future work to capture more nuanced disparities.
+
 ```{r}
 #| echo: false
-library(broom)
+# Load necessary libraries
+suppressMessages(suppressWarnings(library(caret)))
+suppressMessages(suppressWarnings(library(broom)))
+suppressMessages(suppressWarnings(library(performance)))
 
-# Linear model: Predicting insurance coverage by Race and Income
-model <- lm(PCTIC ~ Race + Income, data = data)
+# Set up model data
+merge_data = readRDS(here::here("dataset", "merged_data_2022.rds"))
+model_data <- merge_data %>%
+  filter(
+    (Topic == "Diabetes" & Question == "Diabetes among adults") |
+    (Topic == "Asthma" & Question == "Current asthma among adults") |
+    (Topic == "Arthritis" & Question == "Arthritis among adults") |
+    (Topic == "Chronic Obstructive Pulmonary Disease" & Question == "Chronic obstructive pulmonary disease among adults") |
+    (Topic == "Alcohol" & Question %in% c("Binge drinking prevalence among adults", "Binge drinking prevalence among high school students")) |
+    (Topic == "Mental Health") |
+    (Topic == "Disability")
+  ) %>%
+  mutate(PCTIC = as.numeric(PCTIC))
 
-# Model summary
-summary(model)
+# Convert variables to appropriate types
+model_data <- model_data %>%
+  mutate(
+    Race = as.factor(Race),
+    Sex = as.factor(Sex),
+    Income = factor(Income),
+    PCTIC = as.numeric(PCTIC),
+    DataValue = as.numeric(DataValue)
+  )
 
-# Model diagnostics: RMSE, MSE, and R²
-model_perf <- augment(model)
+# Fit the model
+model <- lm(DataValue ~ Race + Sex + Income + PCTIC, 
+            data = model_data)
 
-# Calculate performance metrics
-mse <- mean(model_perf$.resid^2, na.rm = TRUE)
-rmse <- sqrt(mse)
-r_squared <- summary(model)$r.squared
+# Clean regression output
+model_summary <- tidy(model)
 
-# Print performance metrics
-cat("Model Performance Metrics:\n")
-cat("MSE:", round(mse, 3), "\n")
-cat("RMSE:", round(rmse, 3), "\n")
-cat("R-squared:", round(r_squared, 3), "\n")
+# Format p-values
+model_summary <- model_summary %>%
+  mutate(p.value = ifelse(p.value < 1e-6, "<0.000001", sprintf("%.6f", p.value)))
 
+# Nicely Formatted as a table
+suppressMessages(suppressWarnings(library(knitr)))
 
-
-
+kable(model_summary, digits = 6, caption = "Multiple Linear Regression Results")
 ```
-We build a linear regression model to estimate insurance coverage rates (PCTIC) based on race and income. This approach allows us to quantify the extent to which these two demographic factors contribute to disparities in insurance access. The model provides both explanatory insight and a quantitative basis for policy discussion.
 
-First, a linear regression model was fitted with insurance coverage as the dependent variable and both race and income as independent variables. The detailed summary statistics of the regression model provide insights into the strength and significance of these predictors.
+## Key Findings From Model Output
+- Race was a strong predictor of disease prevalence. All race categories had large negative coefficients relative to the reference category. For instance, identifying as Asian (RaceASN) was associated with an average 13.99-point lower prevalence rate (p < 0.000001 - way below the 0.05 threshold), and identifying as Black (RaceBLK) corresponded to a 7.60-point lower rate.
 
-To assess model performance, predicted values and residuals were obtained from the model. From these residuals, the Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R²) were calculated. MSE indicates the average squared difference between observed and predicted values, providing an overall measure of prediction error magnitude. RMSE, the square root of MSE, gives a more intuitive measure of the average prediction error. The R-squared value indicates the proportion of the variance in insurance coverage explained by the race and income predictors; a higher R-squared value implies better predictive power.
+- Sex was a statistically significant but modest predictor of disease prevalence. Compared to the reference category, identifying as female was associated with a 0.09-point lower average prevalence rate (p = 0.0226), while identifying as male corresponded to a 0.10-point higher rate (p = 0.0121). Although these effects were statistically significant, the magnitude of the differences was relatively small compared to other predictors such as race.
 
-The calculated performance metrics are as follows:
-- Mean Squared Error (MSE)
-- Root Mean Squared Error (RMSE)
-- R-squared (R²)
+- Income showed a negative relationship with disease prevalence, consistent with prior expectations. While the differences for low-income groups (<200%, <250% poverty) were not significant, the more inclusive groups (e.g., All, <400%, 138–400%) showed statistically significant decreases in prevalence, with p-values < 0.000001.
 
-These metrics collectively provide a comprehensive evaluation of how well race and income can predict insurance coverage.
+- PCTIC (Percent Insured) was a highly significant and positive predictor, with a coefficient of 0.045 (p < 0.000001). This finding supports the idea that areas with higher insurance coverage also report higher disease prevalence—likely due to better detection, screening, and diagnosis rates, rather than higher true incidence.
 
-## Flaws and limitations in analysis
+## Cross-Validation Results
+
+```{r}
+#| echo: false
+# Set up trainControl
+set.seed(123)
+train_control <- trainControl(method = "cv", number = 5)
+
+# Train model using caret
+cv_model <- train(DataValue ~ Race + Sex + Income + PCTIC,
+                  data = model_data,
+                  method = "lm",
+                  trControl = train_control)
+
+# Cross-validated results
+kable(cv_model$results, digits = 6, caption = "Cross-Validated Results")
+```
+
+
+We then performed 5-fold cross-validation using the caret package to assess the model's generalizability (Table: Cross-Validated Results). The root mean squared error (RMSE) was 9.71, and the mean absolute error (MAE) was 7.87, suggesting moderate prediction error across folds. The cross-validated R-squared value of 0.14 indicates that the model explains about 14% of the variation in disease prevalence—a modest but meaningful amount given the complexity of health outcomes and the diversity of diseases included. While the model has limitations in predictive power, it does capture statistically and substantively meaningful patterns related to race, income, and insurance access.
+
+## Residual Analysis and Model Assumptions
+```{r}
+#| echo: false
+# QQ-Plot
+ggplot(model, aes(sample = .stdresid)) +
+  stat_qq(alpha = 0.5) +
+  stat_qq_line(color = "red") +
+  labs(title = "QQ Plot",
+       x = "Theoretical Quantiles",
+       y = "Standardized Residuals") +
+  theme_minimal()
+```
+
+A QQ plot of the standardized residuals shows that:
+
+- Most residuals lie near the diagonal line, indicating approximate normality in the center of the distribution.
+
+- The tails deviate upward and downward, suggesting positive kurtosis (heavier tails than a normal distribution).
+
+This indicates the presence of extreme values or outliers and possible violations of the normality assumption. While this doesn’t invalidate the model, it may affect the reliability of p-values and confidence intervals. In future iterations, we might consider more robust regression techniques to reduce sensitivity to these outliers.
+
+# Flaws and limitations in analysis
 
 **No causality** – The analysis is based on cross-sectional observational data, which can reveal associations but not establish cause-and-effect relationships between variables.
 
@@ -233,4 +317,10 @@ These metrics collectively provide a comprehensive evaluation of how well race a
 
 **Aggregation bias** – Because our analyses are conducted at the state and subgroup levels, they may mask local nuances and individual-level variation. This can lead to aggregation bias, where trends observed in the data do not necessarily reflect the experiences of individuals within those groups.
 
+# Conclusions
 
+1. **Racial and Ethnic Disparities in Chronic Disease Prevalence:** Our analysis confirms that chronic disease prevalence in the U.S. is unevenly distributed across racial and ethnic groups. Multiracial and American Indian/Alaska Native populations experience the highest average rates of multiple chronic conditions, while Asian populations consistently report the lowest. These disparities highlight the role of structural inequities, including differences in environmental exposures, healthcare access, and broader social determinants of health.
+
+2. **Preventive Health Measure Usage and Its Impact:** There are substantial disparities in the usage of preventive health services such as influenza vaccinations, cancer screenings, and physical activity counseling. Groups with lower utilization—particularly Hispanic, Black, and American Indian/Alaska Native populations—also tended to report higher disease burdens. This pattern reinforces the importance of equitable access to preventive care as a means of reducing chronic disease disparities.
+
+3. **Socioeconomic Determinants of Health Disparities:&& Insurance coverage and income level emerged as critical factors shaping health outcomes. While higher income was generally associated with better insurance coverage, significant racial disparities in insurance access persisted even within the same income brackets. These findings point to systemic barriers—beyond just income—that prevent certain groups from obtaining adequate healthcare access.
