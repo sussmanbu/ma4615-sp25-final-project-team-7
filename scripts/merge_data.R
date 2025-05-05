@@ -36,4 +36,4 @@ merged_data <- cdi_2022 %>%
   left_join(sahie_cleaned, by = c("Year", "LocationDesc", "Race"))
 
 # Save
-saveRDS(merged_data, "merged_data_2022.rds")
+saveRDS(merged_data, file = here::here("dataset", "merged_data_2022.rds"))
