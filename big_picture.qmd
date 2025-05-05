@@ -1,6 +1,6 @@
 ---
-title: "Big Picture"
-description: "A 538/Upshot style article about the data."
+title: "Where You Live, What You Look Like, and Whether You’re Insured Might Just Predict Your Health"
+description: "Chronic conditions hit some communities far harder — and it’s not biology to blame."
 toc: true
 draft: FALSE
 filters:
@@ -9,60 +9,160 @@ filters:
 
 ![](images/big_picture_pic.jpg)
 
-Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
+When we think about chronic illness in America, we often picture aging, genetic predisposition, or maybe lifestyle choices like smoking or diet. But beneath these common culprits lies a more systemic, and deeply unequal, truth: **race and insurance status in the United States are powerful predictors of chronic disease** — sometimes more than income or even gender.
 
+Across the country, millions live with conditions like diabetes, asthma, arthritis, and mental health struggles. But our analysis of public health survey data reveals that **minority racial and ethnic groups, especially Hispanic and American Indian/Alaskan Native populations, consistently bear the greatest burden of these conditions**. The reason isn’t just about biology — it’s about access, opportunity, and the uneven structure of the American healthcare system.
 
+## The Burden Isn’t Equal: Chronic Disease by Race
 
----
+```{r}
+#| echo: false
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(here)))
+suppressWarnings(library(ggplot2))
+suppressMessages(suppressWarnings(library(tidyverse)))
+cdi_data = readRDS(here::here("dataset", "dataclean.rds"))
 
+# Filter for Race/Ethnicity data
+race_health <- cdi_data %>%
+  filter(StratificationCategory1 == "Race/Ethnicity", 
+         (Topic == "Diabetes" & Question == "Diabetes among adults") |
+    (Topic == "Asthma" & Question == "Current asthma among adults") |
+    (Topic == "Arthritis" & Question == "Arthritis among adults") |
+    (Topic == "Chronic Obstructive Pulmonary Disease" & Question == "Chronic obstructive pulmonary disease among adults") |
+    (Topic == "Alcohol" & Question %in% c("Binge drinking prevalence among adults", "Binge drinking prevalence among high school students")) |
+    (Topic == "Mental Health") |
+    (Topic == "Disability")) %>%
+  group_by(StratificationID1, Topic) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE), .groups = "drop") %>%
+  mutate(StratificationID1 = factor(StratificationID1, 
+         levels = c("WHT", "BLK", "HIS", "MRC", "AIAN", "API", "HAPI", "ASN"),
+         labels = c("White", "Black", "Hispanic", "Multiracial", 
+                    "American Indian/Alaska Native", "Asian/Pacific Islander", 
+                    "Hawaiian/Pacific Islander", "Asian")))
 
-### Interactive
+# Visual 1: Bar Plot – Chronic Disease Prevalence by Race
+ggplot(race_health, aes(x = StratificationID1, y = AverageValue, fill = Topic)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8)) +
+  scale_fill_brewer(palette = "Set2") +
+  theme_minimal(base_size = 12) +
+  labs(
+    title = "Chronic Illness Has a Race Problem",
+    subtitle = "Average prevalence of selected chronic conditions by race/ethnicity",
+    x = "Race/Ethnicity",
+    y = "Average Prevalence (%)",
+    fill = "Health Condition"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10)
+  )
+```
+Our first stop was to look at how often chronic conditions show up across racial and ethnic lines. American Indian/Alaskan Native and Multiracial individuals top the charts in nearly every category, particularly for arthritis, disability, and asthma. Asian Americans, by contrast, had the lowest average prevalence across the board.
 
-#### [Try out our interactive!](https://jrcann.shinyapps.io/project_app/)
+These gaps don’t exist in a vacuum, and they’re not due to one or two outlier states. The patterns are national, even when we account for differences by gender and income.
 
----
+## Preventive Care Isn’t Reaching Everyone
 
+```{r}
+#| echo: false
+# Define the questions of interest
+preventive_questions <- c(
+  "Influenza vaccination among adults",
+  "Routine checkup within the past year among adults",
+  "Colorectal cancer screening among adults aged 45-75 years",
+  "Received health care provider counseling for physical activity among adults with arthritis"
+)
 
+# Filter the dataset for those questions
+preventive_data <- cdi_data %>%
+  filter(Question %in% preventive_questions)
 
-## Rubric: On this page
+# Filter for Race/Ethnicity data and specific preventive measures
+preventive_race_data <- cdi_data %>%
+  filter(StratificationCategory1 == "Race/Ethnicity", 
+         Question %in% preventive_questions) %>%
+  group_by(StratificationID1, Question) %>%
+  summarise(AverageValue = mean(DataValue, na.rm = TRUE), .groups = "drop") %>%
+  mutate(StratificationID1 = factor(StratificationID1, 
+         levels = c("WHT", "BLK", "HIS", "MRC", "AIAN", "API", "HAPI", "ASN"),
+         labels = c("White", "Black", "Hispanic", "Multiracial", 
+                    "American Indian/Alaska Native", "Asian/Pacific Islander", 
+                    "Hawaiian/Pacific Islander", "Asian")))
 
+ggplot(preventive_race_data, aes(x = StratificationID1, y = AverageValue, group = Question, color = Question)) +
+  geom_line() +  # Connect points with lines
+  geom_point(size = 3) +  # Add points for visibility
+  theme_minimal() +
+  labs(title = "When Care Comes Too Late",
+       subtitle = "Preventive health behaviors vary widely across racial and ethnic groups",
+       x = "Race/Ethnicity",
+       y = "Participation Rate (%)",
+       color = "Preventive Health Measure") +
+  theme(
+    axis.text.x = element_text(angle = 15, hjust = 1, size = 8),
+    axis.title.x = element_text(vjust = -1),
+    legend.position = "bottom",
+    legend.box = "vertical",   # Ensure the legend is stacked vertically
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(1, 1, 1, 2, "cm"),
+    legend.text = element_text(size = 8)
+  ) + 
+  scale_color_brewer(palette = "Set2") +
+  guides(color = guide_legend(ncol = 1))  # Arrange legend items vertically
+``` 
+Preventive care — the kind of medicine meant to stop chronic illness before it starts — doesn’t reach all communities equally. While most racial groups report regular checkups at similar rates, flu vaccinations and cancer screenings lag behind in Hispanic, Black, and Native communities.
 
-* Title
-  * Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.
-* Clarity of Explanation
-  * You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don't go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.
-  * Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.
-* Creativity
-  * Do your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.
-* Interactive component
-  * Quality and ease of use of the interactive components.
-Is it clear what can be explored using your interactive components?
-Does it enhance and reinforce your conclusions?
-* This page should be self-contained.
-  
-**Note**: This page should have no code visible, i.e. use `#| echo: FALSE`.  
+Fewer screenings mean more missed diagnoses. And in many cases, the same groups with the least access to prevention also suffer the most from chronic disease, reinforcing a deadly cycle.
 
+## Insurance Gaps Fuel Health Gaps
 
+```{r}
+#| echo: false
+merged_data <- readRDS(here("dataset", "merged_data_2022.rds"))
+# Again, ensure PCTIC is numeric
+data = merged_data
+data$PCTIC <- as.numeric(gsub("[^0-9.]", "", data$PCTIC))
 
+# Summarize insurance rate by race and income
+race_income_summary <- data %>%
+  group_by(Race, Income) %>%
+  summarise(
+    AvgInsured = mean(PCTIC, na.rm = TRUE),
+    Count = n(),
+    , .groups = "drop"
+  ) %>%
+  arrange(desc(AvgInsured))
 
-## Rubric: Other components
+# Plot
+ggplot(race_income_summary, aes(x = Income, y = AvgInsured, fill = Race)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Even With Money, Some Americans Stay Uninsured",
+    subtitle = "Insurance coverage increases with income, but not equally across racial groups",
+    x = "Income Level",
+    y = "% Insured"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
-### Video Recording
+Insurance opens the door to preventive care, but that door isn’t open to everyone. Unsurprisingly, people with higher incomes are more likely to have insurance. But even when we hold income constant, Hispanic and Native American populations still have the lowest insurance coverage.
 
-Make a video recording (probably using Zoom) demonstrating your interactive components.
-You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA.
-This video should be no longer than 4 minutes.
-Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website.
-This can be presented by any subset of the team members.
+This means it’s not just about how much money someone makes; it's also about who they are, where they live, and the kinds of barriers they face in getting covered.
 
+## Explore the Data Yourself
 
-### Rest of the Site
+Curious how your state compares? Want to explore chronic illness by age or sex? Try our interactive dashboard to dig into the data on your own.
 
-Finally, here are important things to keep in mind for the rest of the site. 
+#### [Click here to explore disease and prevention data by race, age, sex, and more!](https://jrcann.shinyapps.io/project_app/)
 
-The main title of your page is informative.
-Each post has an author/description/informative title.
-All lab required posts are present.
-Each page (including the home page) has a nice featured image associated with it.
-Your about page is up to date and clean.
-You have removed the generic posts from the initial site template.
+## A Structural Problem Needs Structural Solutions
+
+The data are clear: chronic diseases don’t affect all Americans equally, and that inequality is driven in large part by who has access to regular, preventive healthcare — and who doesn’t.
+
+Fixing these disparities will require more than awareness. It means expanding access to affordable coverage. It means building trust in communities where preventive medicine hasn’t been prioritized, or hasn’t been accessible. And it means finally treating healthcare not just as a personal responsibility, but as a public good.
+
+Until then, race will remain a silent but powerful factor in predicting who gets sick, and who gets care.
