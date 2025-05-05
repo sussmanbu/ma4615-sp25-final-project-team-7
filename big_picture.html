@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A 538/Upshot style article about the data.">
+<meta name="description" content="Chronic conditions hit some communities far harder — and it’s not biology to blame.">
 
-<title>Big Picture – MA [46]15 Final Project Team 7</title>
+<title>Where You Live, What You Look Like, and Whether You’re Insured Might Just Predict Your Health – MA [46]15 Final Project Team 7</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./big_picture.html" aria-current="page"> 
-<span class="menu-text">Big Picture</span></a>
+<span class="menu-text">Where You Live, What You Look Like, and Whether You’re Insured Might Just Predict Your Health</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html"> 
@@ -121,13 +121,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#interactive" id="toc-interactive" class="nav-link active" data-scroll-target="#interactive">Interactive</a></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  <li><a href="#rubric-other-components" id="toc-rubric-other-components" class="nav-link" data-scroll-target="#rubric-other-components">Rubric: Other components</a>
-  <ul class="collapse">
-  <li><a href="#video-recording" id="toc-video-recording" class="nav-link" data-scroll-target="#video-recording">Video Recording</a></li>
-  <li><a href="#rest-of-the-site" id="toc-rest-of-the-site" class="nav-link" data-scroll-target="#rest-of-the-site">Rest of the Site</a></li>
-  </ul></li>
+  <li><a href="#the-burden-isnt-equal-chronic-disease-by-race" id="toc-the-burden-isnt-equal-chronic-disease-by-race" class="nav-link active" data-scroll-target="#the-burden-isnt-equal-chronic-disease-by-race">The Burden Isn’t Equal: Chronic Disease by Race</a></li>
+  <li><a href="#preventive-care-isnt-reaching-everyone" id="toc-preventive-care-isnt-reaching-everyone" class="nav-link" data-scroll-target="#preventive-care-isnt-reaching-everyone">Preventive Care Isn’t Reaching Everyone</a></li>
+  <li><a href="#insurance-gaps-fuel-health-gaps" id="toc-insurance-gaps-fuel-health-gaps" class="nav-link" data-scroll-target="#insurance-gaps-fuel-health-gaps">Insurance Gaps Fuel Health Gaps</a></li>
+  <li><a href="#explore-the-data-yourself" id="toc-explore-the-data-yourself" class="nav-link" data-scroll-target="#explore-the-data-yourself">Explore the Data Yourself</a></li>
+  <li><a href="#a-structural-problem-needs-structural-solutions" id="toc-a-structural-problem-needs-structural-solutions" class="nav-link" data-scroll-target="#a-structural-problem-needs-structural-solutions">A Structural Problem Needs Structural Solutions</a></li>
   </ul>
 </nav>
     </div>
@@ -136,12 +134,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Big Picture</h1>
+<h1 class="title">Where You Live, What You Look Like, and Whether You’re Insured Might Just Predict Your Health</h1>
 </div>
 
 <div>
   <div class="description">
-    A 538/Upshot style article about the data.
+    Chronic conditions hit some communities far harder — and it’s not biology to blame.
   </div>
 </div>
 
@@ -159,52 +157,64 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="images/big_picture_pic.jpg" class="img-fluid"></p>
-<p>Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.</p>
-<hr>
-<section id="interactive" class="level3">
-<h3 class="anchored" data-anchor-id="interactive">Interactive</h3>
-<section id="try-out-our-interactive" class="level4">
-<h4 class="anchored" data-anchor-id="try-out-our-interactive"><a href="https://jrcann.shinyapps.io/project_app/">Try out our interactive!</a></h4>
-<hr>
+<p>When we think about chronic illness in America, we often picture aging, genetic predisposition, or maybe lifestyle choices like smoking or diet. But beneath these common culprits lies a more systemic, and deeply unequal, truth: <strong>race and insurance status in the United States are powerful predictors of chronic disease</strong> — sometimes more than income or even gender.</p>
+<p>Across the country, millions live with conditions like diabetes, asthma, arthritis, and mental health struggles. But our analysis of public health survey data reveals that <strong>minority racial and ethnic groups, especially Hispanic and American Indian/Alaskan Native populations, consistently bear the greatest burden of these conditions</strong>. The reason isn’t just about biology — it’s about access, opportunity, and the uneven structure of the American healthcare system.</p>
+<section id="the-burden-isnt-equal-chronic-disease-by-race" class="level2">
+<h2 class="anchored" data-anchor-id="the-burden-isnt-equal-chronic-disease-by-race">The Burden Isn’t Equal: Chronic Disease by Race</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="big_picture_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Our first stop was to look at how often chronic conditions show up across racial and ethnic lines. American Indian/Alaskan Native and Multiracial individuals top the charts in nearly every category, particularly for arthritis, disability, and asthma. Asian Americans, by contrast, had the lowest average prevalence across the board.</p>
+<p>These gaps don’t exist in a vacuum, and they’re not due to one or two outlier states. The patterns are national, even when we account for differences by gender and income.</p>
+</section>
+<section id="preventive-care-isnt-reaching-everyone" class="level2">
+<h2 class="anchored" data-anchor-id="preventive-care-isnt-reaching-everyone">Preventive Care Isn’t Reaching Everyone</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="big_picture_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Preventive care — the kind of medicine meant to stop chronic illness before it starts — doesn’t reach all communities equally. While most racial groups report regular checkups at similar rates, flu vaccinations and cancer screenings lag behind in Hispanic, Black, and Native communities.</p>
+<p>Fewer screenings mean more missed diagnoses. And in many cases, the same groups with the least access to prevention also suffer the most from chronic disease, reinforcing a deadly cycle.</p>
+</section>
+<section id="insurance-gaps-fuel-health-gaps" class="level2">
+<h2 class="anchored" data-anchor-id="insurance-gaps-fuel-health-gaps">Insurance Gaps Fuel Health Gaps</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="big_picture_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Insurance opens the door to preventive care, but that door isn’t open to everyone. Unsurprisingly, people with higher incomes are more likely to have insurance. But even when we hold income constant, Hispanic and Native American populations still have the lowest insurance coverage.</p>
+<p>This means it’s not just about how much money someone makes; it’s also about who they are, where they live, and the kinds of barriers they face in getting covered.</p>
+</section>
+<section id="explore-the-data-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-data-yourself">Explore the Data Yourself</h2>
+<p>Curious how your state compares? Want to explore chronic illness by age or sex? Try our interactive dashboard to dig into the data on your own.</p>
+<section id="click-here-to-explore-disease-and-prevention-data-by-race-age-sex-and-more" class="level4">
+<h4 class="anchored" data-anchor-id="click-here-to-explore-disease-and-prevention-data-by-race-age-sex-and-more"><a href="https://jrcann.shinyapps.io/project_app/">Click here to explore disease and prevention data by race, age, sex, and more!</a></h4>
 </section>
 </section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<ul>
-<li>Title
-<ul>
-<li>Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.</li>
-</ul></li>
-<li>Clarity of Explanation
-<ul>
-<li>You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.</li>
-<li>Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.</li>
-</ul></li>
-<li>Creativity
-<ul>
-<li>Do your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.</li>
-</ul></li>
-<li>Interactive component
-<ul>
-<li>Quality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?</li>
-</ul></li>
-<li>This page should be self-contained.</li>
-</ul>
-<p><strong>Note</strong>: This page should have no code visible, i.e.&nbsp;use <code>#| echo: FALSE</code>.</p>
-</section>
-<section id="rubric-other-components" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-other-components">Rubric: Other components</h2>
-<section id="video-recording" class="level3">
-<h3 class="anchored" data-anchor-id="video-recording">Video Recording</h3>
-<p>Make a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.</p>
-</section>
-<section id="rest-of-the-site" class="level3">
-<h3 class="anchored" data-anchor-id="rest-of-the-site">Rest of the Site</h3>
-<p>Finally, here are important things to keep in mind for the rest of the site.</p>
-<p>The main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template.</p>
+<section id="a-structural-problem-needs-structural-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="a-structural-problem-needs-structural-solutions">A Structural Problem Needs Structural Solutions</h2>
+<p>The data are clear: chronic diseases don’t affect all Americans equally, and that inequality is driven in large part by who has access to regular, preventive healthcare — and who doesn’t.</p>
+<p>Fixing these disparities will require more than awareness. It means expanding access to affordable coverage. It means building trust in communities where preventive medicine hasn’t been prioritized, or hasn’t been accessible. And it means finally treating healthcare not just as a personal responsibility, but as a public good.</p>
+<p>Until then, race will remain a silent but powerful factor in predicting who gets sick, and who gets care.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

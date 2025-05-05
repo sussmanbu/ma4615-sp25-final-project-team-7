@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./big_picture.html"> 
-<span class="menu-text">Big Picture</span></a>
+<span class="menu-text">Where You Live, What You Look Like, and Whether You’re Insured Might Just Predict Your Health</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./analysis.html" aria-current="page"> 
@@ -129,8 +129,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical Analysis</a></li>
   <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a>
   <ul class="collapse">
-  <li><a href="#flaws-and-limitations-in-analysis" id="toc-flaws-and-limitations-in-analysis" class="nav-link" data-scroll-target="#flaws-and-limitations-in-analysis">Flaws and limitations in analysis</a></li>
+  <li><a href="#key-findings-from-model-output" id="toc-key-findings-from-model-output" class="nav-link" data-scroll-target="#key-findings-from-model-output">Key Findings From Model Output</a></li>
+  <li><a href="#cross-validation-results" id="toc-cross-validation-results" class="nav-link" data-scroll-target="#cross-validation-results">Cross-Validation Results</a></li>
+  <li><a href="#residual-analysis-and-model-assumptions" id="toc-residual-analysis-and-model-assumptions" class="nav-link" data-scroll-target="#residual-analysis-and-model-assumptions">Residual Analysis and Model Assumptions</a></li>
   </ul></li>
+  <li><a href="#flaws-and-limitations-in-analysis" id="toc-flaws-and-limitations-in-analysis" class="nav-link" data-scroll-target="#flaws-and-limitations-in-analysis">Flaws and limitations in analysis</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -191,8 +195,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>The bar chart shown above highlights distinct disparities in chronic disease prevalence. Notably, Multiracial and American Indian/Alaska Native populations consistently exhibit higher rates across multiple conditions, with especially elevated levels for Disability and Arthritis concerns. In contrast, Asian populations generally report lower average prevalence across all conditions analyzed. These patterns suggest that chronic disease burdens are not distributed equally and may reflect underlying structural inequities in healthcare access, environmental exposures, or social determinants of health.</p>
-<p>This initial visualization provides a compelling entry point into our analysis. It not only supports the presence of racial and ethnic disparities in chronic disease prevalence, but also sets the stage for more detailed investigation into the socioeconomic and preventive care factors that may be contributing to these outcomes.</p>
-<p>To explore our second research question—<em>What are the patterns of preventive health measure usage among racial and ethnic groups, and how do these relate to disease outcomes?</em>—we visualized the average percentage of adults engaging in four key preventive health behaviors, broken down by race and ethnicity.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -202,7 +204,19 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>The graph above illustrates trends across the following categories:</p>
+<p>We then decided to investigate if sex might be another critical dimension in understanding patterns of chronic disease. Biological differences, social roles, and health behaviors can all contribute to divergent health outcomes between men and women. To explore these potential disparities, we constructed a bar plot comparing average prevalence rates for the same set of chronic health conditions.</p>
+<p>The resulting visualization reveals clear differences in chronic disease prevalence between males and females. Arthritis and Disability remain the most prevalent conditions overall, consistent with our earlier findings. However, the distribution of these conditions varies by sex. Alcohol use and Diabetes show higher average prevalence among men, whereas women experience higher rates of Arthritis, Asthma, COPD, Disability, and Mental Health issues. These findings highlight that sex-based health disparities are condition-specific and may reflect differing biological susceptibilities, healthcare-seeking behaviors, or exposures to risk factors.</p>
+<p>These initial visualizations provides a compelling entry point into our analysis. It not only supports the presence of disparities in chronic disease prevalence, but also sets the stage for more detailed investigation into the socioeconomic and preventive care factors that may be contributing to these outcomes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To explore our second research question—<em>What are the patterns of preventive health measure usage among racial and ethnic groups, and how do these relate to disease outcomes?</em>—we visualized the average percentage of adults engaging in four key preventive health behaviors, broken down by race and ethnicity. The graph above illustrates trends across the following categories:</p>
 <ul>
 <li><p>Colorectal cancer screening among adults aged 45–75 years</p></li>
 <li><p>Influenza vaccination among adults</p></li>
@@ -212,50 +226,7 @@ ul.task-list li input[type="checkbox"] {
 <p>This visualization highlights several important patterns. First, routine checkups maintain relatively high participation across all racial groups, with especially high rates among Black and Multiracial populations. However, when it comes to influenza vaccination, participation is markedly lower overall, with Black, Hispanic, and American Indian/Alaska Native populations showing the lowest averages—suggesting potential barriers to access or vaccine hesitancy in these communities.</p>
 <p>The colorectal cancer screening and physical activity counseling among adults with arthritis show a more uneven distribution. The Asian and White populations tend to have higher rates of colorectal screening, while Multiracial and American Indian/Alaska Native groups show moderately lower usage. Counseling for physical activity shows notable dips for Hawaiian/Pacific Islander and Multiracial populations, which may point to inconsistencies in healthcare provider practices or systemic disparities in arthritis care.</p>
 <p>Taken together, these disparities in preventive measure usage may help explain some of the patterns seen in chronic disease prevalence. For instance, groups with consistently lower rates of screenings and vaccinations—such as American Indian/Alaska Native and Multiracial populations—also showed higher rates of chronic conditions in our earlier analysis. This reinforces the idea that inequities in preventive care access may contribute to unequal health outcomes.</p>
-<p>-&gt; lead into percent insured by race and income level</p>
-<hr>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,234,350 × 15
-    Year LocationDesc Topic   Question DataValueType DataValue Race  Age   Sex  
-   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- 1  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
- 2  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
- 3  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
- 4  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
- 5  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
- 6  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Both 
- 7  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
- 8  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
- 9  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
-10  2022 Oregon       Immuni… Influen… Crude Preval…      31.9 HIS   &lt; 65  Male 
-# ℹ 1,234,340 more rows
-# ℹ 6 more variables: Income &lt;chr&gt;, NIPR &lt;chr&gt;, NUI &lt;chr&gt;, NIC &lt;chr&gt;,
-#   PCTUI &lt;chr&gt;, PCTIC &lt;chr&gt;</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Race'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 4
-# Groups:   Race [7]
-   Race  Income           AvgInsured Count
-   &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;int&gt;
- 1 ASN   All                    93.4 17715
- 2 WHT   All                    93.1 51645
- 3 MRC   All                    90.8 31635
- 4 ASN   138-400% poverty       90.6 17715
- 5 WHT   138-400% poverty       90.5 51645
- 6 HAPI  All                    90.4  2055
- 7 BLK   All                    90.3 38700
- 8 BLK   138-400% poverty       89.7 38700
- 9 ASN   &lt; 400% poverty         89.4 17715
-10 WHT   &lt; 400% poverty         89.2 51645
-# ℹ 32 more rows</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -264,70 +235,225 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>First, convert the text type of insurance to numeric type to facilitate subsequent calculations, then group by Race and Income, and calculate the average insurance rate for each group. Finally, use ggplot2 to draw a bar chart comparing the average insurance coverage rate of each ethnic group at different income levels. Based the output result, Across all income brackets, AIAN (American Indian/Alaska Native) and HIS (Hispanic) groups show lower insured rates.WHT (White) and ASN (Asian) groups tend to have the highest insurance coverage, often exceeding 90%.Income Level Correlates Positively with Insurance.As we move from &lt;135% poverty to All, there’s a general upward trend in insurance coverage across all racial groups.This confirms the expected pattern: higher income is associated with better insurance coverage.</p>
+<p>Building on the patterns observed in preventive care usage, we turned to a critical question: Why do certain racial and ethnic groups consistently experience lower access to preventive treatment? One major hypothesis centers on the role of socioeconomic factors, particularly insurance coverage, as a gateway to regular and proactive healthcare. To investigate this, we visualized insurance coverage rates across racial and ethnic groups, broken down by income level. The graph shows a clear, expected trend: as income level increases—from below 135% of the federal poverty line to the general population—insurance coverage increases across all racial and ethnic groups. This upward trend confirms the strong, positive correlation between income and access to insurance, reinforcing the idea that economic stability plays a critical role in healthcare access.</p>
+<p>However, the graph also reveals persistent structural inequities. Even when controlling for income level, Hispanic and American Indian/Alaska Native groups show consistently lower coverage rates compared to other populations. This suggests that raising income alone does not eliminate racial disparities in health coverage. These inequities may be driven by additional barriers such as language access, documentation status, discrimination in insurance systems, or geographic inaccessibility to employer-based plans or Medicaid expansion.</p>
+<p>In contrast, Asian and White populations consistently exhibit the highest rates of insurance coverage, often exceeding 90% even at moderate income levels. This may reflect higher rates of employment in sectors that offer employer-sponsored insurance, better navigation of eligibility and enrollment processes, or other structural advantages that facilitate consistent access.</p>
 </section>
 <section id="modeling-and-inference" class="level1">
 <h1>Modeling and Inference</h1>
+<p>To formally assess the relationships between disease prevalence and socioeconomic factors, we implemented a Multiple Linear Regression model using DataValue (representing disease prevalence) as the response variable. Our predictor variables included Race, Sex, Income, and PCTIC (percent insured), each selected based on our earlier exploratory analysis.</p>
+<p>We considered multiple transformations and groupings. Race and income were treated as categorical variables to reflect policy-relevant groupings, while PCTIC was kept numeric to reflect its continuous nature. We did not include interaction terms in this version of the model but recognize that interactions (e.g., Race × Income or Race × PCTIC) could be explored in future work to capture more nuanced disparities.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = PCTIC ~ Race + Income, data = data)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--31.451  -3.632   0.718   4.082  24.949 
-
-Coefficients:
-                       Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            73.69521    0.02276 3237.42   &lt;2e-16 ***
-RaceASN                12.42277    0.02751  451.61   &lt;2e-16 ***
-RaceBLK                11.30478    0.02301  491.25   &lt;2e-16 ***
-RaceHAPI                9.92183    0.06284  157.90   &lt;2e-16 ***
-RaceHIS                -3.84406    0.02268 -169.48   &lt;2e-16 ***
-RaceMRC                10.67535    0.02392  446.21   &lt;2e-16 ***
-RaceWHT                11.94425    0.02194  544.32   &lt;2e-16 ***
-Income&lt; 200% poverty    0.51967    0.02080   24.98   &lt;2e-16 ***
-Income&lt; 250% poverty    1.16157    0.02080   55.84   &lt;2e-16 ***
-Income&lt; 400% poverty    3.42280    0.02080  164.53   &lt;2e-16 ***
-Income138-400% poverty  5.03089    0.02080  241.83   &lt;2e-16 ***
-IncomeAll               7.25467    0.02080  348.73   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 6.672 on 1234338 degrees of freedom
-Multiple R-squared:  0.5308,    Adjusted R-squared:  0.5308 
-F-statistic: 1.269e+05 on 11 and 1234338 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Multiple Linear Regression Results</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: left;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">20.171007</td>
+<td style="text-align: right;">0.196574</td>
+<td style="text-align: right;">102.612841</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RaceASN</td>
+<td style="text-align: right;">-13.984137</td>
+<td style="text-align: right;">0.077820</td>
+<td style="text-align: right;">-179.699338</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RaceBLK</td>
+<td style="text-align: right;">-7.601250</td>
+<td style="text-align: right;">0.066610</td>
+<td style="text-align: right;">-114.115848</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RaceHAPI</td>
+<td style="text-align: right;">-5.803573</td>
+<td style="text-align: right;">0.164818</td>
+<td style="text-align: right;">-35.211950</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RaceHIS</td>
+<td style="text-align: right;">-6.925467</td>
+<td style="text-align: right;">0.060358</td>
+<td style="text-align: right;">-114.739359</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RaceMRC</td>
+<td style="text-align: right;">-0.768362</td>
+<td style="text-align: right;">0.066162</td>
+<td style="text-align: right;">-11.613398</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RaceWHT</td>
+<td style="text-align: right;">-7.588757</td>
+<td style="text-align: right;">0.065138</td>
+<td style="text-align: right;">-116.503574</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SexFemale</td>
+<td style="text-align: right;">-0.090256</td>
+<td style="text-align: right;">0.039583</td>
+<td style="text-align: right;">-2.280195</td>
+<td style="text-align: left;">0.022597</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SexMale</td>
+<td style="text-align: right;">0.099538</td>
+<td style="text-align: right;">0.039652</td>
+<td style="text-align: right;">2.510257</td>
+<td style="text-align: left;">0.012065</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Income&lt; 200% poverty</td>
+<td style="text-align: right;">-0.022737</td>
+<td style="text-align: right;">0.055534</td>
+<td style="text-align: right;">-0.409430</td>
+<td style="text-align: left;">0.682224</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Income&lt; 250% poverty</td>
+<td style="text-align: right;">-0.050979</td>
+<td style="text-align: right;">0.055593</td>
+<td style="text-align: right;">-0.916999</td>
+<td style="text-align: left;">0.359144</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Income&lt; 400% poverty</td>
+<td style="text-align: right;">-0.150961</td>
+<td style="text-align: right;">0.056160</td>
+<td style="text-align: right;">-2.688042</td>
+<td style="text-align: left;">0.007188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Income138-400% poverty</td>
+<td style="text-align: right;">-0.222511</td>
+<td style="text-align: right;">0.056902</td>
+<td style="text-align: right;">-3.910396</td>
+<td style="text-align: left;">0.000092</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IncomeAll</td>
+<td style="text-align: right;">-0.321742</td>
+<td style="text-align: right;">0.058373</td>
+<td style="text-align: right;">-5.511799</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PCTIC</td>
+<td style="text-align: right;">0.044709</td>
+<td style="text-align: right;">0.002505</td>
+<td style="text-align: right;">17.846588</td>
+<td style="text-align: left;">&lt;0.000001</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Model Performance Metrics:</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>MSE: 44.516 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RMSE: 6.672 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>R-squared: 0.531 </code></pre>
-</div>
-</div>
-<p>This section evaluates the effectiveness of predicting insurance coverage rates (PCTIC) using race and income as predictors through a linear regression model. The purpose of this analysis is to determine how accurately race and income can explain variations in insurance coverage.</p>
-<p>First, a linear regression model was fitted with insurance coverage as the dependent variable and both race and income as independent variables. The detailed summary statistics of the regression model provide insights into the strength and significance of these predictors.</p>
-<p>To assess model performance, predicted values and residuals were obtained from the model. From these residuals, the Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R²) were calculated. MSE indicates the average squared difference between observed and predicted values, providing an overall measure of prediction error magnitude. RMSE, the square root of MSE, gives a more intuitive measure of the average prediction error. The R-squared value indicates the proportion of the variance in insurance coverage explained by the race and income predictors; a higher R-squared value implies better predictive power.</p>
-<p>The calculated performance metrics are as follows: - Mean Squared Error (MSE) - Root Mean Squared Error (RMSE) - R-squared (R²)</p>
-<p>These metrics collectively provide a comprehensive evaluation of how well race and income can predict insurance coverage.</p>
-<section id="flaws-and-limitations-in-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="flaws-and-limitations-in-analysis">Flaws and limitations in analysis</h2>
-<p><strong>No causality</strong> – Cross-sectional data only shows associations, not cause-and-effect.</p>
-<p><strong>Simplified model</strong> – Linear regression may miss complex relationships; omitted variables could bias results.</p>
-<p><strong>Small sample sizes</strong> – Some racial/income subgroups have limited data, reducing reliability.</p>
-<p><strong>Data merging challenges</strong> – Combining datasets with different granularities may introduce errors.（Because merging in difference dataset that might have some data differnece )</p>
-<p><strong>Unmeasured factors</strong> – Missing variables could influence outcomes.</p>
-<p><strong>Aggregation bias</strong> – State-level averages may hide local disparities.</p>
-
-
+<section id="key-findings-from-model-output" class="level2">
+<h2 class="anchored" data-anchor-id="key-findings-from-model-output">Key Findings From Model Output</h2>
+<ul>
+<li><p>Race was a strong predictor of disease prevalence. All race categories had large negative coefficients relative to the reference category. For instance, identifying as Asian (RaceASN) was associated with an average 13.99-point lower prevalence rate (p &lt; 0.000001 - way below the 0.05 threshold), and identifying as Black (RaceBLK) corresponded to a 7.60-point lower rate.</p></li>
+<li><p>Sex was a statistically significant but modest predictor of disease prevalence. Compared to the reference category, identifying as female was associated with a 0.09-point lower average prevalence rate (p = 0.0226), while identifying as male corresponded to a 0.10-point higher rate (p = 0.0121). Although these effects were statistically significant, the magnitude of the differences was relatively small compared to other predictors such as race.</p></li>
+<li><p>Income showed a negative relationship with disease prevalence, consistent with prior expectations. While the differences for low-income groups (&lt;200%, &lt;250% poverty) were not significant, the more inclusive groups (e.g., All, &lt;400%, 138–400%) showed statistically significant decreases in prevalence, with p-values &lt; 0.000001.</p></li>
+<li><p>PCTIC (Percent Insured) was a highly significant and positive predictor, with a coefficient of 0.045 (p &lt; 0.000001). This finding supports the idea that areas with higher insurance coverage also report higher disease prevalence—likely due to better detection, screening, and diagnosis rates, rather than higher true incidence.</p></li>
+</ul>
 </section>
+<section id="cross-validation-results" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation-results">Cross-Validation Results</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Cross-Validated Results</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">intercept</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">Rsquared</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">RMSESD</th>
+<th style="text-align: right;">RsquaredSD</th>
+<th style="text-align: right;">MAESD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">9.705001</td>
+<td style="text-align: right;">0.141008</td>
+<td style="text-align: right;">7.873173</td>
+<td style="text-align: right;">0.01345</td>
+<td style="text-align: right;">0.001351</td>
+<td style="text-align: right;">0.014494</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We then performed 5-fold cross-validation using the caret package to assess the model’s generalizability (Table: Cross-Validated Results). The root mean squared error (RMSE) was 9.71, and the mean absolute error (MAE) was 7.87, suggesting moderate prediction error across folds. The cross-validated R-squared value of 0.14 indicates that the model explains about 14% of the variation in disease prevalence—a modest but meaningful amount given the complexity of health outcomes and the diversity of diseases included. While the model has limitations in predictive power, it does capture statistically and substantively meaningful patterns related to race, income, and insurance access.</p>
+</section>
+<section id="residual-analysis-and-model-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="residual-analysis-and-model-assumptions">Residual Analysis and Model Assumptions</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A QQ plot of the standardized residuals shows that:</p>
+<ul>
+<li><p>Most residuals lie near the diagonal line, indicating approximate normality in the center of the distribution.</p></li>
+<li><p>The tails deviate upward and downward, suggesting positive kurtosis (heavier tails than a normal distribution).</p></li>
+</ul>
+<p>This indicates the presence of extreme values or outliers and possible violations of the normality assumption. While this doesn’t invalidate the model, it may affect the reliability of p-values and confidence intervals. In future iterations, we might consider more robust regression techniques to reduce sensitivity to these outliers.</p>
+</section>
+</section>
+<section id="flaws-and-limitations-in-analysis" class="level1">
+<h1>Flaws and limitations in analysis</h1>
+<p><strong>No causality</strong> – The analysis is based on cross-sectional observational data, which can reveal associations but not establish cause-and-effect relationships between variables.</p>
+<p><strong>Simplified model</strong> - The linear regression model assumes linear relationships and does not account for potential interactions or non-linear effects. Key predictors such as education level, employment status, or geographic access to healthcare are not included and may confound the observed relationships.</p>
+<p><strong>Small sample sizes</strong> – Some racial and income subgroups (e.g., Native Hawaiian/Pacific Islander or specific income brackets) have relatively small sample sizes, which may reduce statistical reliability and generalizability for those groups.</p>
+<p><strong>Data merging challenges</strong> – Merging datasets with differing structures, time frames, or levels of geographic granularity may introduce inconsistencies or measurement errors. For instance, state-level averages may obscure important within-state variation or neighborhood-level disparities.</p>
+<p><strong>Unmeasured factors</strong> – Factors such as language barriers, immigration status, healthcare provider bias, or local public health infrastructure were not captured in the datasets but may significantly affect both insurance access and chronic disease outcomes.</p>
+<p><strong>Aggregation bias</strong> – Because our analyses are conducted at the state and subgroup levels, they may mask local nuances and individual-level variation. This can lead to aggregation bias, where trends observed in the data do not necessarily reflect the experiences of individuals within those groups.</p>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
+<ol type="1">
+<li><p><strong>Racial and Ethnic Disparities in Chronic Disease Prevalence:</strong> Our analysis confirms that chronic disease prevalence in the U.S. is unevenly distributed across racial and ethnic groups. Multiracial and American Indian/Alaska Native populations experience the highest average rates of multiple chronic conditions, while Asian populations consistently report the lowest. These disparities highlight the role of structural inequities, including differences in environmental exposures, healthcare access, and broader social determinants of health.</p></li>
+<li><p><strong>Preventive Health Measure Usage and Its Impact:</strong> There are substantial disparities in the usage of preventive health services such as influenza vaccinations, cancer screenings, and physical activity counseling. Groups with lower utilization—particularly Hispanic, Black, and American Indian/Alaska Native populations—also tended to report higher disease burdens. This pattern reinforces the importance of equitable access to preventive care as a means of reducing chronic disease disparities.</p></li>
+<li><p>**Socioeconomic Determinants of Health Disparities:&amp;&amp; Insurance coverage and income level emerged as critical factors shaping health outcomes. While higher income was generally associated with better insurance coverage, significant racial disparities in insurance access persisted even within the same income brackets. These findings point to systemic barriers—beyond just income—that prevent certain groups from obtaining adequate healthcare access.</p></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->
